@@ -18,7 +18,12 @@ namespace D05.Controllers
         // GET: Tickets
         public IActionResult Index()
         {
+<<<<<<< HEAD
             return View(_context.Ticket.ToList());
+=======
+            var applicationDbContext = _context.Ticket.Include(t => t.Transaction);
+            return View(applicationDbContext.ToList());
+>>>>>>> 46765467cfe76bab7016517f3b77c7e1e129e80b
         }
 
         // GET: Tickets/Details/5
@@ -41,6 +46,10 @@ namespace D05.Controllers
         // GET: Tickets/Create
         public IActionResult Create()
         {
+<<<<<<< HEAD
+=======
+            ViewData["TransactionID"] = new SelectList(_context.Transaction, "TransactionID", "Transaction");
+>>>>>>> 46765467cfe76bab7016517f3b77c7e1e129e80b
             return View();
         }
 
@@ -55,6 +64,10 @@ namespace D05.Controllers
                 _context.SaveChanges();
                 return RedirectToAction("Index");
             }
+<<<<<<< HEAD
+=======
+            ViewData["TransactionID"] = new SelectList(_context.Transaction, "TransactionID", "Transaction", ticket.TransactionID);
+>>>>>>> 46765467cfe76bab7016517f3b77c7e1e129e80b
             return View(ticket);
         }
 
@@ -71,6 +84,10 @@ namespace D05.Controllers
             {
                 return HttpNotFound();
             }
+<<<<<<< HEAD
+=======
+            ViewData["TransactionID"] = new SelectList(_context.Transaction, "TransactionID", "Transaction", ticket.TransactionID);
+>>>>>>> 46765467cfe76bab7016517f3b77c7e1e129e80b
             return View(ticket);
         }
 
@@ -85,6 +102,10 @@ namespace D05.Controllers
                 _context.SaveChanges();
                 return RedirectToAction("Index");
             }
+<<<<<<< HEAD
+=======
+            ViewData["TransactionID"] = new SelectList(_context.Transaction, "TransactionID", "Transaction", ticket.TransactionID);
+>>>>>>> 46765467cfe76bab7016517f3b77c7e1e129e80b
             return View(ticket);
         }
 

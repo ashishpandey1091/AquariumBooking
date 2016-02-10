@@ -18,7 +18,11 @@ namespace D05.Controllers
         // GET: CreateEvents
         public IActionResult Index()
         {
+<<<<<<< HEAD
             return View(_context.Event.ToList());
+=======
+            return View(_context.CreateEvent.ToList());
+>>>>>>> 46765467cfe76bab7016517f3b77c7e1e129e80b
         }
 
         // GET: CreateEvents/Details/5
@@ -29,7 +33,11 @@ namespace D05.Controllers
                 return HttpNotFound();
             }
 
+<<<<<<< HEAD
             CreateEvent createEvent = _context.Event.Single(m => m.EventID == id);
+=======
+            CreateEvent createEvent = _context.CreateEvent.Single(m => m.EventID == id);
+>>>>>>> 46765467cfe76bab7016517f3b77c7e1e129e80b
             if (createEvent == null)
             {
                 return HttpNotFound();
@@ -51,7 +59,11 @@ namespace D05.Controllers
         {
             if (ModelState.IsValid)
             {
+<<<<<<< HEAD
                 _context.Event.Add(createEvent);
+=======
+                _context.CreateEvent.Add(createEvent);
+>>>>>>> 46765467cfe76bab7016517f3b77c7e1e129e80b
                 _context.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -66,7 +78,11 @@ namespace D05.Controllers
                 return HttpNotFound();
             }
 
+<<<<<<< HEAD
             CreateEvent createEvent = _context.Event.Single(m => m.EventID == id);
+=======
+            CreateEvent createEvent = _context.CreateEvent.Single(m => m.EventID == id);
+>>>>>>> 46765467cfe76bab7016517f3b77c7e1e129e80b
             if (createEvent == null)
             {
                 return HttpNotFound();
@@ -97,7 +113,11 @@ namespace D05.Controllers
                 return HttpNotFound();
             }
 
+<<<<<<< HEAD
             CreateEvent createEvent = _context.Event.Single(m => m.EventID == id);
+=======
+            CreateEvent createEvent = _context.CreateEvent.Single(m => m.EventID == id);
+>>>>>>> 46765467cfe76bab7016517f3b77c7e1e129e80b
             if (createEvent == null)
             {
                 return HttpNotFound();
@@ -111,8 +131,13 @@ namespace D05.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(int id)
         {
+<<<<<<< HEAD
             CreateEvent createEvent = _context.Event.Single(m => m.EventID == id);
             _context.Event.Remove(createEvent);
+=======
+            CreateEvent createEvent = _context.CreateEvent.Single(m => m.EventID == id);
+            _context.CreateEvent.Remove(createEvent);
+>>>>>>> 46765467cfe76bab7016517f3b77c7e1e129e80b
             _context.SaveChanges();
             return RedirectToAction("Index");
         }

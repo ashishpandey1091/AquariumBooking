@@ -19,6 +19,7 @@ namespace D05.Models
         public string Description { get; set; }
         [Required]
         [Range(4, 2)]
+<<<<<<< HEAD
         public string AdultPrice { get; set; }
         [Required]
         [Range(4, 2)]
@@ -26,6 +27,15 @@ namespace D05.Models
         [Required]
         [Range(4, 2)]
         public string Child { get; set; }
+=======
+        public double AdultPrice { get; set; }
+        [Required]
+        [Range(4, 2)]
+        public double SeniorCitizen { get; set; }
+        [Required]
+        [Range(4, 2)]
+        public double Child { get; set; }
+>>>>>>> 46765467cfe76bab7016517f3b77c7e1e129e80b
         public bool SpecialEvent { get; set; }
         
 
