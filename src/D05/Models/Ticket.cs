@@ -16,6 +16,7 @@ namespace D05.Models
         public string TicketType { get; set; }
        
         [Range(1, 200)]
+        [Required]
         public DateTime VisitReason { get; set; }
         [Required]
         public DateTime VisitingTime { get; set; }
@@ -31,6 +32,7 @@ namespace D05.Models
        // public virtual Transaction Transaction { get; set; }
 
         [ScaffoldColumn(false)]
+        [Required]
         public int TransactionID { get; set; }
 
         // Navigation property
