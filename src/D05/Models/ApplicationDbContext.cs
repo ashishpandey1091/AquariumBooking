@@ -28,6 +28,7 @@ namespace D05.Models
         public DbSet<Transaction> Transaction { get; set; }
         public DbSet<Coupons> Coupons { get; set; }
         public DbSet<CreateEvent> CreateEvent { get; set; }
+        public DbSet<CouponProfile> CouponProfile { get; set; }
 
     }
 }
