@@ -9,7 +9,7 @@ namespace D05.Controllers
     public class Coupons
     {
         [ScaffoldColumn(false)]
-        public int CouponID { get; set; }
+        [Key]public int CouponID { get; set; }
 
         public string CouponString { get; set; }
 

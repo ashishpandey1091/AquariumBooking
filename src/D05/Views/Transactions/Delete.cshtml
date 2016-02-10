@@ -1,4 +1,4 @@
-@model D05.Controllers.Transaction
+@model D05.Models.Transaction
 
 @{
     ViewData["Title"] = "Delete";
@@ -18,6 +18,12 @@
             @Html.DisplayFor(model => model.CreatedDate)
         </dd>
         <dt>
+            @Html.DisplayNameFor(model => model.PaidAmnt)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PaidAmnt)
+        </dd>
+        <dt>
             @Html.DisplayNameFor(model => model.PaidAmount)
         </dt>
         <dd>
@@ -28,6 +34,18 @@
         </dt>
         <dd>
             @Html.DisplayFor(model => model.ProfileID)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TicketType)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TicketType)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ToTalAmnt)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ToTalAmnt)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.TotalAmount)

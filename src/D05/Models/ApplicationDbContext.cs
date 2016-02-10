@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Data.Entity;
 using D05.Controllers;
+using D05.Models;
 
 namespace D05.Models
 {
@@ -18,5 +19,10 @@ namespace D05.Models
             // Add your customizations after calling base.OnModelCreating(builder);
         }
         public DbSet<Transaction> Transaction { get; set; }
+        public DbSet<Ticket> Ticket { get; set; }
+        public DbSet<Profile> Profile { get; set; }
+        public DbSet<Coupons> Coupons { get; set; }
+        public DbSet<Admin> Admin { get; set; }
+        public DbSet<CreateEvent> CreateEvent { get; set; }
     }
 }

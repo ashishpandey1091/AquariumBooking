@@ -1,4 +1,4 @@
-@model D05.Controllers.Transaction
+@model D05.Models.Transaction
 
 @{
     ViewData["Title"] = "Create";
@@ -19,6 +19,13 @@
             </div>
         </div>
         <div class="form-group">
+            <label asp-for="PaidAmnt" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="PaidAmnt" class="form-control" />
+                <span asp-validation-for="PaidAmnt" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
             <label asp-for="PaidAmount" class="col-md-2 control-label"></label>
             <div class="col-md-10">
                 <input asp-for="PaidAmount" class="form-control" />
@@ -30,6 +37,20 @@
             <div class="col-md-10">
                 <input asp-for="ProfileID" class="form-control" />
                 <span asp-validation-for="ProfileID" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="TicketType" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="TicketType" class="form-control" />
+                <span asp-validation-for="TicketType" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="ToTalAmnt" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="ToTalAmnt" class="form-control" />
+                <span asp-validation-for="ToTalAmnt" class="text-danger" />
             </div>
         </div>
         <div class="form-group">
