@@ -13,8 +13,8 @@ namespace D05.Models
 
 
         public DateTime CreatedDate { get; set; }
-        [Required]
-        public int ProfileID { get; set; }
+        
+        
         public double TotalAmount { get; set; }
         public double PaidAmount { get; set; }
         public string UsedCoupon { get; set; }
@@ -31,7 +31,7 @@ namespace D05.Models
         public int ProfileId { get; set; }
 
         // Navigation property
-        // public virtual Profile Profile { get; set; }
+        public virtual Profile Profile { get; set; }
 
     }
 }
