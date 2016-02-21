@@ -2,109 +2,281 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000">
-    <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
-        <li data-target="#myCarousel" data-slide-to="3"></li>
-    </ol>
-    <div class="carousel-inner" role="listbox">
-        <div class="item active">
-            <img src="~/images/ASP-NET-Banners-01.png" alt="ASP.NET" class="img-responsive" />
-            <div class="carousel-caption">
-                <p>
-                    Learn how to build ASP.NET apps that can run anywhere.
-                    <a class="btn btn-default btn-default" href="http://go.microsoft.com/fwlink/?LinkID=525028&clcid=0x409">
-                        Learn More
-                    </a>
-                </p>
+@*<div class="navbar-wrapper" style="position: relative;z-index: 99;">
+    <div class="container">
+        <nav class="navbar navbar-default animated slideInDown" id="navid">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Aquatix Aquarium</a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="home.html">Home</a></li>
+                        <li class="dropdown">
+                            <a href="html/planyourvisit.html" class="dropdown-toggle"
+                               data-toggle="dropdown" role="button">Visitor Info<b class="caret"></b></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="html/planyourvisit.html?tab=hours">Hours and Prices</a></li>
+                                <li><a href="html/planyourvisit.html?tab=tickets">Buy Tickets</a></li>
+                                <li><a href="html/planyourvisit.html?tab=find">Finding us</a></li>
+                                <li><a href="html/planyourvisit.html?tab=occasions">Special Occasions</a></li>
+                                <li class="divider"></li>
+                                <li><a href="html/planyourvisit.html?tab=faq">FAQ's</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="dropdown">
+                            <a href="html/exhibits.html" class="dropdown-toggle"
+                               data-toggle="dropdown" role="button">Exhibits<b class="caret"></b></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="html/exhibits.html?tab=exone">Journey to Atlantis</a></li>
+                                <li><a href="html/exhibits.html?tab=extwo">Dolphin Notch</a></li>
+                                <li><a href="html/exhibits.html?tab=exthree">Seaworld Tower</a></li>
+                                <li><a href="html/exhibits.html?tab=exfour">Walrus Skerry</a></li>
+                                <li><a href="html/exhibits.html?tab=exfive">Killer Whales</a></li>
+                                <li><a href="html/exhibits.html?tab=exsix">Coral Reef</a></li>
+                                <li><a href="html/exhibits.html?tab=exseven">Danty Sealions</a></li>
+
+                            </ul>
+                        </li>
+                        <li><a href="./html/aboutus.html">About us</a></li>
+                    </ul>
+
+                    <div class="navbar-right">
+                        <div id="myaccount">
+                            <p class="navbar-text"><strong>Welcome,</strong><span id="username"></span></p>
+                            <ul class="nav navbar-nav">
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle"
+                                       data-toggle="dropdown" role="button"><span class="glyphicon glyphicon-user"></span></a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a href="#" id="myaccnt">My Account</a></li>
+                                        <li><a href="#" id="logout">Logout</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <div id="loginlinks">
+                            <ul class="nav navbar-nav">
+                                <li><a href="html/register.html" data-toggle="modal" data-target="#register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                                <li id="registernav"><a href="html/login.html" data-toggle="modal" data-target="#login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
+        </nav>
+    </div>
+</div>*@
+<!-- end of navigation bar -->
+
+<div id="homeslider" style="position: relative; margin-top: -93px;z-index:2;">
+    <div id="slider" class="carousel slide" data-ride="carousel">
+
+
+        <!-- carousal indicators-->
+        <ol class="carousel-indicators">
+            <li data-target="#slider" data-slide-to="0" class="active"></li>
+            <li data-target="#slider" data-slide-to="1"></li>
+            <li data-target="#slider" data-slide-to="2"></li>
+            <li data-target="#slider" data-slide-to="3"></li>
+            <li data-target="#slider" data-slide-to="4"></li>
+        </ol>
+
+        <!-- carousel items -->
+        <div class="carousel-inner" role="listbox">
+
+
+
+            <div class="item active carousal_placeholder_4">
+                <h2 class="animated bounceInLeft">Family Fun at Aquatix Aquarium</h2>
+                <div class="carousel-caption">
+                    <h3 class="animated bounceInRight">Add content here</h3>
+                    <!--<p>Description for image 4</p>-->
+                </div>
+            </div>
+
+            <div class="item carousal_placeholder_5">
+                <h2 class="animated bounceInLeft">Experience our spectacular aqua theater</h2>
+                <div class="carousel-caption">
+                    <h3 class="animated bounceInRight">Add content here</h3>
+                </div>
+            </div>
+
+
+            <div class="item carousal_placeholder_2">
+                <!--<img src="img/car3.jpg" alt="">-->
+                <h2 class="animated bounceInLeft">Upclose Encounters</h2>
+                <div class="carousel-caption">
+                    <h3 class="animated bounceInRight">Add content here</h3>
+                    <!--<p>Description for image 2</p>-->
+                </div>
+            </div>
+
+            <div class="item carousal_placeholder_3">
+                <h2 class="animated bounceInLeft">Birthday Parties</h2>
+                <div class="carousel-caption">
+                    <h3 class="animated bounceInRight">Celebrate Beneath the Waves</h3>
+                    <!--<p></p>-->
+                </div>
+            </div>
+
+
+
+            <div class="item carousal_placeholder_1">
+
+                <h2 class="animated bounceInLeft">Take the Tunnel</h2>
+                <div class="carousel-caption">
+                    <h3 class="animated bounceInRight">Explore the depths from the underwater walks</h3>
+                    <p></p>
+                </div>
+            </div>
+
         </div>
-        <div class="item">
-            <img src="~/images/Banner-02-VS.png" alt="Visual Studio" class="img-responsive" />
-            <div class="carousel-caption">
-                <p>
-                    There are powerful new features in Visual Studio for building modern web apps.
-                    <a class="btn btn-default btn-default" href="http://go.microsoft.com/fwlink/?LinkID=525030&clcid=0x409">
-                        Learn More
-                    </a>
-                </p>
+
+        <!-- carousel nav -->
+        <a class="left carousel-control" href="#slider" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+        <a class="right carousel-control" href="#slider" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+        </a>
+    </div>
+</div>
+<!-- end of carousel and navigation bar -->
+
+
+<div class="container" style="margin-top: 5px;">
+    <div class="row">
+        <div class="col-md-9">
+            <div class="row">
+                <div class="col-md-6">
+                    <h3>Scheduled Events</h3>
+                </div>
+                <div class="col-md-6 events_details">
+                    <button class="btn btn-primary btn-xs" style="margin-top: 20px;margin-left: 320px;">More Details</button>
+                </div>
             </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="show-placeholder_1">&nbsp;</div>
+                    <h4>Dolphin Show</h4>
+                    <p>Weekends (Apr 29 - May 29)- 4.p.m to 6.p.m</p>
+
+
+                </div>
+                <div class="col-md-4">
+                    <div class="show-placeholder_2">&nbsp;</div>
+                    <h4>Music Fountain Show</h4>
+                    <p>Weekdays (Apr 29 - May 29)- 1.p.m to 3.p.m</p>
+
+                </div>
+                <div class="col-md-4">
+                    <div class="show-placeholder_3">&nbsp;</div>
+                    <h4>Coral Show</h4>
+                    <p>Weekdays (Apr 29 - May 29)- 4.p.m to 6.p.m</p>
+
+                </div>
+            </div>
+
+            <h3>More Aquatix</h3>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="exhibit-placeholder-small">&nbsp;</div>
+                    <h4>Exhibits Aquatix</h4>
+                    <p>Explore exciting exhibits Aquatix.Family Fun and more!</p>
+                    <a href="html/exhibits.html?tab=exone"><strong>More Details</strong></a>
+
+
+                </div>
+                <div class="col-md-4">
+                    <div class="bday-placeholder-small">&nbsp;</div>
+                    <h4>Exciting Birthday Parties</h4>
+                    <p>Parties! Celebrate your Kids Birthday Aquatix</p>
+                    <a href="html/planyourvisit.html?tab=occasions"><strong>More Details</strong></a>
+
+                </div>
+                <div class="col-md-4">
+                    <div class="trip-placeholder-small">&nbsp;</div>
+                    <h4>Ideal Field Trips</h4>
+                    <p>Better Way to Learn.Visit Aquatix for Organized and Ideal School trips</p>
+                    <a href="html/planyourvisit.html?tab=occasions"><strong>More Details</strong></a>
+                </div>
+            </div>
+
+
         </div>
-        <div class="item">
-            <img src="~/images/ASP-NET-Banners-02.png" alt="Package Management" class="img-responsive" />
-            <div class="carousel-caption">
-                <p>
-                    Bring in libraries from NuGet, Bower, and npm, and automate tasks using Grunt or Gulp.
-                    <a class="btn btn-default btn-default" href="http://go.microsoft.com/fwlink/?LinkID=525029&clcid=0x409">
-                        Learn More
-                    </a>
-                </p>
+        <div class="col-md-3" style="padding-top:15px;">
+
+            <div id="regiseroffer">
+                <h4><strong>New User?</strong></h4>
+                <p>Register Now and get a Gift Voucher worth 50$ which can be redeemed ebay.com </p>
+                <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#register">Register Now!</button>
             </div>
-        </div>
-        <div class="item">
-            <img src="~/images/Banner-01-Azure.png" alt="Microsoft Azure" class="img-responsive" />
-            <div class="carousel-caption">
-                <p>
-                    Learn how Microsoft's Azure cloud platform allows you to build, deploy, and scale web apps.
-                    <a class="btn btn-default btn-default" href="http://go.microsoft.com/fwlink/?LinkID=525027&clcid=0x409">
-                        Learn More
-                    </a>
-                </p>
+
+            <div id="offer" style="padding-top: 10px;">
+                <h3><span class="label label-info">Save upto 30%</span></h3>
+                <p>Add two Shows to your Entry Ticket and save upto 30%</p>
+                <button class="btn btn-sm btn-primary">Buy Tickets</button>
             </div>
+
+            <div id="newsletter" class="well">
+                <h4><span class="glyphicon glyphicon-envelope"></span>&nbsp;<b>Newsletter</b></h4>
+                <h5>keep up date with all the latest news and special events</h5>
+                <form role="form">
+                    <div class="form-group form-horizontal">
+                        <label>E-mail</label>
+                        <input type="text" id="news_subs" class="form-control input-sm" placeholder="Enter your EmailId" required="" />
+                    </div>
+                    <input type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#subscribe" value="Subscribe" />
+                </form>
+            </div>
+
+            <div id="quote">
+                <blockquote>
+                    <h4>OPENING HOURS</h4>
+                    <h5><strong>Check <a href="html/planyourvisit.html?tab=hours">Hours and Prices</a> for Details</strong></h5>
+                </blockquote>
+            </div>
+
         </div>
     </div>
-    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-    </a>
-    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-    </a>
+
+</div>
+<div class="container" style="margin-top:45px;">
+    <footer style="text-align: center; font-size: 14px;">Brand Name &copy; 2015. All rights reserved.</footer>
+</div>
+<!-- End of container -->
+
+
+<div id="register" class="modal  fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content"></div>
+    </div>
 </div>
 
-<div class="row">
-    <div class="col-md-3">
-        <h2>Application uses</h2>
-        <ul>
-            <li>Sample pages using ASP.NET MVC 6</li>
-            <li><a href="http://go.microsoft.com/fwlink/?LinkId=518007">Gulp</a> and <a href="http://go.microsoft.com/fwlink/?LinkId=518004">Bower</a> for managing client-side libraries</li>
-            <li>Theming using <a href="http://go.microsoft.com/fwlink/?LinkID=398939">Bootstrap</a></li>
-        </ul>
+<div id="login" class="modal  fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content"></div>
     </div>
-    <div class="col-md-3">
-        <h2>How to</h2>
-        <ul>
-            <li><a href="http://go.microsoft.com/fwlink/?LinkID=398600">Add a Controller and View</a></li>
-            <li><a href="http://go.microsoft.com/fwlink/?LinkID=699314">Add an appsetting in config and access it in app.</a></li>
-            <li><a href="http://go.microsoft.com/fwlink/?LinkId=699315">Manage User Secrets using Secret Manager.</a></li>
-            <li><a href="http://go.microsoft.com/fwlink/?LinkId=699316">Use logging to log a message.</a></li>
-            <li><a href="http://go.microsoft.com/fwlink/?LinkId=699317">Add packages using NuGet.</a></li>
-            <li><a href="http://go.microsoft.com/fwlink/?LinkId=699318">Add client packages using Bower.</a></li>
-            <li><a href="http://go.microsoft.com/fwlink/?LinkId=699319">Target development, staging or production environment.</a></li>
-        </ul>
-    </div>
-    <div class="col-md-3">
-        <h2>Overview</h2>
-        <ul>
-            <li><a href="http://go.microsoft.com/fwlink/?LinkId=518008">Conceptual overview of what is ASP.NET 5</a></li>
-            <li><a href="http://go.microsoft.com/fwlink/?LinkId=699320">Fundamentals of ASP.NET 5 such as Startup and middleware.</a></li>
-            <li><a href="http://go.microsoft.com/fwlink/?LinkId=398602">Working with Data</a></li>
-            <li><a href="http://go.microsoft.com/fwlink/?LinkId=398603">Security</a></li>
-            <li><a href="http://go.microsoft.com/fwlink/?LinkID=699321">Client side development</a></li>
-            <li><a href="http://go.microsoft.com/fwlink/?LinkID=699322">Develop on different platforms</a></li>
-            <li><a href="http://go.microsoft.com/fwlink/?LinkID=699323">Read more on the documentation site</a></li>
-        </ul>
-    </div>
-    <div class="col-md-3">
-        <h2>Run & Deploy</h2>
-        <ul>
-            <li><a href="http://go.microsoft.com/fwlink/?LinkID=517851">Run your app</a></li>
-            <li><a href="http://go.microsoft.com/fwlink/?LinkID=517852">Run your app on .NET Core</a></li>
-            <li><a href="http://go.microsoft.com/fwlink/?LinkID=517853">Run commands in your project.json</a></li>
-            <li><a href="http://go.microsoft.com/fwlink/?LinkID=398609">Publish to Microsoft Azure Web Apps</a></li>
-        </ul>
+</div>
+
+<div id="subscribe" class="modal  fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4>You have successfully subscribed for Aquatix Newsletter!</h4>
+                <p class="help-block">To Un-subscribe please check <a href="#">FAQ's</a></p>
+            </div>
+
+        </div>
     </div>
 </div>
