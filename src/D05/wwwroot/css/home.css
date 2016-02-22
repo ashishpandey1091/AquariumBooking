@@ -4,7 +4,7 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 */
 /* 
-    Created on : Mar 26, 2015, 1:15:36 AM
+    
     Author     : S522573
 */
 
@@ -91,31 +91,36 @@ h2{
 .carousal_placeholder_1{
     background-image: url('../img/Tunnel_carousal_2.jpg');
     background-repeat: no-repeat;
-    background-position: center;
+    background-position: center; 
+    background-size:100% auto;
 }
 
 .carousal_placeholder_2{
     background-image: url('../img/close-encounter_carousal_4.jpg');
     background-repeat: no-repeat;
     background-position: center; 
+    background-size:100% auto;
 }
 
 .carousal_placeholder_3{
     background-image: url('../img/birthday_carousal_3.jpeg');
     background-repeat: no-repeat;
     background-position: center; 
+    background-size:100% auto;
 }
 
 .carousal_placeholder_4{
     background-image: url('../img/Family Fun_carousal.jpg');
     background-repeat: no-repeat;
     background-position: center;
+    background-size:100% auto;
 }
 
 .carousal_placeholder_5{
      background-image: url('../img/carousal_1.jpg');
     background-repeat: no-repeat;
     background-position: center;
+    background-size:100% auto;
 }
 
 .show-placeholder_1{
