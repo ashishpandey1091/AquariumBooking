@@ -1,5 +1,239 @@
-﻿<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
-<script type="text/javascript">
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Aquatix</title>
+
+    <environment names="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/animate.css" />
+        <link rel="stylesheet" href="~/css/home.css" />
+        
+    </environment>
+    <environment names="Staging,Production">
+        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.5/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+
+    </environment>
+    <style>
+        #contactus {
+            background-image:url('/img/background.jpg');
+            background-size:contain;
+        }
+    </style>
+</head>
+<body>
+    
+<div id="contactus">
+    <div class="navbar-wrapper">
+        <div class="container">
+            <!-- start  of navigation bar-->
+
+            <nav class="navbar navbar-inverse" id="navid">
+                <div class="container">
+
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#">Aquatix Aquarium</a>
+                    </div>
+                    <div id="navbar" class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                            <li class="dropdown">
+                                <a href="planyourvisit.html" class="dropdown-toggle"
+                                   data-toggle="dropdown" role="button">Visitor Info<b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="planyourvisit.html?tab=hours">Hours and Prices</a></li>
+                                    <li><a href="planyourvisit.html?tab=tickets">Buy Tickets</a></li>
+                                    <li><a href="planyourvisit.html?tab=find">Finding us</a></li>
+                                    <li><a href="planyourvisit.html?tab=occasions">Special Occasions</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="planyourvisit.html?tab=faq">FAQ's</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="dropdown">
+                                <a href="html/exhibits.html" class="dropdown-toggle"
+                                   data-toggle="dropdown" role="button">Exhibits<b class="caret"></b></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="exhibits.html?tab=exone">Journey to Atlantis</a></li>
+                                    <li><a href="exhibits.html?tab=extwo">Dolphin Notch</a></li>
+                                    <li><a href="exhibits.html?tab=exthree">Seaworld Tower</a></li>
+                                    <li><a href="exhibits.html?tab=exfour">Walrus Skerry</a></li>
+                                    <li><a href="exhibits.html?tab=exfive">Killer Whales</a></li>
+                                    <li><a href="exhibits.html?tab=exsix">Coral Reef</a></li>
+                                    <li><a href="exhibits.html?tab=exseven">Danty Sealions</a></li>
+
+                                </ul>
+                            </li>
+                            <li><a asp-controller="Home" asp-action="About">About us</a></li>
+                            <li><a asp-controller="Home" asp-action="Contact">Contact us</a></li>
+                        </ul>
+
+
+                        <div class="navbar-right">
+                            <div id="myaccount" style="display: none;">
+                                <p class="navbar-text"><strong>Welcome,</strong><span id="username"></span></p>
+                                <ul class="nav navbar-nav">
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle"
+                                           data-toggle="dropdown" role="button"><span class="glyphicon glyphicon-user"></span></a>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li><a href="#" id="myaccnt">My Account</a></li>
+                                            <li><a href="../home.html" id="logout">Logout</a></li>
+                                        </ul>
+                                    </li>
+
+
+                                </ul>
+                            </div>
+                            <div id="loginlinks">
+                                <ul class="nav navbar-nav">
+                                    <li><a href="register.html" data-toggle="modal" data-target="#register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                                    <li id="registernav"><a href="login.html" data-toggle="modal" data-target="#login"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- end of navigation bar-->
+        </div>
+    </div>
+    <div id="main" class="container">
+
+
+
+        <div class="row" id="heading">
+            <div class="col-md-12">
+                <h3 style="text-align: center;">Aquatix Aquarium - Contact us</h3>
+            </div>
+        </div>
+
+        <div class="row jumbotron" id="emailForm" style="min-height: 300px;background-color: #eef8fa">
+            <div class="col-md-9">
+                <div class="row" style="background-color: #acdee9;height: 350px">
+                    <div id="form" style="padding: 20px;">
+                        <form asp-action="">
+                            <div class="row">
+                                <div class="col-md-6">
+
+
+                                    <div class="row">
+
+                                        <div class="form-group">
+                                            <label  class="col-md-12 control-label" style="font-size: 18px;line-height: 30px;">Name</label>
+                                            <div class="col-md-12">
+                                                <input class="form-control" type="text" placeholder="Name" id="name" />
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row" style="padding-top: 20px;padding-bottom: 20px;">
+
+                                        <div class="form-group">
+                                            <label  class="col-md-12 control-label" style="font-size: 18px;line-height: 30px;">Email</label>
+                                            <div class="col-md-12">
+                                                <input class="form-control" type="email" placeholder="Email" id="email" />
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row">
+
+                                        <div class="form-group">
+                                            <label  class="col-md-12 control-label" style="font-size: 18px;line-height: 30px;">Subject</label>
+                                            <div class="col-md-12">
+                                                <input class="form-control" type="text" placeholder="Subject" id="subject" />
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+
+
+
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="row">
+
+                                        <div class="form-group">
+                                            <label  class="col-md-12 control-label" style="font-size: 18px;line-height: 30px;">Message</label>
+                                            <div class="col-md-12">
+                                                <textarea class="form-control" rows="10"></textarea>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" style="margin-top: 20px">
+                                <div class="col-md-12">
+                                    <button type="button" class="btn btn-primary" style="float: right;">Send Message</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-3">
+                <div style="font-size: 18px"><span class=""></span> &nbsp;Our Office</div>
+
+                <div style="font-size: 16px;margin-top: 10px">Aquatix Inc.</div>
+                <div style="font-size: 14px;">1121 N College Dr</div>
+                <div style="font-size: 14px;">Maryville,MO 64468</div>
+                <div style="font-size: 14px;">Phone : (123) 456 7897</div>
+
+                <div>Team</div>
+                <div style="font-size: 16px;margin-top: 10px"><a href="#">aquatix@service.com</a></div>
+
+            </div>
+        </div>
+
+        <div class="row" id="map_canvas" style="background-color: #ddd;min-height: 300px">
+
+            
+        </div>
+        </div>
+    </div>
+
+        <environment names="Development">
+            <script src="~/lib/jquery/dist/jquery.js"></script>
+            <script src="~/js/jquery.cookie.js"></script>
+            <script src="~/lib/bootstrap/dist/js/jquery.easing.min.js"></script>
+            <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+            <script src="~/js/home.js"></script>
+            <script src="~/js/data.js"></script>
+        </environment>
+        <environment names="Staging,Production">
+            <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.1.4.min.js"
+                    asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                    asp-fallback-test="window.jQuery">
+            </script>
+            <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.5/bootstrap.min.js"
+                    asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                    asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal">
+            </script>
+
+        </environment>
+
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+    <script type="text/javascript">
         <!-- http://dotnetdevtricks.blogspot.com/2012/10/google-map-api-v3-with-mvc4-razor.html -->
 
         $(document).ready(function () {
@@ -24,93 +258,7 @@
                 draggable: false
             });
         }
-</script>
-<div id="main" class="container">
-    <div class="row" id="heading">
-        <div class="col-md-12">
-            <h3 style="text-align: center;">Aquatix Aquarium - Contact us</h3>
-        </div>
-    </div>
-    <div class="row jumbotron" id="emailForm" style="min-height: 300px;background-color: #eef8fa">
-        <div class="col-md-9">
-            <div class="row" style="background-color: #acdee9;height: 350px">
-                <div id="form" style="padding: 20px;">
-                    <form asp-action="">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="row">
-                                    <div class="form-group">
-                                        Name
-                                        <div class="col-md-12">
-                                            <input class="form-control" type="text" placeholder="Name" id="name" />
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                                <div class="row" style="padding-top: 20px;padding-bottom: 20px;">
-
-                                    <div class="form-group">
-                                        Email
-                                        <div class="col-md-12">
-                                            <input class="form-control" type="email" placeholder="Email" id="email" />
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                                <div class="row">
-
-                                    <div class="form-group">
-                                        Subject
-                                        <div class="col-md-12">
-                                            <input class="form-control" type="text" placeholder="Subject" id="subject" />
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="row">
-
-                                    <div class="form-group">
-                                        Message
-                                        <div class="col-md-12">
-                                            <textarea class="form-control" rows="10"></textarea>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row" style="margin-top: 20px">
-                            <div class="col-md-12">
-                                <button type="button" class="btn btn-primary" style="float: right;">Send Message</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class="col-md-3">
-            <div style="font-size: 18px"><span class=""></span> &nbsp;Our Office</div>
-
-            <div style="font-size: 16px;margin-top: 10px">Aquatix Inc.</div>
-            <div style="font-size: 14px;">322 N College Dr</div>
-            <div style="font-size: 14px;">Maryville,MO 64468</div>
-            <div style="font-size: 14px;">Phone : (123) 456 7897</div>
-            <div>Team</div>
-            <div style="font-size: 16px;margin-top: 10px"><a href="#">aquatix@service.com</a></div>
-
-        </div>
-    </div>
-
-    <div class="row" id="map_canvas" style="background-color: #ddd;min-height: 300px">
-        <div class="col-md-12">
-
-        </div>
-    </div>
-</div>
+    </script>
+    <footer>Google Maps 2016</footer>
+</body>
+</html>
