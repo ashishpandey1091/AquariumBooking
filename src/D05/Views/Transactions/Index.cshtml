@@ -9,25 +9,16 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
+<table class="table" style="width : 100%">
     <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CreatedByEmail)
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.CreatedDate)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PaidAmnt)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.PaidAmount)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ProfileID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TicketType)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ToTalAmnt)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.TotalAmount)
@@ -41,25 +32,16 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.CreatedDate)
+            @Html.DisplayFor(modelItem => item.CreatedByEmail)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.PaidAmnt)
+            @Html.DisplayFor(modelItem => item.CreatedDate.Month)/@Html.DisplayFor(modelItem => item.CreatedDate.Day)/@Html.DisplayFor(modelItem => item.CreatedDate.Year)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.PaidAmount)
+            $@Html.DisplayFor(modelItem => item.PaidAmount)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.ProfileID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TicketType)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ToTalAmnt)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TotalAmount)
+            $@Html.DisplayFor(modelItem => item.TotalAmount)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.UsedCoupon)
