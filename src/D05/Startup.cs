@@ -11,12 +11,13 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using D05.Models;
 using D05.Services;
+using Microsoft.Extensions.PlatformAbstractions;
 
 namespace D05
 {
     public class Startup
     {
-        public Startup(IHostingEnvironment env)
+        public Startup(IHostingEnvironment env, IApplicationEnvironment appEnv)
         {
             // Set up configuration sources.
 
@@ -55,14 +56,14 @@ namespace D05
                 .AddDefaultTokenProviders();
 
             services.AddMvc();
-
+            services.AddLogging();
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, IApplicationEnvironment appEnv)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
@@ -108,6 +109,7 @@ namespace D05
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+            AppSeedData.Initialize(app.ApplicationServices, appEnv.ApplicationBasePath);
         }
 
         // Entry point for the application.
