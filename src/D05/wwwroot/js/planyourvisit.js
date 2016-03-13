@@ -94,7 +94,7 @@ $(document).ready(function () {
      }
     
     
-    $("#datepicker").datepicker({dateFormat:'mm/dd/yy'}).datepicker("setDate",new Date());//adddefaultdate
+   // $("#datepicker").datepicker({dateFormat:'mm/dd/yy'}).datepicker("setDate",new Date());//adddefaultdate
     
     $("#next").hide();
     $("#facilities").hide();
@@ -107,8 +107,7 @@ $(document).ready(function () {
     $('[data-toggle="tooltip"]').tooltip();
     
     /* start of on click of links in homepage **/
-    var targetTab = ViewData["Key"];     //getParameterByName('tab');
-
+    var targetTab = document.getElementById("tabInfo").value;   // ViewData["Key"];     //getParameterByName('tab');
     console.log("tabname"+targetTab);
     
     if(targetTab === 'hours'){
