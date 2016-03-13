@@ -4,15 +4,14 @@
  * and open the template in the editor.
  */
 
-function getParameterByName(name) {
+/*function getParameterByName(name) {
     name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
     var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
         results = regex.exec(location.search);
     return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-}
+}*/
 
 $(document).ready(function(){
-    
     var name = $.cookie("username");
     console.log("in home"+$.cookie("username"));
     
@@ -29,7 +28,7 @@ $(document).ready(function(){
      }
      
      /* start of on click of links in homepage for exhibits tab**/
-    var targetTab = getParameterByName('tab');
+     var targetTab = document.getElementById("tabInfo").value; //ViewData["Key"]; //getParameterByName('tab');
     console.log("tabname"+targetTab);
         if(targetTab === 'exone'){
                 $("#exonetab").addClass('active');

@@ -9,8 +9,9 @@ namespace D05.Controllers
     public class ExhibitsController : Controller
     {
 
-        public IActionResult Exhibits()
+        public IActionResult Exhibits(String tab)
         {
+            ViewData["key"] = tab;
             return View();
         }
 
