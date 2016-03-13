@@ -45,7 +45,9 @@
     </style>
 </head>
 <body>
+
     <div id="faq">
+
         <br />
 
         <div class="navbar-wrapper" style="position: relative;z-index: 99;">
@@ -63,7 +65,7 @@
                         </div>
                         <div id="navbar" class="navbar-collapse collapse">
                             <ul class="nav navbar-nav">
-                                <li class="active"><a asp-controller="Home" asp-action="Index">Home</a></li>
+                                <li><a asp-controller="Home" asp-action="Index">Home</a></li>
                                 <li class="dropdown">
                                     <a href="html/planyourvisit.html" class="dropdown-toggle"
                                        data-toggle="dropdown" role="button">Visitor Info<b class="caret"></b></a>
@@ -92,7 +94,7 @@
                                 </li>
                                 <li><a asp-controller="Home" asp-action="About">About us</a></li>
                                 <li><a asp-controller="Home" asp-action="Contact">Contact us</a></li>
-                                <li><a asp-controller="Home" asp-action="FAQs">FAQs</a></li>
+                                <li class="active"><a asp-controller="Home" asp-action="FAQs">FAQs</a></li>
                             </ul>
 
                             <!--<div class="navbar-right">
@@ -375,24 +377,24 @@
 
         </div>
     </div>
-    
+
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <!-- Latest compiled and minified JavaScript -->
     <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
     <script>
-    function toggleChevron(e) {
-    $(e.target)
-    .prev('.panel-heading')
-    .find('i.indicator')
-    .toggleClass('glyphicon-minus glyphicon-plus');
+        function toggleChevron(e) {
+            $(e.target)
+            .prev('.panel-heading')
+            .find('i.indicator')
+            .toggleClass('glyphicon-minus glyphicon-plus');
 
-    $('#accordion .panel-heading').removeClass('highlight');
-    $(e.target).prev('.panel-heading').addClass('highlight');
-    }
-    $('#accordion').on('hidden.bs.collapse', toggleChevron);
-    $('#accordion').on('shown.bs.collapse', toggleChevron);
+            $('#accordion .panel-heading').removeClass('highlight');
+            $(e.target).prev('.panel-heading').addClass('highlight');
+        }
+        $('#accordion').on('hidden.bs.collapse', toggleChevron);
+        $('#accordion').on('shown.bs.collapse', toggleChevron);
 
     </script>
 </body>
