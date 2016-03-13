@@ -38,19 +38,20 @@
                                 <a href="html/planyourvisit.html" class="dropdown-toggle"
                                    data-toggle="dropdown" role="button">Visitor Info<b class="caret"></b></a>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a href="html/planyourvisit.html?tab=hours">Hours and Prices</a></li>
-                                    <li><a href="html/planyourvisit.html?tab=tickets">Buy Tickets</a></li>
-                                    <li><a href="html/planyourvisit.html?tab=find">Finding us</a></li>
-                                    <li><a href="html/planyourvisit.html?tab=occasions">Special Occasions</a></li>
+                                    <li><a asp-controller="Planyourvisit" asp-action="PlanYourVisit">Hours and Prices</a></li>
+                                    <li><a asp-controller="Planyourvisit" asp-action="PlanYourVisit">Buy Tickets</a></li>
+                                    <li><a asp-controller="Planyourvisit" asp-action="PlanYourVisit">Finding us</a></li>
+                                    <li><a asp-controller="Planyourvisit" asp-action="PlanYourVisit">Special Occasions</a></li>
                                     <li class="divider"></li>
-                                    <li><a href="html/planyourvisit.html?tab=faq">FAQ's</a></li>
+                                    <li><a asp-controller="Planyourvisit" asp-action="PlanYourVisit">FAQ's</a></li>
                                 </ul>
                             </li>
 
                             <li class="dropdown">
-                                <a href="html/exhibits.html" class="dropdown-toggle"
+                                <a asp-controller="" asp-action="" class="dropdown-toggle"
                                    data-toggle="dropdown" role="button">Exhibits<b class="caret"></b></a>
                                 <ul class="dropdown-menu" role="menu">
+
                                     <li><a href="html/exhibits.html?tab=exone">Journey to Atlantis</a></li>
                                     <li><a href="html/exhibits.html?tab=extwo">Dolphin Notch</a></li>
                                     <li><a href="html/exhibits.html?tab=exthree">Seaworld Tower</a></li>
@@ -58,6 +59,16 @@
                                     <li><a href="html/exhibits.html?tab=exfive">Killer Whales</a></li>
                                     <li><a href="html/exhibits.html?tab=exsix">Coral Reef</a></li>
                                     <li><a href="html/exhibits.html?tab=exseven">Danty Sealions</a></li>
+
+                                    <li><a asp-controller="Exhibits" asp-action="Exhibits">Journey to Atlantis</a></li>
+                                    <li><a asp-controller="Exhibits" asp-action="Exhibits">Dolphin Notch</a></li>
+                                    <li><a asp-controller="Exhibits" asp-action="Exhibits">Seaworld Tower</a></li>
+                                    <li><a asp-controller="Exhibits" asp-action="Exhibits">Walrus Skerry</a></li>
+                                    <li><a asp-controller="Exhibits" asp-action="Exhibits">Killer Whales</a></li>
+                                    <li><a asp-controller="Exhibits" asp-action="Exhibits">Coral Reef</a></li>
+                                    <li><a asp-controller="Exhibits" asp-action="Exhibits">Danty Sealions</a></li>
+
+
                                 </ul>
                             </li>
                             <li><a asp-controller="Home" asp-action="About">About us</a></li>
@@ -70,19 +81,19 @@
                                 <p class="navbar-text"><strong>Welcome,</strong><span id="username"></span></p>
                                 <ul class="nav navbar-nav">
                                     <li class="dropdown">
-                                        <a href="#" class="dropdown-toggle"
+                                        <a asp-controller="" asp-action="" class="dropdown-toggle"
                                            data-toggle="dropdown" role="button"><span class="glyphicon glyphicon-user"></span></a>
                                         <ul class="dropdown-menu" role="menu">
-                                            <li><a href="#" id="myaccnt">My Account</a></li>
-                                            <li><a href="#" id="logout">Logout</a></li>
+                                            <li><a asp-controller="" asp-action="" id="myaccnt">My Account</a></li>
+                                            <li><a asp-controller="" asp-action="" id="logout">Logout</a></li>
                                         </ul>
                                     </li>
                                 </ul>
                             </div>
                             <div id="loginlinks">
                                 <ul class="nav navbar-nav">
-                                    <li><a href="html/register.html" data-toggle="modal" data-target="#register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                                    <li id="registernav"><a href="html/login.html" data-toggle="modal" data-target="#login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                                    <li><a asp-controller="" asp-action="" data-toggle="modal" data-target="#register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                                    <li id="registernav"><a asp-controller="" asp-action="" data-toggle="modal" data-target="#login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
 
                                 </ul>
                             </div>
@@ -167,110 +178,110 @@
                 </div>
             </div>
         </div>
-        </div>
-        <!-- end of carousel and navigation bar -->
+    </div>
+    <!-- end of carousel and navigation bar -->
 
 
-        <div class="container" style="margin-top: 5px;">
-            <div class="row">
-                <div class="col-md-9">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <h3>Scheduled Events</h3>
-                        </div>
-                        <div class="col-md-6 events_details">
-                            <button class="btn btn-primary btn-xs" style="margin-top: 20px;margin-left: 320px;">More Events</button>
-                        </div>
+    <div class="container" style="margin-top: 5px;">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h3>Scheduled Events</h3>
                     </div>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="show-placeholder_1">&nbsp;</div>
-                            <h4>Dolphin Show</h4>
-                            <p>Weekends (Apr 29 - May 29)- 4.p.m to 6.p.m</p>
-
-
-                        </div>
-                        <div class="col-md-4">
-                            <div class="show-placeholder_2">&nbsp;</div>
-                            <h4>Music Fountain Show</h4>
-                            <p>Weekdays (Apr 29 - May 29)- 1.p.m to 3.p.m</p>
-
-                        </div>
-                        <div class="col-md-4">
-                            <div class="show-placeholder_3">&nbsp;</div>
-                            <h4>Coral Show</h4>
-                            <p>Weekdays (Apr 29 - May 29)- 4.p.m to 6.p.m</p>
-
-                        </div>
+                    <div class="col-md-6 events_details">
+                        <button class="btn btn-primary btn-xs" style="margin-top: 20px;margin-left: 320px;">More Events</button>
                     </div>
-
-                    <h3>More Aquatix</h3>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="exhibit-placeholder-small">&nbsp;</div>
-                            <h4>Exhibits Aquatix</h4>
-                            <p>Explore exciting exhibits Aquatix.Family Fun and more!</p>
-                            <a href="html/exhibits.html?tab=exone"><strong>More Details</strong></a>
-
-
-                        </div>
-                        <div class="col-md-4">
-                            <div class="bday-placeholder-small">&nbsp;</div>
-                            <h4>Exciting Birthday Parties</h4>
-                            <p>Parties! Celebrate your Kids Birthday Aquatix</p>
-                            <a href="html/planyourvisit.html?tab=occasions"><strong>More Details</strong></a>
-
-                        </div>
-                        <div class="col-md-4">
-                            <div class="trip-placeholder-small">&nbsp;</div>
-                            <h4>Ideal Field Trips</h4>
-                            <p>Better Way to Learn.Visit Aquatix for Organized and Ideal School trips</p>
-                            <a href="html/planyourvisit.html?tab=occasions"><strong>More Details</strong></a>
-                        </div>
-                    </div>
-
-
                 </div>
-                <div class="col-md-3" style="padding-top:15px;">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="show-placeholder_1">&nbsp;</div>
+                        <h4>Dolphin Show</h4>
+                        <p>Weekends (Apr 29 - May 29)- 4.p.m to 6.p.m</p>
 
-                    <div id="regiseroffer">
-                        <h4><strong>New User?</strong></h4>
-                        <p>Register Now and get a Gift Voucher worth 50$ which can be redeemed ebay.com </p>
-                        <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#register">Register Now!</button>
+
                     </div>
+                    <div class="col-md-4">
+                        <div class="show-placeholder_2">&nbsp;</div>
+                        <h4>Music Fountain Show</h4>
+                        <p>Weekdays (Apr 29 - May 29)- 1.p.m to 3.p.m</p>
 
-                    <div id="offer" style="padding-top: 10px;">
-                        <h3><span class="label label-info">Save upto 30%</span></h3>
-                        <p>Add two Shows to your Entry Ticket and save upto 30%</p>
-                        <button class="btn btn-sm btn-primary">Buy Tickets</button>
                     </div>
+                    <div class="col-md-4">
+                        <div class="show-placeholder_3">&nbsp;</div>
+                        <h4>Coral Show</h4>
+                        <p>Weekdays (Apr 29 - May 29)- 4.p.m to 6.p.m</p>
 
-                    <div id="newsletter" class="well">
-                        <h4><span class="glyphicon glyphicon-envelope"></span>&nbsp;<b>Newsletter</b></h4>
-                        <h5>keep up date with all the latest news and special events</h5>
-                        <form role="form">
-                            <div class="form-group form-horizontal">
-                                <label>E-mail</label>
-                                <input type="text" id="news_subs" class="form-control input-sm" placeholder="Enter your EmailId" required="" />
-                            </div>
-                            <input type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#subscribe" value="Subscribe" />
-                        </form>
                     </div>
-
-                    <div id="quote">
-                        <blockquote>
-                            <h4>OPENING HOURS</h4>
-                            <h5><strong>Check <a href="html/planyourvisit.html?tab=hours">Hours and Prices</a> for Details</strong></h5>
-                        </blockquote>
-                    </div>
-
                 </div>
+
+                <h3>More Aquatix</h3>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="exhibit-placeholder-small">&nbsp;</div>
+                        <h4>Exhibits Aquatix</h4>
+                        <p>Explore exciting exhibits Aquatix.Family Fun and more!</p>
+                        <a asp-controller="" asp-action=""><strong>More Details</strong></a>
+
+
+                    </div>
+                    <div class="col-md-4">
+                        <div class="bday-placeholder-small">&nbsp;</div>
+                        <h4>Exciting Birthday Parties</h4>
+                        <p>Parties! Celebrate your Kids Birthday Aquatix</p>
+                        <a asp-controller="" asp-action=""><strong>More Details</strong></a>
+
+                    </div>
+                    <div class="col-md-4">
+                        <div class="trip-placeholder-small">&nbsp;</div>
+                        <h4>Ideal Field Trips</h4>
+                        <p>Better Way to Learn.Visit Aquatix for Organized and Ideal School trips</p>
+                        <a asp-controller="" asp-action=""><strong>More Details</strong></a>
+                    </div>
+                </div>
+
+
             </div>
+            <div class="col-md-3" style="padding-top:15px;">
 
+                <div id="regiseroffer">
+                    <h4><strong>New User?</strong></h4>
+                    <p>Register Now and get a Gift Voucher worth 50$ which can be redeemed ebay.com </p>
+                    <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#register">Register Now!</button>
+                </div>
+
+                <div id="offer" style="padding-top: 10px;">
+                    <h3><span class="label label-info">Save upto 30%</span></h3>
+                    <p>Add two Shows to your Entry Ticket and save upto 30%</p>
+                    <button class="btn btn-sm btn-primary">Buy Tickets</button>
+                </div>
+
+                <div id="newsletter" class="well">
+                    <h4><span class="glyphicon glyphicon-envelope"></span>&nbsp;<b>Newsletter</b></h4>
+                    <h5>keep up date with all the latest news and special events</h5>
+                    <form role="form">
+                        <div class="form-group form-horizontal">
+                            <label>E-mail</label>
+                            <input type="text" id="news_subs" class="form-control input-sm" placeholder="Enter your EmailId" required="" />
+                        </div>
+                        <input type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#subscribe" value="Subscribe" />
+                    </form>
+                </div>
+
+                <div id="quote">
+                    <blockquote>
+                        <h4>OPENING HOURS</h4>
+                        <h5><strong>Check <a asp-controller="" asp-action="">Hours and Prices</a> for Details</strong></h5>
+                    </blockquote>
+                </div>
+
+            </div>
         </div>
-        <div class="container" style="margin-top:45px;">
-            <footer style="text-align: center; font-size: 14px;">Aquatix &copy; 2016. All rights reserved.</footer>
-        </div>
+
+    </div>
+    <div class="container" style="margin-top:45px;">
+        <footer style="text-align: center; font-size: 14px;">Aquatix &copy; 2016. All rights reserved.</footer>
+    </div>
     </div>
 
     <!-- End of container -->
