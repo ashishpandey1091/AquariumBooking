@@ -11,7 +11,7 @@ using D05.Models;
 
 namespace D05.Models
 {
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         protected override void OnModelCreating(ModelBuilder builder)
         {

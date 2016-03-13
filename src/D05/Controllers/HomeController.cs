@@ -31,5 +31,10 @@ namespace D05.Controllers
         {
             return View();
         }
+
+        public IActionResult FAQs()
+        {
+            return View();
+        }
     }
 }

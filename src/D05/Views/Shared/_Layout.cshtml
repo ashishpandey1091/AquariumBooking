@@ -53,7 +53,7 @@
                                 </button>
                                 <a class="navbar-brand" href="#">Aquatix Aquarium</a>
                             </div>
-                            <div id="navbar" class="navbar-collapse collapse">
+                            <di`v id="navbar" class="navbar-collapse collapse">
                                 <ul class="nav navbar-nav">
                                     <li class="active"><a asp-controller="Home" asp-action="Index">Home</a></li>
                                     <li class="dropdown">
@@ -65,11 +65,9 @@
                                             <li><a href="html/planyourvisit.html?tab=find">Finding us</a></li>
                                             <li><a href="html/planyourvisit.html?tab=occasions">Special Occasions</a></li>
                                             <li class="divider"></li>
-                                            <li><a href="html/planyourvisit.html?tab=faq">FAQ's</a></li>
                                         </ul>
                                     </li>
-
-                                    <li class="dropdown">
+                                    <!--<li class="dropdown">
                                         <a href="html/exhibits.html" class="dropdown-toggle"
                                            data-toggle="dropdown" role="button">Exhibits<b class="caret"></b></a>
                                         <ul class="dropdown-menu" role="menu">
@@ -80,11 +78,12 @@
                                             <li><a href="html/exhibits.html?tab=exfive">Killer Whales</a></li>
                                             <li><a href="html/exhibits.html?tab=exsix">Coral Reef</a></li>
                                             <li><a href="html/exhibits.html?tab=exseven">Danty Sealions</a></li>
-
                                         </ul>
-                                    </li>
+                                    </li>-->
+                                    
                                     <li><a asp-controller="Home" asp-action="About">About us</a></li>
                                     <li><a asp-controller="Home" asp-action="Contact">Contact</a></li>
+                                    <li><a asp-controller="Home" asp-action="FAQs">FAQs</a></li>
                                 </ul>
 
                                 <div class="navbar-right">
@@ -114,12 +113,12 @@
                                         </ul>*@
                                     </div>
                                 </div>
-                            </div>
+                            </di`v>
                         </div>
                     </nav>
                 </div>
             </div>
- 
+
             <div class="container body-content">
                 @RenderBody()
                 <hr />

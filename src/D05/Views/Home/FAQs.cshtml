@@ -1,0 +1,139 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aquatix</title>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <environment names="Staging,Production">
+        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.5/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+
+    </environment>
+</head>
+<body>
+    <br />
+    <div class="navbar-wrapper" style="position: relative;z-index: 99;">
+        <div class="container">
+            <nav class="navbar navbar-default animated slideInDown" id="navid">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#">Aquatix Aquarium</a>
+                    </div>
+                    <div id="navbar" class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a asp-controller="Home" asp-action="Index">Home</a></li>
+                            <li class="dropdown">
+                                <a href="html/planyourvisit.html" class="dropdown-toggle"
+                                   data-toggle="dropdown" role="button">Visitor Info<b class="caret"></b></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="html/planyourvisit.html?tab=hours">Hours and Prices</a></li>
+                                    <li><a href="html/planyourvisit.html?tab=tickets">Buy Tickets</a></li>
+                                    <li><a href="html/planyourvisit.html?tab=find">Finding us</a></li>
+                                    <li><a href="html/planyourvisit.html?tab=occasions">Special Occasions</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="html/planyourvisit.html?tab=faq">FAQ's</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="dropdown">
+                                <a href="html/exhibits.html" class="dropdown-toggle"
+                                   data-toggle="dropdown" role="button">Exhibits<b class="caret"></b></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="html/exhibits.html?tab=exone">Journey to Atlantis</a></li>
+                                    <li><a href="html/exhibits.html?tab=extwo">Dolphin Notch</a></li>
+                                    <li><a href="html/exhibits.html?tab=exthree">Seaworld Tower</a></li>
+                                    <li><a href="html/exhibits.html?tab=exfour">Walrus Skerry</a></li>
+                                    <li><a href="html/exhibits.html?tab=exfive">Killer Whales</a></li>
+                                    <li><a href="html/exhibits.html?tab=exsix">Coral Reef</a></li>
+                                    <li><a href="html/exhibits.html?tab=exseven">Danty Sealions</a></li>
+                                </ul>
+                            </li>
+                            <li><a asp-controller="Home" asp-action="About">About us</a></li>
+                            <li><a asp-controller="Home" asp-action="Contact">Contact us</a></li>
+                            <li><a asp-controller="Home" asp-action="FAQs">FAQs</a></li>
+                        </ul>
+
+                        <!--<div class="navbar-right">
+                            <div id="myaccount">
+                                <p class="navbar-text"><strong>Welcome,</strong><span id="username"></span></p>
+                                <ul class="nav navbar-nav">
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle"
+                                           data-toggle="dropdown" role="button"><span class="glyphicon glyphicon-user"></span></a>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li><a href="#" id="myaccnt">My Account</a></li>
+                                            <li><a href="#" id="logout">Logout</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div id="loginlinks">
+                                <ul class="nav navbar-nav">
+                                    <li><a href="html/register.html" data-toggle="modal" data-target="#register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                                    <li id="registernav"><a href="html/login.html" data-toggle="modal" data-target="#login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+
+                                </ul>
+                            </div>
+                        </div>-->
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- end of navigation bar -->
+        <div class="container">
+           <div class="row">
+               <div class="panel-group" id="accordion">
+                   <div class="panel panel-default">
+                       <div class="panel-heading">
+                           <h4 class="panel-title">
+                               <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Bag Inspections</a>
+                           </h4>
+                       </div>
+                       <div id="collapse1" class="panel-collapse collapse in">
+                           <div class="panel-body">
+                               For the safety of our visitors and the marine life we exhibit, all bags, backpacks and packages may be inspected before entering the Aquarium. During peak seasons, holidays and weekends, you may experience a brief wait to allow for security screenings.
+                           </div>
+                       </div>
+                   </div>
+                   <div class="panel panel-default">
+                       <div class="panel-heading">
+                           <h4 class="panel-title">
+                               <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Best Times To Avoid Crowd</a>
+                           </h4>
+                       </div>
+                       <div id="collapse2" class="panel-collapse collapse">
+                           <div class="panel-body">
+                               Our less-visited times are in the fall and winter months other than during holidays. At other times of the year, you'll find fewer visitors between 2 p.m. and 6 p.m. During the peak summer months, Tuesday, Wednesday and Thursday are the best days to visit.
+                           </div>
+                       </div>
+                   </div>
+                   <div class="panel panel-default">
+                       <div class="panel-heading">
+                           <h4 class="panel-title">
+                               <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Disability Access</a>
+                           </h4>
+                       </div>
+                       <div id="collapse3" class="panel-collapse collapse">
+                           <div class="panel-body">
+                               The Aquarium strives to be fully accessible to the disabled. Wheelchairs are available free of charge and on a first-come, first-served basis at the Information Desk inside the Main Entrance.
+                           </div>
+                       </div>
+                   </div>
+               </div>
+           </div>
+            
+        </div>
+
+</body>
+</html>
