@@ -51,14 +51,30 @@ userName = "";
 ticketId = 0;
 
 
-function getParameterByName(name) {
+function hoursPageClicked() {
+
+}
+
+/*function getParameterByName(name) {
     name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
     var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
         results = regex.exec(location.search);
     return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-}
+} */
 
-$(document).ready(function(){
+$(document).ready(function () {
+
+    /* var key = ViewData["Key"];
+
+    if (key == "hours") {
+
+    } else if (key == "tickets") {
+
+    } else if (key == "find") {
+
+    } else {
+
+    } */
     
     console.log("in visit us js");
      
@@ -91,7 +107,8 @@ $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip();
     
     /* start of on click of links in homepage **/
-    var targetTab = getParameterByName('tab');
+    var targetTab = ViewData["Key"];     //getParameterByName('tab');
+
     console.log("tabname"+targetTab);
     
     if(targetTab === 'hours'){
@@ -464,6 +481,13 @@ $(document).ready(function(){
                 $("#username").html(" ");
             }); 
 });
+
+
+
+
+
+
+
 
 /** code for select a ticket tab **/
 
