@@ -6,13 +6,12 @@ using System.ComponentModel.DataAnnotations;
 
 namespace D05.Models
 {
-    public class Sleepovers
+    public class BirthdayParties
     {
-
 
         [ScaffoldColumn(false)]
         [Key]
-        public int SleepOver_Id { get; set; }
+        public int Birthday_Id { get; set; }
 
         [Required]
         [MinLength(1)]
@@ -35,6 +34,16 @@ namespace D05.Models
         public EmailAddressAttribute Email { get; set; }
 
         [Required]
+        [Display(Name = "Birth Person Name")]
+        public string BirthdayPersonName { get; set; }
+
+        [Required]
+        [MinLength(1)]
+        [MaxLength(3)]
+        [Display(Name = "Person Age")]
+        public int PersonAge { get; set; }
+
+        [Required]
         public DateTime Date { get; set; }
 
         [Required]
@@ -43,15 +52,10 @@ namespace D05.Models
         [Display(Name = "No. Of People")]
         public int NoOfPeople { get; set; }
 
-        
-        [Display(Name = "Food")]
-        public bool inNeedInFood { get; set; }
-
-        [Display(Name = "Matteress")]
-        public bool inNeedInMatress { get; set; }
-
-        [Display(Name = "Virtual Reality(Gear VR)")]
-        public bool inNeedInVR { get; set; }
+        [MinLength(1)]
+        [MaxLength(250)]
+        [Display(Name = "Details / Food")]
+        public string DetailsFood { get; set; }
 
         
         public string isAdminAccepted { get; set; }

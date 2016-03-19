@@ -6,25 +6,24 @@ using System.ComponentModel.DataAnnotations;
 
 namespace D05.Models
 {
-    public class Sleepovers
+    public class SchoolTrips
     {
-
 
         [ScaffoldColumn(false)]
         [Key]
-        public int SleepOver_Id { get; set; }
+        public int SchoolTrips_Id { get; set; }
 
         [Required]
         [MinLength(1)]
-        [MaxLength(20)]
-        [Display(Name = "First Name")]
-        public string FirstName { get; set; }
+        [MaxLength(50)]
+        [Display(Name = "School Name")]
+        public string SchoolName { get; set; }
 
         [Required]
         [MinLength(1)]
-        [MaxLength(20)]
-        [Display(Name = "Last Name")]
-        public string LastName { get; set; }
+        [MaxLength(150)]
+        [Display(Name = "School Address")]
+        public string SchoolAddress { get; set; }
 
         [Required]
         [MinLength(10)]
@@ -40,22 +39,21 @@ namespace D05.Models
         [Required]
         [MinLength(1)]
         [MaxLength(3)]
-        [Display(Name = "No. Of People")]
-        public int NoOfPeople { get; set; }
+        [Display(Name = "No. Of. Children")]
+        public int NoOfChildren { get; set; }
 
-        
-        [Display(Name = "Food")]
-        public bool inNeedInFood { get; set; }
+        [Required]
+        [MinLength(1)]
+        [MaxLength(3)]
+        [Display(Name = "No. Of. Adults")]
+        public int Adults { get; set; }
 
-        [Display(Name = "Matteress")]
-        public bool inNeedInMatress { get; set; }
-
-        [Display(Name = "Virtual Reality(Gear VR)")]
-        public bool inNeedInVR { get; set; }
+        [MinLength(1)]
+        [MaxLength(250)]
+        public string Details { get; set; }
 
         
         public string isAdminAccepted { get; set; }
-
 
     }
 }
