@@ -11,8 +11,10 @@ namespace D05.Models
 
         [ScaffoldColumn(false)]
         public int AdminID { get; set; }
+
         [Required]
-        public string Email { get; set; }
+        public string EmailID { get; set; }
+
         [Required]
         [Range(1, 30)]
         public string Password { get; set; }
