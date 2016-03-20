@@ -18,11 +18,6 @@ namespace D05.Models
         [Required]
         public int CouponID { get; set; }
 
-        [Display(Name = "FirstName")]
-        public string FirstName { get; set; }
-
-        [Display(Name = "LastName")]
-        public string LastName { get; set; }
 
         public bool isUsed { get; set; }
         
