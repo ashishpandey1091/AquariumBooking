@@ -1,0 +1,401 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Aquatix</title>
+
+    <environment names="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/animate.css" />
+        <link rel="stylesheet" href="~/css/home.css" />
+
+    </environment>
+    <environment names="Staging,Production">
+        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.5/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+
+    </environment>
+    <style>
+        #aboutus {
+            background-image:url('/img/background.jpg');
+            background-size:contain;
+        }
+        .linksHover a {
+                opacity: 0.6;
+            }
+            .linksHover a:hover {
+                opacity: 1;
+            }
+    </style>
+</head>
+<body>
+    <div id="aboutus">
+        <div class="navbar-wrapper">
+            <div class="container">
+                <!-- start  of navigation bar-->
+
+                <nav class="navbar navbar-inverse" id="navid">
+                    <div class="container">
+
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-controls="navbar">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" href="#">Aquatix Aquarium</a>
+                        </div>
+                        <div id="navbar" class="navbar-collapse collapse">
+                            <ul class="nav navbar-nav">
+                                <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                                <li class="dropdown">
+                                    <a href="html/planyourvisit.html" class="dropdown-toggle"
+                                       data-toggle="dropdown" role="button">Visitor Info<b class="caret"></b></a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a href="/Planyourvisit/PlanYourVisit?tab=hours">Hours and Prices</a></li>
+                                        <li><a href="/Planyourvisit/PlanYourVisit?tab=tickets">Buy Tickets</a></li>
+                                        <li><a href="/Planyourvisit/PlanYourVisit?tab=find">Finding us</a></li>
+                                        <li><a href="/Planyourvisit/PlanYourVisit?tab=occasions">Special Occasions</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="/Planyourvisit/PlanYourVisit?tab=faq">FAQ's</a></li>
+                                    </ul>
+                                </li>
+
+                                <li class="dropdown">
+                                    <a asp-controller="" asp-action="" class="dropdown-toggle"
+                                       data-toggle="dropdown" role="button">Exhibits<b class="caret"></b></a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a href="/Exhibits/Exhibits?tab=exone">Journey to Atlantis</a></li>
+                                        <li><a href="/Exhibits/Exhibits?tab=extwo">Dolphin Notch</a></li>
+                                        <li><a href="/Exhibits/Exhibits?tab=exthree">Seaworld Tower</a></li>
+                                        <li><a href="/Exhibits/Exhibits?tab=exfour">Walrus Skerry</a></li>
+                                        <li><a href="/Exhibits/Exhibits?tab=exfive">Killer Whales</a></li>
+                                        <li><a href="/Exhibits/Exhibits?tab=exsix">Coral Reef</a></li>
+                                        <li><a href="/Exhibits/Exhibits?tab=exseven">Danty Sealions</a></li>
+
+                                    </ul>
+                                </li>
+                                <li><a asp-controller="Home" asp-action="About">About us</a></li>
+                                <li><a asp-controller="Home" asp-action="Contact">Contact us</a></li>
+                                <li><a asp-controller="Home" asp-action="FAQs">FAQs</a></li>
+                            </ul>
+
+
+                            <div class="navbar-right">
+                                <div id="myaccount" style="display: none;">
+                                    <p class="navbar-text"><strong>Welcome,</strong><span id="username"></span></p>
+                                    <ul class="nav navbar-nav">
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle"
+                                               data-toggle="dropdown" role="button"><span class="glyphicon glyphicon-user"></span></a>
+                                            <ul class="dropdown-menu" role="menu">
+                                                <li><a href="#" id="myaccnt">My Account</a></li>
+                                                <li><a href="../home.html" id="logout">Logout</a></li>
+                                            </ul>
+                                        </li>
+
+
+                                    </ul>
+                                </div>
+                                <div id="loginlinks">
+                                    <ul class="nav navbar-nav">
+                                        <li><a href="register.html" data-toggle="modal" data-target="#register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                                        <li id="registernav"><a href="login.html" data-toggle="modal" data-target="#login"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+
+                <!-- end of navigation bar-->
+            </div>
+        </div>
+
+
+        <div class="row" id="about">
+            <div class="col-lg-12 text-center">
+                <h4>Team 5: Generation of Miracles</h4>
+            </div>
+
+            <div class="col-lg-12 text-center">
+                <div class="row">
+                    <div class="col-sm-5">
+                    </div>
+                    <div class="col-sm-2 center-block">
+                        <a class="thumbnail" data-toggle="modal" data-target="#popup1" data-toggle="tooltip" title="Name: Ashish Pandey
+Role: Project Planning ">
+                            <img class="center-block" src="~/img/IMhb_1.jpg" alt="">
+                            <h5>Ashish Pandey <small>Project Planning</small></h5>
+                            <p>Develop Web Applications for the University</p>
+                        </a>
+                    </div>
+                    <div class="col-sm-5">
+                    </div>
+                </div>
+
+                <!--FIRST ROW ENDS HERE-->
+
+                <div class="row">
+                    <div class="col-sm-2">
+                    </div>
+                    <div class="col-sm-2">
+                        <a class="thumbnail" data-toggle="modal" data-target="#popup2">
+                            <img class="center-block" src="~/img/Nadeem.jpg" alt="">
+                            <h5>Nadeem Ansari <small>UI Developer</small></h5>
+                            Develop Web Applications for the University
+                        </a>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <div class="col-sm-2">
+                        </div>
+                        <div class="col-sm-8">
+                            <a class="thumbnail" data-toggle="modal" data-target="#popup6">
+                                <img class="center-block" src="~/img/Logo_3.jpg" alt="">
+                                Team 5: Generation of Miracles 
+                            </a>
+                        </div>
+                        <div class="col-sm-2">
+                        </div>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <a class="thumbnail" data-toggle="modal" data-target="#popup3">
+                            <img class="center-block" src="~/img/SaiShar.jpg" alt="">
+                            <h5>Sai Sharanya <small>UI/UX Designer</small></h5>
+                            Develop Web Applications for the University
+                        </a>
+                    </div>
+                    <div class="col-sm-2">
+                    </div>
+                </div>
+
+                <!-- SECOND ROW ENDS HERE-->
+                <div class="row">
+                    <div class="col-sm-3">
+                        <!--EMPTY COLUMN-->
+                    </div>
+                    <div class="col-sm-2">
+                        <a class="thumbnail" data-toggle="modal" data-target="#popup4">
+                            <img class="center-block" src="~/img/VijayGopi.jpg" alt="">
+                            <h5>Vijay Gopi <small>Database & Testing</small></h5>
+                            Develop Web Applications for the University
+                        </a>
+                    </div>
+                    <div class="col-sm-2">
+                        <!--EMPTY COLUMN-->
+                    </div>
+                    <div class="col-sm-2">
+                        <a class="thumbnail" data-toggle="modal" data-target="#popup5">
+                            <img class="center-block" src="~/img/Suprem.jpg" alt="">
+                            <h5>Suprem Raju <small>UX & Database</small></h5>
+                            Develop Web Applications for the University
+                        </a>
+                    </div>
+                    <div class="col-sm-3">
+                        <!--EMPTY COLUMN-->
+                    </div>
+                </div>
+            </div>
+            <div id="popup1" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title text-center">Ashish Pandey</h4>
+                        </div>
+                        <div class="modal-body">
+                            <img class="img-responsive center-block" src="~/img/IMhb_1.jpg" alt="">
+                            <div style="margin-top:3px; font-family:'Times New Roman', Times, serif;font-size:14px">
+                                <b>Role:</b> I lead the team in project planning and configuration management.I keep track of the timelines and make sure that the team meets the deadlines by keeping track of individual modules using configuration managemnt tools like excel.
+                            </div>
+                            <p class="linksHover">
+                                <b>Email:</b>
+                                <a href="mailto:s525078@mail.nwmissouri.edu?Subject=Feedback" target="_blank"><img src="~/img/message squared-48.png"></a>
+                            </p>
+                            <p class="linksHover">
+                                <b>Find me:</b>
+                                <a href="https://www.facebook.com/ashish.pandey91" target="_blank"><img src="~/img/Facebook-48.png"></a>
+                                <a href="https://www.linkedin.com/in/ashish-pandey-7030b631" target="_blank"><img src="~/img/LinkedIn-48.png"></a>
+                                <a href="https://twitter.com/Ashish_Pandey91" target="_blank"><img src="~/img/Twitter-48.png"></a>
+
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="popup2" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title text-center">Nadeem Ansari</h4>
+                        </div>
+                        <div class="modal-body">
+                            <img class="img-responsive center-block" src="~/img/Nadeem.jpg" alt="">
+                            <div style="margin-top:3px; font-family:'Times New Roman', Times, serif;font-size:14px">
+                                <b>Role:</b> I lead the team in development of user interface using the appropriate and the best technologies.I make sure that the user interface is not distorted and aligned properly.
+                              </div>
+                                <p class="linksHover">
+                                    <b>Email:</b>
+                                    <a href="mailto:s524968@mail.nwmissouri.edu?Subject=Feedback" target="_blank"><img src="~/img/Message Squared-48.png"></a>
+                                </p>
+                                <p class="linksHover">
+                                    <b>Find me:</b>
+                                    <a href="https://www.facebook.com/nadeemandroid" target="_blank"><img src="~/img/Facebook-48.png"></a>
+                                    <a href="https://www.linkedin.com/in/nadeem-ansari-2172699b?trk=hp-identity-name" target="_blank"><img src="~/img/LinkedIn-48.png"></a>
+                                    <a href="https://plus.google.com/113803165739552468702" target="_blank"><img src="~/img/Google Plus-48 (1).png"></a>
+
+                                </p>
+                            </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="popup3" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title text-center">Sai Sharanya</h4>
+                        </div>
+                        <div class="modal-body">
+                            <img class="img-responsive center-block" src="~/img/SaiShar.jpg" alt="">
+                            <div style="margin-top:3px; font-family:'Times New Roman', Times, serif;font-size:14px">
+                                <b>Role:</b> I lead the team in designing prototypes for the application to give end users the best user experience and also develop business models in the process.
+                                </div>
+                                <p class="linksHover">
+                                    <b>Email:</b>
+                                    <a href="mailto:s522573@mail.nwmissouri.edu?Subject=Feedback" target="_blank"><img src="~/img/Message Squared-48.png"></a>
+                                </p>
+                                <p class="linksHover">
+                                    <b>Find me:</b>
+                                    <a href="https://www.facebook.com/sharanyarao60" target="_blank"><img src="~/img/Facebook-48.png"></a>
+                                    <a href="https://www.linkedin.com/in/sai-sharanya-deevakonda-bb846b108?trk=nav_responsive_tab_profile" target="_blank"><img src="~/img/LinkedIn-48.png"></a>
+
+
+                                </p>
+                            </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="popup4" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title text-center">Vijay Gopi</h4>
+                        </div>
+                        <div class="modal-body">
+                            <img class="img-responsive center-block" src="~/img/VijayGopi.jpg" alt="">
+                            <div style="margin-top:3px; font-family:'Times New Roman', Times, serif;font-size:14px">
+                                <b>Role:</b> I lead the team in database deign and implementation.Make sure that the business models and the entities meet the business requirements.  </div>
+                                <p class="linksHover">
+                                    <b>Email:</b>
+                                    <a href="mailto:s522581@mail.nwmissouri.edu?Subject=Feedback" target="_blank"><img src="~/img/Message Squared-48.png"></a>
+                                </p>
+
+                                <p class="linksHover">
+                                    <b>Find me:</b>
+                                    <a href="https://www.facebook.com/vijju.gopi" target="_blank"><img src="~/img/Facebook-48.png"></a>
+                                    <a href="https://twitter.com/VijjuGopi92" target="_blank"><img src="~/img/Twitter-48.png"></a>
+                                    <a href="https://plus.google.com/+VijayGopi1992" target="_blank"><img src="~/img/Google Plus-48 (1).png"></a>
+
+                                </p>
+                            </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="popup5" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title text-center">Suprem Raju</h4>
+                        </div>
+                        <div class="modal-body">
+                            <img class="img-responsive center-block" src="~/img/Suprem.jpg" alt="">
+                            <div style="margin-top:3px; font-family:'Times New Roman', Times, serif;font-size:14px">
+                                <b>Role:</b> I lead the team in designing screens also implement database.Make sure that the database is refreshed and provide optimum performance to user transactions.  </div>
+                            <p class="linksHover">
+                                <b>Email:</b>
+                                <a href="mailto:s525350@mail.nwmissouri.edu?Subject=Feedback" target="_blank"><img src="~/img/Message Squared-48.png"></a>
+                            </p>
+
+                            <p class="linksHover">
+                                <b>Find me:</b>
+                                <a href="https://www.facebook.com/suprem.manthena" target="_blank"><img src="~/img/Facebook-48.png"></a>
+                                <a href="https://www.linkedin.com/in/suprem-raju-manthena-ab5066115?trk=nav_responsive_tab_profile" target="_blank"><img src="~/img/LinkedIn-48.png"></a>
+                                <a href="https://plus.google.com/u/0/116227138076627953228" target="_blank"><img src="~/img/Google Plus-48 (1).png"></a>
+
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="popup6" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title text-center">Generation of Miracles</h4>
+                        </div>
+                        <div class="modal-body">
+                            <h3 style="font-family:'Times New Roman'">Welcome to Aquatix!</h3>
+                            <h4 style="font-family:'Times New Roman'">Aquatix is a web based application with the main objective to ease the process of booking an aquarium show and holding aqua based events.</h4>
+                            <h4 style="font-family:'Times New Roman'">Lets make your special occasions more sepcial!</h4>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container" style="margin-top:45px;">
+            <footer style="text-align: center; font-size: 14px;">Aquatix &copy; 2016. All rights reserved.</footer>
+        </div>
+    </div>
+    <environment names="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/js/jquery.cookie.js"></script>
+        <script src="~/lib/bootstrap/dist/js/jquery.easing.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+        <script src="http://maps.googleapis.com/maps/api/js"></script>
+        <script src="~/js/home.js"></script>
+        <script src="~/js/data.js"></script>
+    </environment>
+    <environment names="Staging,Production">
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.1.4.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery">
+        </script>
+        <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.5/bootstrap.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal">
+        </script>
+
+    </environment>
+
+</body>
+</html>

@@ -1,0 +1,200 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    
+    Author     : S522573
+*/
+
+
+
+h2{
+    margin: 0;
+    color: #333;
+    padding-top: 90px;
+    font-size: 52px;
+    font-family: "trebuchet ms", sans-serif;
+}
+
+.item{
+    //background: #555;
+    text-align: center;
+    height : 400px !important;
+}
+#slider{
+    //background: #3e8f3e;
+    background: #555;
+}
+
+
+/**
+ * Custom Styles	
+ * 
+ */
+
+
+
+#newsletter,#navid,#promo{
+    margin-top: 20px;
+}
+
+#enquiry{
+    margin-top: 5px;
+}
+
+#formid{
+    margin-top: 30px;
+    
+}
+
+#besttime,#admprices{
+    border: 1px solid black;
+    height: 200px;
+    
+}
+#rules{
+    margin-top:  10px;
+    border: 1px solid black;
+    height: 500px;
+}
+
+.one{
+    padding-top: 2px;
+    padding-left: 2px;
+    padding-right: 2px;
+}
+
+.rulestwo{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#panelticket{
+    margin-top: 10px;
+}
+
+#registernav{
+   margin-right: 20px; 
+}
+
+
+.rowone{
+    padding-top: 20px;
+}
+
+#cart{
+    padding-top: 20px;
+}
+
+.carousal_placeholder_1{
+    background-image: url('../img/Tunnel_carousal_2.jpg');
+    background-repeat: no-repeat;
+    background-position: center; 
+    background-size:100% auto;
+}
+
+.carousal_placeholder_2{
+    background-image: url('../img/close-encounter_carousal_4.jpg');
+    background-repeat: no-repeat;
+    background-position: center; 
+    background-size:100% auto;
+}
+
+.carousal_placeholder_3{
+    background-image: url('../img/birthday_carousal_3.jpeg');
+    background-repeat: no-repeat;
+    background-position: center; 
+    background-size:100% auto;
+}
+
+.carousal_placeholder_4{
+    background-image: url('../img/Family Fun_carousal.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size:100% auto;
+}
+
+.carousal_placeholder_5{
+     background-image: url('../img/carousal_1.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size:100% auto;
+}
+
+.show-placeholder_1{
+        width: 100%;
+	min-height: 120px;
+	background-color:#ddd;
+        background-image: url('../img/dolphin_small.jpg');
+        background-repeat: no-repeat;
+        background-position: center;
+}
+
+.show-placeholder_2{
+        width: 100%;
+	min-height: 120px;
+	background-color:#ddd;
+        background-image: url('../img/music_small.jpg');
+        background-repeat: no-repeat;
+        background-position: center;
+}
+
+.show-placeholder_3{
+        width: 100%;
+	min-height: 120px;
+	background-color:#ddd;
+        background-image: url('../img/coral_show.jpg');
+        background-repeat: no-repeat;
+        background-position: center;
+}
+
+
+
+.exhibit-placeholder-small{
+	width: 100%;
+	min-height: 120px;
+	background-color:#ddd;
+        background-image: url('../img/exhibit_small.jpg');
+        background-repeat: no-repeat;
+        background-position: center;
+}
+
+.bday-placeholder-small{
+        width: 100%;
+	min-height: 120px;
+	background-color:#ddd;
+        background-image: url('../img/birthday-small.jpg');
+        background-repeat: no-repeat;
+        background-position: center;
+}
+
+.trip-placeholder-small{
+        width: 100%;
+	min-height: 120px;
+	background-color:#ddd;
+        background-image: url('../img/trips-small.jpg');
+        background-repeat: no-repeat;
+        background-position: center;
+}
+
+
+/* Latest changes*/
+
+.carousel-inner .item h2{
+	color:#fff;
+	text-shadow:1px 1px 3px #444;
+	padding-top: 220px;
+	
+}
+.carousel-inner .item h3{
+	color:#eee;
+	text-shadow:1px 1px 3px #444;
+}
+
+
+.carousel-inner .item h2,.carousel-inner .item h3{
+	-webkit-animation-duration: 1s;
+	-webkit-animation-delay: .7s;
+}

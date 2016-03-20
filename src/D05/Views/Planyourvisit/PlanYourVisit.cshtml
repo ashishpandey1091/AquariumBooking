@@ -1,0 +1,984 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Aquatix</title>
+
+    <environment names="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/home.css" />
+        <link rel="stylesheet" href="~/css/planyourvisit.css" />
+
+    </environment>
+    <environment names="Staging,Production">
+        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.5/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+
+    </environment>
+    <style>
+        
+    </style>
+</head>
+<body>
+    <input type="hidden" value=@ViewData["key"] id="tabInfo">
+    <div id="planyourvisit">
+        <div class="navbar-wrapper">
+            <div class="container">
+                <!-- start  of navigation bar-->
+
+                <nav class="navbar navbar-inverse" id="navid">
+                    <div class="container">
+
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-controls="navbar">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" href="#">Aquatix Aquarium</a>
+                        </div>
+                        <div id="navbar" class="navbar-collapse collapse">
+                            <ul class="nav navbar-nav">
+                                <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                                <li class="dropdown">
+                                    <a href="html/planyourvisit.html" class="dropdown-toggle"
+                                       data-toggle="dropdown" role="button">Visitor Info<b class="caret"></b></a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a href="/Planyourvisit/PlanYourVisit?tab=hours">Hours and Prices</a></li>
+                                        <li><a href="/Planyourvisit/PlanYourVisit?tab=tickets">Buy Tickets</a></li>
+                                        <li><a href="/Planyourvisit/PlanYourVisit?tab=find">Finding us</a></li>
+                                        <li><a href="/Planyourvisit/PlanYourVisit?tab=occasions">Special Occasions</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="/Planyourvisit/PlanYourVisit?tab=faq">FAQ's</a></li>
+                                    </ul>
+                                </li>
+
+                                <li class="dropdown">
+                                    <a asp-controller="" asp-action="" class="dropdown-toggle"
+                                       data-toggle="dropdown" role="button">Exhibits<b class="caret"></b></a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a href="/Exhibits/Exhibits?tab=exone">Journey to Atlantis</a></li>
+                                        <li><a href="/Exhibits/Exhibits?tab=extwo">Dolphin Notch</a></li>
+                                        <li><a href="/Exhibits/Exhibits?tab=exthree">Seaworld Tower</a></li>
+                                        <li><a href="/Exhibits/Exhibits?tab=exfour">Walrus Skerry</a></li>
+                                        <li><a href="/Exhibits/Exhibits?tab=exfive">Killer Whales</a></li>
+                                        <li><a href="/Exhibits/Exhibits?tab=exsix">Coral Reef</a></li>
+                                        <li><a href="/Exhibits/Exhibits?tab=exseven">Danty Sealions</a></li>
+
+                                    </ul>
+                                </li>
+                                <li><a asp-controller="Home" asp-action="About">About us</a></li>
+                                <li><a asp-controller="Home" asp-action="Contact">Contact us</a></li>
+                            </ul>
+
+
+                            <div class="navbar-right">
+                                <div id="myaccount" style="display: none;">
+                                    <p class="navbar-text"><strong>Welcome,</strong><span id="username"></span></p>
+                                    <ul class="nav navbar-nav">
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle"
+                                               data-toggle="dropdown" role="button"><span class="glyphicon glyphicon-user"></span></a>
+                                            <ul class="dropdown-menu" role="menu">
+                                                <li><a href="#" id="myaccnt">My Account</a></li>
+                                                <li><a href="../home.html" id="logout">Logout</a></li>
+                                            </ul>
+                                        </li>
+
+
+                                    </ul>
+                                </div>
+                                <div id="loginlinks">
+                                    <ul class="nav navbar-nav">
+                                        <li><a href="register.html" data-toggle="modal" data-target="#register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                                        <li id="registernav"><a href="login.html" data-toggle="modal" data-target="#login"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+
+                <!-- end of navigation bar-->
+            </div>
+        </div>
+
+        <div class="container" style="margin-top:-10px;">
+
+            <!-- start of breadcrumb -->
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="breadcrumb">
+                        <li><a href="../home.html">Back</a></li>
+                        <li><strong>Visitor Info</strong></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- end  of breadcrumb -->
+
+            <!-- start of nav tab left -->
+            <div class="tabbable tabs-left">
+                <div class="row">
+
+                    <!-- start of list for nav tab left-->
+                    <div class="col-md-3" id='tabmenu'>
+                        <ul class="nav nav-pills nav-stacked">
+                            <li id="hourstab"><a href="#hours" data-toggle='tab'>Hours and Prices</a></li>
+                            <li id="ticketstab"><a href="#tickets" data-toggle='tab'>Buy Tickets</a></li>
+                            <li id="findtab"><a href="#find" data-toggle='tab'>Finding us</a></li>
+                            <li id="occsntab"><a href="#occasions" data-toggle='tab'>Special Occasions</a></li>
+                            <li id="faqtab"><a href="#faq" data-toggle='tab'>FAQ's</a></li>
+                        </ul>
+                    </div>
+                    <!-- end of list for nav tab left-->
+
+                    <!-- start of nav tab content -->
+                    <div class="tab-content col-md-9">
+
+                        <!-- start of div content for hours and prices-->
+                        <div class="tab-pane active" id="hours">
+                            <!-- first row-->
+                            <div class="row">
+                                <div class="col-md-6">
+
+                                    <div class="panel panel-default panel-info">
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title">Best Time to Visit</h3>
+                                        </div>
+                                        <div class="panel-body">
+                                            <p class="one">The Aquatix aquarium is open 365 days a year.</p>
+                                            <p class="one">
+                                                Hours of operation are from <b>10a.m. - 5p.m.</b> daily on normal days and
+                                                <b>9:30a.m - 6p.m.</b> on seasonally/statutory holiday weekends.
+                                            </p>
+                                            <p class="one"><b>Check out timings of our exciting <a href="#">Exhibits!</a></b></p>
+                                            <h5>Note:All Exhibits can be visited on an Entry Ticket</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="panel panel-default panel-info">
+                                        <div class="panel-heading panel-info">
+                                            <h3 class="panel-title">Standard Admission Prices</h3>
+                                        </div>
+                                        <table class="table table-striped table-bordered">
+                                            <thead>
+                                                <tr><th>Classification</th><th>Price</th></tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Adult</td>
+                                                    <td>$12.99</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Child</td>
+                                                    <td>$5.9</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Adult(60yrs and older)</td>
+                                                    <td>Entry Free</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Child(3yrs and below)</td>
+                                                    <td>Entry Free</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- first row ends-->
+                            <!-- second row-->
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h3>Important Rules:</h3>
+                                    <div>
+                                        <p>
+                                            During winter hours, the quitest times to visit are on weekdays or prior
+                                            to 12 p.m. During summer hours , the quietest times to visit are prior to
+                                            11 a.m. or after 4 p.m.
+                                        </p>
+                                        <h3>Member Hour's</h3>
+                                        Members are able to visit the Aquarium unlimited number of times during Regular Hours
+                                        of Operation - 10 a.m. - 5 p.m.
+                                        During non-holiday weekends(Saturday and Sunday),our doors will open for members
+                                        at 9:30 a.m. -30 minutes before we open to the public.
+                                        <p id='rulestwo'><b>Not a member?<a href="#"> Join Today</a></b></p>
+
+                                        <p class="rulestwo">No Smoking Policy: Aquatix prohibits Smoking</p>
+                                        <p class="rulestwo">Have A Question?</p>
+                                        <p>Please call us <strong>(901)8572427</strong> or email us at <strong>visitexperience@aquatix.org</strong></p>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- second row ends-->
+                            <!-- third row-->
+                            <!--<div class="row">
+                            <div class="col-md-12">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+
+                                    </div>
+                                    <div class="panel-footer">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>-->
+                            <!-- third row ends-->
+                        </div>
+                        <!-- end of div content for hours and prices-->
+                        <!-- start of div content for tickets-->
+                        <div class="tab-pane" id="tickets">
+                            <div class="tabbable">
+                                <div class="row">
+                                    <div class="col-md-12" id='ticketmenu'>
+                                        <ul class="nav nav-tabs">
+                                            <li id="typeli" class="active"><a href="#type" data-toggle="tab">Your Ticket</a></li>
+                                            <li id="facilitiesli"><a href="#facilities">Additional Facilities</a></li>
+                                            <li id="paymentli"><a href="#payment">Payment</a></li>
+                                            <li id="confirmli"><a href="#confirm">Complete!</a></li>
+
+                                        </ul>
+                                    </div>
+
+                                </div>
+
+                                <div class="tab-content">
+                                    <!-- select your ticket -->
+                                    <div class="tab-pane active" id="type">
+                                        <!-- first row -->
+                                        <div class="row">
+
+                                            <div class="col-md-12 rowone">
+                                                <p><label>Choose Your Date of Visit<span class="mandatory">*</span> : </label>&nbsp;&nbsp;<input type="text" id="datepicker" />
+                                            </div>
+                                        </div>
+                                        <!-- first row ends -->
+                                        <!-- second row-->
+                                        <div class="row">
+
+                                            <div class="col-md-12">
+                                                <div class="panel panel-default panel-info">
+                                                    <div class="panel-heading">
+                                                        <p class="panel-title">
+                                                            Your Entry Ticket
+                                                            <!--<span>
+                                                            <label id="date">Date of Visit : </label>&nbsp;&nbsp;<input type="text" id="datepicker" />
+                                                        </span>-->
+                                                        </p>
+                                                    </div>
+                                                    <table class="table table-bordered table-striped">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Ticket Type</th>
+                                                                <th>Price</th>
+                                                                <th>Qty</th>
+                                                                <th>Subtotal</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>Adult</td>
+                                                                <td>$12.99</td>
+                                                                <td>
+                                                                    <select class='qty' onchange="entrypassprice('adult',this.value)">
+                                                                        <option value="0">0</option>
+                                                                        <option value="1">1</option>
+                                                                        <option value="2">2</option>
+                                                                        <option value="3">3</option>
+                                                                    </select>
+                                                                </td>
+                                                                <td id="subtotalone">--</td>
+                                                            </tr>
+
+                                                            <tr>
+                                                                <td>Child</td>
+                                                                <td>$5.99</td>
+                                                                <td>
+                                                                    <select class='qty' onchange="entrypassprice('child',this.value)">
+                                                                        <option value="0">0</option>
+                                                                        <option value="1">1</option>
+                                                                        <option value="2">2</option>
+                                                                        <option value="3">3</option>
+                                                                    </select>
+                                                                </td>
+                                                                <td id="subtotalthree">--</td>
+                                                            </tr>
+
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <!--<div class="panel panel-default panel-info">
+                                            <div class="panel-heading panel-info" id="entryprice">
+                                                <p class="panel-title"><b>Total:</b><span id="totalentryprice"></span></p>
+                                            </div>-->
+                                            <div class="row">
+                                                <div class="col-md-12" id="addtocart">
+                                                    <label class="col-md-10"></label>
+                                                    <button class="btn btn-info col-md-2" onclick="calculateCart('entry')">Add to Cart</button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+                                        <!-- second row ends-->
+                                        <!-- third row -->
+                                        <div class="row" style="position: relative;">
+                                            <h3 style="padding-left: 10px;">Scheduled Events</h3>
+                                            <div class="col-md-4">
+                                                <div class="show-placeholder_1 event-details-pop" data-pop-id="1">&nbsp;</div>
+                                                <h4>Dolphin Show</h4><input type="button" class="btn btn-primary dolphinButton" value="Add Show" onclick="addShow('dolphin')">
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <div class="show-placeholder_2 event-details-pop" data-pop-id="2">&nbsp;</div>
+                                                <h4>Music Fountain Show</h4><input type="button" class="btn btn-primary musicButton" value="Add Show" onclick="addShow('music')">
+
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="show-placeholder_3 event-details-pop" data-pop-id="3">&nbsp;</div>
+                                                <h4>Coral Show</h4><input type="button" class="btn btn-primary coralButton" value="Add Show" onclick="addShow('coral')">
+
+                                            </div>
+
+                                            <div class="event-details event-details-1">
+                                                <h3>Event Name</h3>
+                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec volutpat faucibus neque, quis sagittis massa ullamcorper in. Praesent dictum metus velit, nec pellentesque nunc vehicula ut. Donec vitae risus nibh. Donec ut lobortis ante, eget sodales dolor. Morbi nec fringilla massa, ac laoreet orci. Nulla a mi sit amet enim euismod semper ut lacinia urna. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In imperdiet id dolor at congue. Nulla venenatis massa in lobortis lobortis. Nunc semper nisi eu urna venenatis, at consectetur dolor porttitor. Maecenas pellentesque lorem quis ultrices dapibus. Fusce nec erat tempus, tincidunt dolor nec, gravida lacus. Sed nec elit et lacus faucibus malesuada quis ut magna. Aliquam ac fermentum lorem.</p>
+                                                <p>For Adults: <strong>$55</strong>, For Children: <strong>$25</strong></p>
+                                            </div>
+
+                                            <div class="event-details event-details-2">
+                                                <h3>Event Name</h3>
+                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec volutpat faucibus neque, quis sagittis massa ullamcorper in. Praesent dictum metus velit, nec pellentesque nunc vehicula ut. Donec vitae risus nibh. Donec ut lobortis ante, eget sodales dolor. Morbi nec fringilla massa, ac laoreet orci. Nulla a mi sit amet enim euismod semper ut lacinia urna. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In imperdiet id dolor at congue. Nulla venenatis massa in lobortis lobortis. Nunc semper nisi eu urna venenatis, at consectetur dolor porttitor. Maecenas pellentesque lorem quis ultrices dapibus. Fusce nec erat tempus, tincidunt dolor nec, gravida lacus. Sed nec elit et lacus faucibus malesuada quis ut magna. Aliquam ac fermentum lorem.</p>
+                                                <p>For Adults: <strong>$55</strong>, For Children: <strong>$25</strong></p>
+                                            </div>
+
+                                            <div class="event-details event-details-3">
+                                                <h3>Event Name</h3>
+                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec volutpat faucibus neque, quis sagittis massa ullamcorper in. Praesent dictum metus velit, nec pellentesque nunc vehicula ut. Donec vitae risus nibh. Donec ut lobortis ante, eget sodales dolor. Morbi nec fringilla massa, ac laoreet orci. Nulla a mi sit amet enim euismod semper ut lacinia urna. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In imperdiet id dolor at congue. Nulla venenatis massa in lobortis lobortis. Nunc semper nisi eu urna venenatis, at consectetur dolor porttitor. Maecenas pellentesque lorem quis ultrices dapibus. Fusce nec erat tempus, tincidunt dolor nec, gravida lacus. Sed nec elit et lacus faucibus malesuada quis ut magna. Aliquam ac fermentum lorem.</p>
+                                                <p>For Adults: <strong>$55</strong>, For Children: <strong>$25</strong></p>
+                                            </div>
+                                        </div>
+                                        <!-- third row ends -->
+                                        <!-- fourth row starts -->
+                                        <div class="row" id="cart">
+                                            <div class="col-md-12">
+                                                <div class="panel panel-default panel-info">
+                                                    <div class="panel-heading">
+                                                        <div class="panel-title">
+                                                            <span class="glyphicon glyphicon-shopping-cart"></span>Cart
+                                                        </div>
+                                                    </div>
+                                                    <table class="table table-bordered table-hover">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Item</th>
+                                                                <th>Subtotal</th>
+                                                                <th>Edit</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody id="cartitems">
+                                                            <tr>
+                                                                <td colspan="3">There are no tickets currently added to your cart</td>
+
+                                                            </tr>
+                                                            <tr id="totalpricerow"><td colspan="2">Total:</td><td id="cartprice">$0.0</td></tr>
+
+                                                        </tbody>
+                                                    </table>
+
+                                                </div>
+                                                <div id="next">
+                                                    <input type="button" class="btn btn-primary" value="Next" onclick="showFacilities()">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- fourth row ends -->
+                                    </div>
+
+                                    <!-- select your ticket ends -->
+
+                                    <div class="tab-pane" id="facilities" style="padding-top: 20px;">
+                                        <!-- personal details row-->
+                                        <div class="row">
+                                            <div class="col-md-12">
+
+                                                <div class="panel panel-success">
+                                                    <div class="panel-heading">
+                                                        <div class="panel-title">Enter Personal Details</div>
+                                                    </div>
+                                                    <table class="table">
+                                                        <tr>
+                                                            <td>First Name <span class="mandatory">*</span>:</td>
+                                                            <td><input type="text" id="fn"></td>
+                                                            <td>Last Name <span class="mandatory">*</span>:</td>
+                                                            <td><input type="text" id="ln"></td>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td>Mobile no <span class="mandatory">*</span>:</td>
+                                                            <td><input type="text" id="mob"></td>
+                                                            <td>Email <span class="mandatory">*</span>:</td>
+                                                            <td><input type="text" id="email"></td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                                <!-- personal details end-->
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div id="selectFacilities">
+                                                            <h4><strong>Additional Facilities</strong></h4>
+                                                            <p><strong>Guide Needed</strong> ?&nbsp;<input type="radio" name="guide" value="yes"> Yes</p>
+                                                            <p>
+                                                                <strong>Reserve Your Meal</strong> : &nbsp;
+                                                                <strong>Qty</strong> : <select id="mealqty">
+                                                                    <option value="0">0</option>
+                                                                    <option value="1">1</option>
+                                                                    <option value="2">2</option>
+                                                                    <option value="3">3</option>
+                                                                    <option value="4">4</option>
+                                                                </select>&nbsp;&nbsp;
+                                                                <input type="checkbox" id="lunch" value="Lunch" data-toggle="popover" title="Reserve your table for lunch."
+                                                                       data-content="You can choose your menu when you arrive." onclick="mealPlan()"> Lunch &nbsp;&nbsp;
+
+                                                            </p>
+                                                            <p>
+                                                                <strong>Ride with Sea Animals(only adults)</strong> : &nbsp;
+                                                                <strong>Qty</strong> : <select id="rideqty">
+                                                                    <option value="0">0</option>
+                                                                    <option value="1">1</option>
+                                                                    <option value="2">2</option>
+                                                                    <option value="2">3</option>
+
+                                                                </select>&nbsp;&nbsp;
+                                                                <input type="checkbox" id="ride" data-toggle="popover" title="Price : 30$"
+                                                                       data-content="Includes recording your ride and taking pictures" onclick="ridePlan()">Yes &nbsp;&nbsp;
+
+                                                            </p>
+
+                                                            <p style="padding-top: 10px;">
+                                                                <strong>
+                                                                    Note:Snacks are offered for free when you arrive.Please contact <span class="glyphicon glyphicon-phone">97035678</span>
+                                                                    for the cancellation of your reservation or you may choose to cancel when you arrive
+                                                                </strong>
+                                                            </p>
+                                                            <p><strong>Note:Guidance tools like Maps and GPS are provided free of cost if necessary</strong></p>
+                                                        </div>
+                                                        <div id="pickup">
+                                                            <p>For Pickup and Drop Facilities contact <span class="glyphicon glyphicon-phone"><b>9018572427</b></span></p>
+                                                        </div>
+                                                        <div id="ridePlan">
+                                                            <p id="ridePrice"></p>
+                                                            <p id="orderTotal"></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <input type="button" class="btn btn-primary" value="Back" onclick="showTicket()">
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <input type="button" class="btn btn-primary" value="Proceed to Payment" onclick="showPayment('next')">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" id="payment">
+                                        <div class="row" style="padding-top: 20px;">
+                                            <div class="col-md-12">
+                                                <!-- card details -->
+                                                <div class="panel panel-success">
+                                                    <div class="panel-heading">
+                                                        <div class="panel-title">Payment Details</div>
+                                                    </div>
+                                                    <table class="table">
+                                                        <tr>
+                                                            <td>Card Type<span class="mandatory">*</span> :</td>
+                                                            <td>
+                                                                <select id="cardtype" required="">
+                                                                    <option value="none">Select</option>
+                                                                    <option value="visa">Visa</option>
+                                                                    <option value="master">Master</option>
+
+                                                                </select>
+                                                            </td>
+
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td>Card Number<span class="mandatory">*</span> : </td>
+                                                            <td><input type="text" size="16" required="" id="cardno">&nbsp;&nbsp;<span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" data-placement="top" data-original-title="Please enter 16 digit number of your card"></span></td>
+
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Expiry Date<span class="mandatory">*</span> : </td>
+                                                            <td>
+                                                                Month*&nbsp; <select required="" id="month">
+                                                                    <option value="none">Select</option>
+                                                                    <option value="1">1</option>
+                                                                    <option value="2">2</option>
+                                                                    <option value="3">3</option>
+                                                                    <option value="4">4</option>
+                                                                    <option value="5">5</option>
+                                                                    <option value="6">6</option>
+                                                                    <option value="7">7</option>
+                                                                    <option value="8">8</option>
+                                                                    <option value="9">9</option>
+                                                                    <option value="10">10</option>
+                                                                    <option value="11">11</option>
+                                                                    <option value="12">12</option>
+                                                                </select> &nbsp;&nbsp;Year*&nbsp;<select required="" id="year">
+                                                                    <option value="none">Select</option>
+                                                                    <option>2015</option>
+                                                                    <option>2016</option>
+                                                                    <option>2017</option>
+                                                                </select>
+                                                            </td>
+
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Security Code<span class="mandatory">*</span> : </td>
+                                                            <td>
+                                                                <input type="text" size="3" required="" id="sec">
+                                                                &nbsp;&nbsp;<span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" data-placement="top" data-original-title="Please enter last 3 digits on the back of your card"></span>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- card details end-->
+                                        <!-- preview order -->
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="panel panel-default panel-info">
+                                                    <div class="panel-heading">
+                                                        <div class="panel-title">
+                                                            <span class="glyphicon glyphicon-shopping-cart"></span>Preview Order
+                                                        </div>
+                                                    </div>
+                                                    <table class="table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Item</th>
+
+                                                                <th>Subtotal</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody id="previewcart"></tbody>
+                                                    </table>
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- preview order ends -->
+                                        <div class="row" style="padding-top: 5px;">
+                                            <div class="col-md-12">
+                                                <div class="tnc">
+                                                    <h3>Terms & Conditions:</h3>
+                                                    <p>
+                                                        <strong>Please bring your booking reference number or email printout</strong>.Tickets once purchased online tickets may not be used in conjunction with any other offer.
+                                                        No tickets may be resold.Any discounts or offers online are available in limited quantities
+                                                        and for limited periods only and shall not be available on bookings made y phone or in person.
+                                                        Some exhibits may be closed due to safety or technical reasons.
+                                                        Prices are subject to change without notification.
+                                                        Membership cards are not transferable.
+                                                        We cannot replace your Day Pass once it has been issued.
+                                                    </p>
+                                                    <p><input type="checkbox" value="checked" id="agree"><strong>I agree to the terms and conditions</strong></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <input type="button" class="btn btn-primary" value="Back" onclick="showPayment('back')">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input type="button" class="btn btn-primary" value="Confirm Order" onclick="showConfirm()">
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                    <div class="tab-pane" id="confirm" style="padding-top: 20px;">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="panel panel-success">
+                                                    <div class="panel-heading">
+                                                        <div class="panel-title" id="reference">
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <p id="refId"></p>
+                                                <div>
+                                                    <h4>Order Details</h4>
+                                                    <table id="orderTable" style="padding-top: 5px;"></table>
+                                                    <h4 style="padding-top: 10px;">Personal details</h4>
+                                                    <table id="personaldetails" style="padding-top: 5px;"></table>
+                                                </div>
+                                                <div id="imp">
+                                                    <p>Please make sure to bring your Ticket reference Id or a printout of the email confirmation</p>
+                                                    <p>Have a Great visit to <strong>Aquatix</strong></p>
+                                                    <p>Visit us <a href="#">www.aquatix.com</a></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- end of div content for tickets-->
+                        <!-- start of div content for finding us-->
+                        <div class="tab-pane" id="find">
+                            <div class="row">
+                                <h3>
+                                    Finding Your Way  To The Aquatix Aquarium
+                                </h3>
+                                <p>
+                                    The Aquatix Aquarium is located in beautiful Mulbery St in downtown Maryville.
+                                    Consider exploring the beauty of the park, or visit one of the many other attractions
+                                    or restaurants before or after your visit to the Aquarium. We encourage our visitors to consider taking
+                                    environmentally-friendly modes of transportation whenever possible.
+                                </p>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h4>Getting Here</h4>
+                                    <p>
+                                        There are many alternatives for finding your way here to the Aquatix Aquarium.
+                                        For more in-depth information, call us at 901-857-2427or find us on
+                                    </p>
+
+                                    <h4>Public Transportation</h4>
+                                    <p>
+                                        For your convenience, the #19 Bus to Maryville will bring you within a
+                                        five minute walk to the Aquatix Aquarium.
+                                    </p>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div id="map"></div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- end of div content for finding us-->
+                        <!-- start of div content for special occasions-->
+                        <div class="tab-pane" id="occasions">
+                            <div class="tabbable">
+                                <div class="row">
+                                    <div class="col-md-12" id='occasionsmenu'>
+                                        <ul class="nav nav-tabs nav-pills">
+                                            <li class="active"><a href="#parties" data-toggle="tab" id="partiesli">Birthday Parties</a></li>
+                                            <li><a href="#trips" data-toggle="tab" id="tripsli">School Trips</a></li>
+                                            <li><a href="#sleeps" data-toggle="tab" id="sleepsli">Sleepovers</a></li>
+                                            <!--<li><a href="#venue" data-toggle="tab" id="venueli">Venue Hire</a></li>-->
+
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="parties">
+                                        <div class="birthday_placeholder"></div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <h3>Birthday Parties</h3>
+                                                <p>There's no better way to celebrate your child’s birthday than with a unique birthday experience at Aquarium.</p>
+                                                <p>You can really get into the party mood with a traditional party tea which includes sausage rolls, sandwiches, cakes, drinks, balloons, hats and tooters! (Minimum party size of 10)</p>
+                                                <p>Mum and Dad go free (2 Adults admitted free for every 10 children) and it's only $10 per child!</p>
+                                                <p><strong>For more informaion please fill the form below or contact us on 0871 000 0000</strong></p>
+
+                                            </div>
+                                            <div class="col-md-6">
+                                                <h3>Party Booking Enquiry</h3>
+                                                <h6>(Please enter all the fields)</h6>
+                                                <div class="well">
+                                                    <form role="form">
+
+                                                        <h4>Contact Details</h4>
+                                                        <div class="row form-group-sm">
+                                                            <label class="col-md-4 control-label">First Name:</label>
+                                                            <div class="col-md-7">
+                                                                <input class="form-control" type="text" placeholder="enter your first name" required="" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="row form-group-sm">
+                                                            <label class="col-md-4 control-label">Last Name:</label>
+                                                            <div class="col-md-7">
+                                                                <input class="form-control" type="text" placeholder="enter your last name" required="" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="row form-group-sm">
+                                                            <label class="col-md-4 control-label">Telephone:</label>
+                                                            <div class="col-md-7">
+                                                                <input class="form-control" type="tel" placeholder="contact number" required="" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="row form-group-sm">
+                                                            <label class="col-md-4 control-label">Email:</label>
+                                                            <div class="col-md-7">
+                                                                <input class="form-control" type="email" placeholder="enter your email" required="" />
+                                                            </div>
+                                                        </div>
+                                                        <h4>Birthday Party Details</h4>
+                                                        <div class="row form-group-sm">
+                                                            <label class="col-md-4 control-label">Childs Name:</label>
+                                                            <div class="col-md-7">
+                                                                <input class="form-control" type="text" placeholder="enter childs name" required="" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="row form-group-sm">
+                                                            <label class="col-md-4 control-label">Childs Age:</label>
+                                                            <div class="col-md-7">
+                                                                <input class="form-control" type="text" placeholder="enter childs age" required="" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="row form-group-sm">
+                                                            <label class="col-md-4 control-label">Date:</label>
+                                                            <div class="col-md-7">
+                                                                <input class="form-control" type="date" required="" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="row form-group-sm">
+                                                            <label class="col-md-4 control-label">No. Children:</label>
+                                                            <div class="col-md-7">
+                                                                <input class="form-control" type="text" placeholder="enter no of children" required="" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="row form-group">
+                                                            <label class="col-md-4 control-label">Details/Food:</label>
+                                                            <div class="col-md-7">
+                                                                <textarea cols="10" rows="3" required="" class="form-control" placeholder="enter food details"></textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row form-group-sm">
+                                                            <div class="col-md-3"></div>
+                                                            <div class="col-md-7">
+                                                                <input class="btn btn-info" type="submit" value="Send Booking Enquiry" />
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" id="trips">
+                                        <div class="trips-placeholder"></div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <h3>School Trips</h3>
+                                                <p> Aquarium offers a unique and exciting learning opportunity for students of all ages and abilities while integrating conservation into the national curriculum in a fun and engaging manner.</p>
+                                                <p>Coming face to face with some of the most beautiful, fascinating and dangerous creatures from the watery Worlds, students will be transported into a World of adventure.</p>
+                                                <p>Mum and Dad go free (2 Adults admitted free for every 10 children) and it's only $10 per child!</p>
+                                                <p><strong>For more informaion please fill the form below or contact us on 0871 000 0000</strong></p>
+
+                                            </div>
+                                            <div class="col-md-6" id="enquiry">
+                                                <h3>School Booking Enquiry</h3>
+                                                <h6>(Please enter all the fields)</h6>
+                                                <div class="well">
+                                                    <form role="form">
+
+                                                        <h4>Contact Details</h4>
+                                                        <div class="row form-group-sm">
+                                                            <label class="col-md-4 control-label">School Name:</label>
+                                                            <div class="col-md-7">
+                                                                <input class="form-control" type="text" placeholder="enter your first name" required="" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="row form-group-sm">
+                                                            <label class="col-md-4 control-label">School Address:</label>
+                                                            <div class="col-md-7">
+                                                                <textarea cols="10" rows="3" required="" class="form-control" placeholder="enter school address"></textarea>
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="row form-group-sm">
+                                                            <label class="col-md-4 control-label">Telephone:</label>
+                                                            <div class="col-md-7">
+                                                                <input class="form-control" type="tel" placeholder="contact number" required="" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="row form-group-sm">
+                                                            <label class="col-md-4 control-label">Email:</label>
+                                                            <div class="col-md-7">
+                                                                <input class="form-control" type="email" placeholder="enter your email" required="" />
+                                                            </div>
+                                                        </div>
+                                                        <h4>School Party Details</h4>
+                                                        <div class="row form-group-sm">
+                                                            <label class="col-md-4 control-label">Children</label>
+                                                            <div class="col-md-7">
+                                                                <input class="form-control" type="text" placeholder="no. children" required="" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="row form-group-sm">
+                                                            <label class="col-md-4 control-label">Adults</label>
+                                                            <div class="col-md-7">
+                                                                <input class="form-control" type="text" placeholder="no. adults" required="" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="row form-group-sm">
+                                                            <label class="col-md-4 control-label">Date:</label>
+                                                            <div class="col-md-7">
+                                                                <input class="form-control" type="date" required="" />
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row form-group">
+                                                            <label class="col-md-4 control-label">Details:</label>
+                                                            <div class="col-md-7">
+                                                                <textarea cols="10" rows="3" required="" class="form-control" placeholder="enter details if any"></textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row form-group-sm">
+                                                            <div class="col-md-3"></div>
+                                                            <div class="col-md-7">
+                                                                <input class="btn btn-info" type="submit" value="Send Booking Enquiry" />
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" id="sleeps">
+                                        <div class="sleeps-placeholder"></div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <h3>Sleepovers</h3>
+                                                <p>Explore the Aquarium after we’ve closed to the public and learn about different spices in our interactive aquarium Lab.</p>
+                                                <p>An expert guide will lead you through special behind-the-scenes areas of the Aquarium. As the night winds down, set up your sleeping bag and fall asleep under the watchful eye of different under water species</p>
+                                                
+                                                <p><strong>For more informaion please fill the form below or contact us on 0871 000 0000</strong></p>
+
+                                            </div>
+                                            <div class="col-md-6">
+                                                <h3>Sleepovers Booking Enquiry</h3>
+                                                <h6>(Please enter all the fields)</h6>
+                                                <div class="well">
+                                                    <form role="form">
+
+                                                        <h4>Contact Details</h4>
+                                                        <div class="row form-group-sm">
+                                                            <label class="col-md-4 control-label">First Name:</label>
+                                                            <div class="col-md-7">
+                                                                <input class="form-control" type="text" placeholder="enter your first name" required="" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="row form-group-sm">
+                                                            <label class="col-md-4 control-label">Last Name:</label>
+                                                            <div class="col-md-7">
+                                                                <input class="form-control" type="text" placeholder="enter your last name" required="" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="row form-group-sm">
+                                                            <label class="col-md-4 control-label">Telephone:</label>
+                                                            <div class="col-md-7">
+                                                                <input class="form-control" type="tel" placeholder="contact number" required="" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="row form-group-sm">
+                                                            <label class="col-md-4 control-label">Email:</label>
+                                                            <div class="col-md-7">
+                                                                <input class="form-control" type="email" placeholder="enter your email" required="" />
+                                                            </div>
+                                                        </div>
+                                                        <h4>Sleepovers Party Details</h4>
+                                                        <div class="row form-group-sm">
+                                                            <label class="col-md-4 control-label">Date:</label>
+                                                            <div class="col-md-7">
+                                                                <input class="form-control" type="date" required="" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="row form-group-sm">
+                                                            <label class="col-md-4 control-label">No. People:</label>
+                                                            <div class="col-md-7">
+                                                                <input class="form-control" type="text" placeholder="enter no of people" required="" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="row form-group">
+                                                            <label class="col-md-4 control-label">AddOns:</label>
+                                                            <div class="col-md-7">
+                                                                <label><input type="checkbox" value="">Food</label>
+                                                                <label><input type="checkbox" value="">Mattress</label>
+                                                                <label><input type="checkbox" value="">Virtual Reality(Gear vr)</label>
+                                                           </div>
+                                                        </div>
+                                                        <div class="row form-group-sm">
+                                                            <div class="col-md-3"></div>
+                                                            <div class="col-md-7">
+                                                                <input class="btn btn-info" type="submit" value="Send Booking Enquiry" />
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end of div content for special occasions-->
+                        <!-- start of div content for faqs-->
+                        <div class="tab-pane" id="faq">
+
+                        </div>
+                        <!-- end of div content for faqs-->
+                    </div>
+                    <!-- end of nav tab content -->
+                </div>
+
+            </div>
+            <!-- end of nav tab left -->
+        </div>
+        <!-- end of container-->
+
+        
+        <div class="container" style="margin-top:45px;">
+            <footer style="text-align: center; font-size: 14px;">Aquatix &copy; 2016. All rights reserved.</footer>
+        </div>
+    </div>
+    <environment names="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/js/jquery.cookie.js"></script>
+        <script src="~/lib/bootstrap/dist/js/jquery.easing.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+        <script src="http://maps.googleapis.com/maps/api/js"></script>
+        <script src="~/js/home.js"></script>
+        <script src="~/js/data.js"></script>
+        <script src="~/js/planyourvisit.js"></script>
+    </environment>
+    <environment names="Staging,Production">
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.1.4.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery">
+        </script>
+        <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.5/bootstrap.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal">
+        </script>
+
+    </environment>
+
+</body>
+</html>

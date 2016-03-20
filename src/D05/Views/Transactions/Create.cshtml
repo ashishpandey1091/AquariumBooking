@@ -1,0 +1,65 @@
+@model D05.Models.Transaction
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Create</h2>
+
+<form asp-action="Create">
+    <div class="form-horizontal">
+        <h4>Transaction</h4>
+        <hr />
+        <div asp-validation-summary="ValidationSummary.ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="CreatedByEmail" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="CreatedByEmail" class="form-control" />
+                <span asp-validation-for="CreatedByEmail" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="CreatedDate" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="CreatedDate" class="form-control" />
+                <span asp-validation-for="CreatedDate" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="PaidAmount" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="PaidAmount" class="form-control" />
+                <span asp-validation-for="PaidAmount" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="TotalAmount" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="TotalAmount" class="form-control" />
+                <span asp-validation-for="TotalAmount" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="UsedCoupon" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="UsedCoupon" class="form-control" />
+                <span asp-validation-for="UsedCoupon" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}
