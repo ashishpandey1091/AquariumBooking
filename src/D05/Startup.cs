@@ -109,7 +109,7 @@ namespace D05
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
-            AppSeedData.Initialize(app.ApplicationServices, appEnv.ApplicationBasePath);
+            //AppSeedData.Initialize(app.ApplicationServices, appEnv.ApplicationBasePath);
         }
 
         // Entry point for the application.
