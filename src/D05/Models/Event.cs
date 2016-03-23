@@ -41,19 +41,16 @@ namespace D05.Models
         [Display(Name = "SpecialEvent")]
         public bool IsSpecialEvent { get; set; }
 
-
-        [Required]
-        [Display(Name = "EventDate")]
+        
+        [Display(Name = "Event Date")]
         public DateTime EventDate { get; set; }
 
-
-        [Required]
-        [Display(Name = "EventStartTime")]
+        
+        [Display(Name = "Event Start Time")]
         public string EventStartTime { get; set; }
 
-
-        [Required]
-        [Display(Name = "EventStartTime")]
+        
+        [Display(Name = "Event End Time")]
         public string EventEndTime { get; set; }
     }
 }
