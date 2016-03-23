@@ -12,6 +12,7 @@ using Microsoft.Extensions.Logging;
 using D05.Models;
 using D05.Services;
 using D05.ViewModels.Account;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace D05.Controllers
 {
@@ -23,19 +24,21 @@ namespace D05.Controllers
         private readonly IEmailSender _emailSender;
         private readonly ISmsSender _smsSender;
         private readonly ILogger _logger;
+        private readonly ApplicationDbContext _dbContext;
 
         public AccountController(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             IEmailSender emailSender,
             ISmsSender smsSender,
-            ILoggerFactory loggerFactory)
+            ILoggerFactory loggerFactory, ApplicationDbContext dbContext)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
             _smsSender = smsSender;
             _logger = loggerFactory.CreateLogger<AccountController>();
+            _dbContext = dbContext;
         }
 
         //
@@ -102,9 +105,20 @@ namespace D05.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
+            IdentityRole idrole = null;
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                if (model.FirstName.Equals("admin")){
+                    idrole = _dbContext.Roles.FirstOrDefault(m => m.Id.Equals("1"));
+                }
+                else
+                {
+                    idrole = _dbContext.Roles.FirstOrDefault(m => m.Id.Equals("2"));
+                }
+                
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, FirstName = model.FirstName ,LastName=model.LastName,
+                Age = model.Age,Question=model.Question,Answer=model.Answer};
+
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -114,6 +128,7 @@ namespace D05.Controllers
                     //var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: HttpContext.Request.Scheme);
                     //await _emailSender.SendEmailAsync(model.Email, "Confirm your account",
                     //    "Please confirm your account by clicking this link: <a href=\"" + callbackUrl + "\">link</a>");
+                    await _userManager.AddToRoleAsync(user, idrole.Name);
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     _logger.LogInformation(3, "User created a new account with password.");
                     return RedirectToAction(nameof(HomeController.Index), "Home");
