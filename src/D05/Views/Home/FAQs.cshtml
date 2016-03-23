@@ -72,10 +72,9 @@
                                     <ul class="dropdown-menu" role="menu">
                                         <li><a href="html/planyourvisit.html?tab=hours">Hours and Prices</a></li>
                                         <li><a href="html/planyourvisit.html?tab=tickets">Buy Tickets</a></li>
-                                        <li><a href="html/planyourvisit.html?tab=find">Finding us</a></li>
                                         <li><a href="html/planyourvisit.html?tab=occasions">Special Occasions</a></li>
-                                        <li class="divider"></li>
-                                        <li><a href="html/planyourvisit.html?tab=faq">FAQ's</a></li>
+                                        
+                                        
                                     </ul>
                                 </li>
 
@@ -92,9 +91,20 @@
                                         <li><a href="html/exhibits.html?tab=exseven">Danty Sealions</a></li>
                                     </ul>
                                 </li>
-                                <li><a asp-controller="Home" asp-action="About">About us</a></li>
-                                <li><a asp-controller="Home" asp-action="Contact">Contact us</a></li>
-                                <li class="active"><a asp-controller="Home" asp-action="FAQs">FAQs</a></li>
+                                <li class="dropdown">
+                                    <a asp-controller="" asp-action="" class="dropdown-toggle"
+                                       data-toggle="dropdown" role="button">More Info<b class="caret"></b></a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a asp-controller="Home" asp-action="About">About us</a></li>
+                                        <li><a asp-controller="Home" asp-action="Contact">Contact us</a></li>
+                                        <li><a asp-controller="Home" asp-action="FAQs">FAQs</a></li>
+                                        <li><a href="">Webpage1</a></li>
+                                        <li><a href="">Webpage2</a></li>
+                                        <li><a href="">Webpage3</a></li>
+
+                                    </ul>
+                                </li>
+
                                 @if (User.IsSignedIn() && User.IsInRole("admin"))
                                 {
                                     <li><a asp-controller="Admin" asp-action="Index">Admin</a></li>
@@ -103,10 +113,12 @@
 
                             @if (User.IsSignedIn())
                             {
-                                <div id="myaccount" style="padding-right:20px">
-                                    <form asp-controller="Account" asp-action="LogOff" method="post" id="logoutForm" class="navbar-right">
-                                        <ul class="nav navbar-nav navbar-right">
-
+                                <div id="myaccount" style="padding-right:30px">
+                                    <form asp-controller="Account" asp-action="LogOff" method="post" id="logoutForm" class="nav navbar-nav navbar-right">
+                                        <ul class="nav navbar-nav">
+                                            <li>
+                                                <a asp-controller="Manage" asp-action="Index">Hello @User.GetUserName()</a>
+                                            </li>
                                             <li>
                                                 <button type="submit" class="btn btn-link navbar-btn navbar-link">Log off</button>
                                             </li>
@@ -115,7 +127,7 @@
                                 </div>
                             }
                             else {
-                                <div id="loginlinks" style="padding-right:20px">
+                                <div id="loginlinks" style="padding-right:30px">
                                     <ul class="nav navbar-nav navbar-right">
                                         <li><a asp-controller="Account" asp-action="Register">Register</a></li>
                                         <li><a asp-controller="Account" asp-action="Login">Log in</a></li>
