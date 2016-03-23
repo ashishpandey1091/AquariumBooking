@@ -63,19 +63,8 @@ function hoursPageClicked() {
 } */
 
 $(document).ready(function () {
-
-    /* var key = ViewData["Key"];
-
-    if (key == "hours") {
-
-    } else if (key == "tickets") {
-
-    } else if (key == "find") {
-
-    } else {
-
-    } */
-    
+    alert("ready");
+       
     console.log("in visit us js");
      
     userName = $.cookie("username");

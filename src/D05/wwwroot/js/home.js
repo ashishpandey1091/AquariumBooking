@@ -1,7 +1,8 @@
 /* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * home.js consists of functionalities related to home page. *Login* *Registration* *Logout* *Saving user in cookie*
+ * *Login and user saving in cookie*
+ * *Logout and removing user from cookie*
+ * *Register and save user in cookie*
  */
 
 $(document).ready(function(){
@@ -65,8 +66,11 @@ $(document).ready(function(){
                 alert("Invalid username or password. Please try again.");
             }
             
-            });
+    });
+
+    /** login functionality  ends **/
             
+    /** Start of Forgot password Alert **/
             $(document).on("click","#forgotPassword",function(){
             
                 var fgt = prompt("Please enter the e-mail address of your account");
@@ -76,14 +80,17 @@ $(document).ready(function(){
                         return;
                     }
             });
-            
+    /**End of  Forgot password Alert **/
+
+    /** Start of registration Button **/
+
             $(document).on("click","#regBtn",function(){
             
                 $("#login").modal("hide");
                 $("a[data-target='#register']").trigger('click');
             });
             
-            /** login functionality  ends **/
+            
             
             
              $(document).on("click","#registerBtn",function(){
@@ -119,8 +126,11 @@ $(document).ready(function(){
                         
                         
                        });
-            
-            
+    /** End registration Button **/
+
+
+    /** Start of Logout **/
+
            $("#logout").click(function(){
                 console.log("in logout");
                 $.removeCookie('username',{path:'/'});
@@ -134,7 +144,10 @@ $(document).ready(function(){
                 $("#myaccount").hide();
                 $("#loginlinks").show();
                 $("#username").html(" ");
-            });
+           });
+
+
+    /** End of Logout **/
 });
 
 
