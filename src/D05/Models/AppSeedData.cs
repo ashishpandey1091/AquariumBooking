@@ -3,85 +3,56 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
-using System.IO;
-using Microsoft.Data.Entity;
+using System.Security.Claims;
+using Microsoft.AspNet.Mvc;
 
 namespace D05.Models
 {
-    public class AppSeedData { 
-    public static void Initialize(IServiceProvider serviceProvider, string appPath)
+    public static class AppSeedData
     {
-        string relPath = appPath + "//Models//SeedData//";
-        var context = serviceProvider.GetService<ApplicationDbContext>();
-            context.Database.Migrate();
-            if (context.Database == null)
+        public static void Initialize(IServiceProvider serviceProvider)
         {
-            throw new Exception("DB is null");
+            var context = serviceProvider.GetService<ApplicationDbContext>();
+
+            if(context == null)
+            {
+                return;
+            }
+
+            
+            
+            if (context.Roles.Any()) { return; }
+
+
+
+            context.Roles.AddRange(new Microsoft.AspNet.Identity.EntityFramework.IdentityRole()
+            {
+                Id = "1",
+                Name = "admin"
+            }, new Microsoft.AspNet.Identity.EntityFramework.IdentityRole()
+            {
+                Id = "2",
+                Name = "user"
+            });
+            context.SaveChanges();
+
+
+
+            //context.Users.Add(new ApplicationUser()
+            //{
+            //    UserName = "sharanyarao60@gmail.com",
+            //    Email = "sharanyarao60@gmail.com",
+            //    FirstName = "sharanya",
+
+
+            //});
+
+            //context.SaveChanges();
+
+
+            // var user = context.Users.Where(u => u.FirstName.Equals("sharau")).FirstOrDefault();
+
+
         }
-        if (context.Profile.Any())
-        {
-            return;
-        }
-
-
-       
-        context.Transaction.RemoveRange(context.Transaction);
-        context.Profile.RemoveRange(context.Profile);
-        context.SaveChanges();
-
-            SeedProfilesFromCsv(relPath, context);
-            SeedTransactionsFromCsv(relPath, context);
     }
-    
-
-    private static void SeedTransactionsFromCsv(string relPath, ApplicationDbContext context)
-    {
-        string source = relPath + "Transactions.csv";
-        if (!File.Exists(source))
-        {
-            throw new Exception("Cannot find file " + source);
-        }
-        Transaction.ReadAllFromCSV(source);
-        List<Transaction> lst = Transaction.ReadAllFromCSV(source);
-        context.Transaction.AddRange(lst.ToArray());
-            //try { context.SaveChanges(); }
-            //catch (Exception e)
-            //{
-            //    Console.WriteLine("The info is here" + e.StackTrace);
-            //}
-            context.SaveChanges();
-        }
-
-    private static void SeedProfilesFromCsv(string relPath, ApplicationDbContext context)
-    {
-        string source = relPath + "Profiles.csv";
-        if (!File.Exists(source))
-        {
-            throw new Exception("Cannot find file " + source);
-        }
-        List<Profile> lst = Profile.ReadAllFromCSV(source);
-        context.Profile.AddRange(lst.ToArray());
-            //try { context.SaveChanges(); }
-            //catch(Exception e)
-            //{
-            //    Console.WriteLine("The info is here"+e.StackTrace);
-            //}
-
-            context.SaveChanges();
-
-        }
-
-
-
-
-
-
-
 }
-
-
-}
-
-
-
-

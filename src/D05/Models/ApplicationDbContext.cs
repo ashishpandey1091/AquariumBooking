@@ -21,14 +21,15 @@ namespace D05.Models
             // Add your customizations after calling base.OnModelCreating(builder);
         }
 
-        public DbSet<Profile> Profile { get; set; }
-        public DbSet<Admin> Admin { get; set; }
-        public DbSet<CreateEvent> Event { get; set; }
-        public DbSet<Ticket> Ticket { get; set; }
-        public DbSet<Transaction> Transaction { get; set; }
-        public DbSet<Coupons> Coupons { get; set; }
-        public DbSet<CreateEvent> CreateEvent { get; set; }
-        public DbSet<CouponProfile> CouponProfile { get; set; }
+        public DbSet<Event> Events { get; set; }
+
+        public DbSet<Price> Prices { get; set; }
+
+        public DbSet<SchoolTrip> SchoolTrips { get; set; }
+
+        public DbSet<OrderDetail> OrderDetails { get; set; }
+
+        public DbSet<Coupon> Coupons { get; set; }
 
     }
 }
