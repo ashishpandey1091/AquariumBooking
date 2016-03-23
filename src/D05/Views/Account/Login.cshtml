@@ -1,90 +1,214 @@
-﻿@using System.Collections.Generic
-@using Microsoft.AspNet.Http
-@using Microsoft.AspNet.Http.Authentication
-@model LoginViewModel
-@inject SignInManager<ApplicationUser> SignInManager
+﻿<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Aquatix</title>
 
-@{
-    ViewData["Title"] = "Log in";
-}
+    <environment names="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
 
-<h2>@ViewData["Title"].</h2>
-<div class="row">
-    <div class="col-md-8">
-        <section>
-            <form asp-controller="Account" asp-action="Login" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal" role="form">
-                <h4>Use a local account to log in.</h4>
-                <hr />
-                <div asp-validation-summary="ValidationSummary.All" class="text-danger"></div>
-                <div class="form-group">
-                    <label asp-for="Email" class="col-md-2 control-label"></label>
-                    <div class="col-md-10">
-                        <input asp-for="Email" class="form-control" />
-                        <span asp-validation-for="Email" class="text-danger"></span>
-                    </div>
+    </environment>
+    <environment names="Staging,Production">
+        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.5/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+    </environment>
+</head>
+<body>
+    @using System.Security.Claims
+    @using System.Collections.Generic
+    @using Microsoft.AspNet.Http
+    @using Microsoft.AspNet.Http.Authentication
+    @model LoginViewModel
+    @inject SignInManager<ApplicationUser> SignInManager
+
+    @{
+        ViewData["Title"] = "Log in";
+    }
+
+    
+    <div class="container">
+        
+
+        <nav class="navbar navbar-inverse" id="navid">
+            <div class="container">
+
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Aquatix Aquarium</a>
                 </div>
-                <div class="form-group">
-                    <label asp-for="Password" class="col-md-2 control-label"></label>
-                    <div class="col-md-10">
-                        <input asp-for="Password" class="form-control" />
-                        <span asp-validation-for="Password" class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <div class="checkbox">
-                            <input asp-for="RememberMe" />
-                            <label asp-for="RememberMe"></label>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                        <li class="dropdown">
+                            <a href="html/planyourvisit.html" class="dropdown-toggle"
+                               data-toggle="dropdown" role="button">Visitor Info<b class="caret"></b></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="/Planyourvisit/PlanYourVisit?tab=hours">Hours and Prices</a></li>
+                                <li><a href="/Planyourvisit/PlanYourVisit?tab=tickets">Buy Tickets</a></li>
+                                <li><a href="/Planyourvisit/PlanYourVisit?tab=find">Finding us</a></li>
+                                <li><a href="/Planyourvisit/PlanYourVisit?tab=occasions">Special Occasions</a></li>
+                                <li class="divider"></li>
+                                <li><a href="/Planyourvisit/PlanYourVisit?tab=faq">FAQ's</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="dropdown">
+                            <a asp-controller="" asp-action="" class="dropdown-toggle"
+                               data-toggle="dropdown" role="button">Exhibits<b class="caret"></b></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="/Exhibits/Exhibits?tab=exone">Journey to Atlantis</a></li>
+                                <li><a href="/Exhibits/Exhibits?tab=extwo">Dolphin Notch</a></li>
+                                <li><a href="/Exhibits/Exhibits?tab=exthree">Seaworld Tower</a></li>
+                                <li><a href="/Exhibits/Exhibits?tab=exfour">Walrus Skerry</a></li>
+                                <li><a href="/Exhibits/Exhibits?tab=exfive">Killer Whales</a></li>
+                                <li><a href="/Exhibits/Exhibits?tab=exsix">Coral Reef</a></li>
+                                <li><a href="/Exhibits/Exhibits?tab=exseven">Danty Sealions</a></li>
+
+                            </ul>
+                        </li>
+                        <li><a asp-controller="Home" asp-action="About">About us</a></li>
+                        <li><a asp-controller="Home" asp-action="Contact">Contact us</a></li>
+                        <li><a asp-controller="Home" asp-action="FAQs">FAQs</a></li>
+                        @if (User.IsSignedIn() && User.IsInRole("admin"))
+                        {
+                            <li><a asp-controller="Admin" asp-action="Index">Admin</a></li>
+                        }
+                    </ul>
+
+
+                    @if (User.IsSignedIn())
+                    {
+                        <div id="myaccount" style="padding-right:20px">
+                            <form asp-controller="Account" asp-action="LogOff" method="post" id="logoutForm" class="navbar-right">
+                                <ul class="nav navbar-nav navbar-right">
+
+                                    <li>
+                                        <button type="submit" class="btn btn-link navbar-btn navbar-link">Log off</button>
+                                    </li>
+                                </ul>
+                            </form>
                         </div>
-                    </div>
+                    }
+                    else {
+                        <div id="loginlinks" style="padding-right:20px">
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a asp-controller="Account" asp-action="Register">Register</a></li>
+                                <li><a asp-controller="Account" asp-action="Login">Log in</a></li>
+                            </ul>
+                        </div>
+                    }
                 </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <button type="submit" class="btn btn-default">Log in</button>
-                    </div>
-                </div>
-                <p>
-                    <a asp-action="Register">Register as a new user?</a>
-                </p>
-                <p>
-                    <a asp-action="ForgotPassword">Forgot your password?</a>
-                </p>
-            </form>
-        </section>
-    </div>
-    <div class="col-md-4">
-        <section>
-            <h4>Use another service to log in.</h4>
-            <hr />
-            @{
-                var loginProviders = SignInManager.GetExternalAuthenticationSchemes().ToList();
-                if (loginProviders.Count == 0)
-                {
-                    <div>
+            </div>
+        </nav>
+
+        <!-- end of navigation bar-->
+
+        <h2>@ViewData["Title"].</h2>
+        <div class="row">
+            <div class="col-md-8">
+                <section>
+                    <form asp-controller="Account" asp-action="Login" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal" role="form">
+                        <h4>Use a local account to log in.</h4>
+                        <hr />
+                        <div asp-validation-summary="ValidationSummary.All" class="text-danger"></div>
+                        <div class="form-group">
+                            <label asp-for="Email" class="col-md-2 control-label"></label>
+                            <div class="col-md-10">
+                                <input asp-for="Email" class="form-control" />
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Password" class="col-md-2 control-label"></label>
+                            <div class="col-md-10">
+                                <input asp-for="Password" class="form-control" />
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <div class="checkbox">
+                                    <input asp-for="RememberMe" />
+                                    <label asp-for="RememberMe"></label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <button type="submit" class="btn btn-default">Log in</button>
+                            </div>
+                        </div>
                         <p>
-                            There are no external authentication services configured. See <a href="http://go.microsoft.com/fwlink/?LinkID=532715">this article</a>
-                            for details on setting up this ASP.NET application to support logging in via external services.
+                            <a asp-action="Register">Register as a new user?</a>
                         </p>
-                    </div>
-                }
-                else
-                {
-                    <form asp-controller="Account" asp-action="ExternalLogin" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal" role="form">
-                        <div>
-                            <p>
-                                @foreach (var provider in loginProviders)
-                                {
-                                    <button type="submit" class="btn btn-default" name="provider" value="@provider.AuthenticationScheme" title="Log in using your @provider.DisplayName account">@provider.AuthenticationScheme</button>
-                                }
-                            </p>
-                        </div>
+                        <p>
+                            <a asp-action="ForgotPassword">Forgot your password?</a>
+                        </p>
                     </form>
-                }
-            }
-        </section>
+                </section>
+            </div>
+            <!--<div class="col-md-4">
+                <section>
+                    <h4>Use another service to log in.</h4>
+                    <hr />
+                    @{
+                        var loginProviders = SignInManager.GetExternalAuthenticationSchemes().ToList();
+                        if (loginProviders.Count == 0)
+                        {
+                            <div>
+                                <p>
+                                    There are no external authentication services configured. See <a href="http://go.microsoft.com/fwlink/?LinkID=532715">this article</a>
+                                    for details on setting up this ASP.NET application to support logging in via external services.
+                                </p>
+                            </div>
+                        }
+                        else
+                        {
+                            <form asp-controller="Account" asp-action="ExternalLogin" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal" role="form">
+                                <div>
+                                    <p>
+                                        @foreach (var provider in loginProviders)
+                                        {
+                                            <button type="submit" class="btn btn-default" name="provider" value="@provider.AuthenticationScheme" title="Log in using your @provider.DisplayName account">@provider.AuthenticationScheme</button>
+                                        }
+                                    </p>
+                                </div>
+                            </form>
+                        }
+                    }
+                </section>
+            </div>-->
+        </div>
     </div>
-</div>
+    @section Scripts {
+        @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+    }
 
-@section Scripts {
-    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
-}
+    <environment names="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/js/jquery.cookie.js"></script>
+        <script src="~/js/jquery.easing.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+    </environment>
+    <environment names="Staging,Production">
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.1.4.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery">
+        </script>
+        <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.5/bootstrap.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal">
+        </script>
+        <script src="~/js/site.min.js" asp-append-version="true"></script>
+    </environment>
+    </body>
+</html>
