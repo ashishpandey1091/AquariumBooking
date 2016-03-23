@@ -19,7 +19,7 @@
     </environment>
     <style>
         #contactus {
-            background-image: url('/img/background.jpg');
+            //background-image: url('/img/background.jpg');
             background-size: contain;
         }
     </style>
@@ -50,7 +50,7 @@
     </script>
 </head>
 <body>
-
+    @using System.Security.Claims
     <div id="contactus">
         <div class="navbar-wrapper">
             <div class="container">
@@ -101,31 +101,32 @@
                                 <li><a asp-controller="Home" asp-action="About">About us</a></li>
                                 <li><a asp-controller="Home" asp-action="Contact">Contact us</a></li>
                                 <li><a asp-controller="Home" asp-action="FAQs">FAQs</a></li>
+                                @if (User.IsSignedIn() && User.IsInRole("admin"))
+                                {
+                                    <li><a asp-controller="Admin" asp-action="Index">Admin</a></li>
+                                }
                             </ul>
-                            <div class="navbar-right">
-                                <div id="myaccount" style="display: none;">
-                                    <p class="navbar-text"><strong>Welcome,</strong><span id="username"></span></p>
-                                    <ul class="nav navbar-nav">
-                                        <li class="dropdown">
-                                            <a href="#" class="dropdown-toggle"
-                                               data-toggle="dropdown" role="button"><span class="glyphicon glyphicon-user"></span></a>
-                                            <ul class="dropdown-menu" role="menu">
-                                                <li><a href="#" id="myaccnt">My Account</a></li>
-                                                <li><a href="../home.html" id="logout">Logout</a></li>
-                                            </ul>
-                                        </li>
+                            @if (User.IsSignedIn())
+                            {
+                                <div id="myaccount" style="padding-right:20px">
+                                    <form asp-controller="Account" asp-action="LogOff" method="post" id="logoutForm" class="navbar-right">
+                                        <ul class="nav navbar-nav navbar-right">
 
-
+                                            <li>
+                                                <button type="submit" class="btn btn-link navbar-btn navbar-link">Log off</button>
+                                            </li>
+                                        </ul>
+                                    </form>
+                                </div>
+                            }
+                            else {
+                                <div id="loginlinks" style="padding-right:20px">
+                                    <ul class="nav navbar-nav navbar-right">
+                                        <li><a asp-controller="Account" asp-action="Register">Register</a></li>
+                                        <li><a asp-controller="Account" asp-action="Login">Log in</a></li>
                                     </ul>
                                 </div>
-                                <div id="loginlinks">
-                                    <ul class="nav navbar-nav">
-                                        <li><a href="register.html" data-toggle="modal" data-target="#register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                                        <li id="registernav"><a href="login.html" data-toggle="modal" data-target="#login"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
-
-                                    </ul>
-                                </div>
-                            </div>
+                            } 
                         </div>
                     </div>
                 </nav>

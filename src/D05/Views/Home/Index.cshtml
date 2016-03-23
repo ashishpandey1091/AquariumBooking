@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿
+
 <html>
 <head>
     <meta charset="utf-8" />
@@ -18,6 +19,7 @@
     </environment>
 </head>
 <body>
+    @using System.Security.Claims
     <div class="navbar-wrapper" style="position: relative;z-index: 99;">
         <div class="container">
             <nav class="navbar navbar-default animated slideInDown" id="navid">
@@ -34,16 +36,13 @@
                     <div id="navbar" class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
                             <li class="active"><a asp-controller="Home" asp-action="Index">Home</a></li>
-                            <li class="dropdown">
-                                <a href="html/planyourvisit.html" class="dropdown-toggle"
+                            <li class="dropdown">   
+                                <a href="/Planyourvisit/PlanYourVisit?tab=hours" class="dropdown-toggle"
                                    data-toggle="dropdown" role="button">Visitor Info<b class="caret"></b></a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li><a href="/Planyourvisit/PlanYourVisit?tab=hours">Hours and Prices</a></li>
                                     <li><a href="/Planyourvisit/PlanYourVisit?tab=tickets">Buy Tickets</a></li>
-                                    <li><a href="/Planyourvisit/PlanYourVisit?tab=find">Finding us</a></li>
                                     <li><a href="/Planyourvisit/PlanYourVisit?tab=occasions">Special Occasions</a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="/Planyourvisit/PlanYourVisit?tab=faq">FAQ's</a></li>
                                 </ul>
                             </li>
 
@@ -64,30 +63,36 @@
                             <li><a asp-controller="Home" asp-action="About">About us</a></li>
                             <li><a asp-controller="Home" asp-action="Contact">Contact us</a></li>
                             <li><a asp-controller="Home" asp-action="FAQs">FAQs</a></li>
+                            @if (User.IsSignedIn() && User.IsInRole("admin"))
+                            {
+                                <li><a asp-controller="Admin" asp-action="Index">Admin</a></li>
+                                }
                         </ul>
-
-                        <div class="navbar-right">
-                            <div id="myaccount">
-                                <p class="navbar-text"><strong>Welcome,</strong><span id="username"></span></p>
-                                <ul class="nav navbar-nav">
-                                    <li class="dropdown">
-                                        <a asp-controller="" asp-action="" class="dropdown-toggle"
-                                           data-toggle="dropdown" role="button"><span class="glyphicon glyphicon-user"></span></a>
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li><a asp-controller="" asp-action="" id="myaccnt">My Account</a></li>
-                                            <li><a asp-controller="" asp-action="" id="logout">Logout</a></li>
-                                        </ul>
-                                    </li>
+                        
+                                               
+                            @if (User.IsSignedIn())
+                            {
+                            <div id="myaccount" style="padding-right:20px">
+                                <form asp-controller="Account" asp-action="LogOff" method="post" id="logoutForm" class="navbar-right">
+                                    <ul class="nav navbar-nav navbar-right">
+                                        
+                                        <li>
+                                            <button type="submit" class="btn btn-link navbar-btn navbar-link">Log off</button>
+                                        </li>
+                                    </ul>
+                                    </form>
+                            </div>
+                            }
+                            else {
+                            <div id="loginlinks" style="padding-right:20px">
+                                <ul class="nav navbar-nav navbar-right">
+                                    <li><a asp-controller="Account" asp-action="Register">Register</a></li>
+                                    <li><a asp-controller="Account" asp-action="Login">Log in</a></li>
                                 </ul>
                             </div>
-                            <div id="loginlinks">
-                                <ul class="nav navbar-nav">
-                                    <li><a asp-controller="" asp-action="" data-toggle="modal" data-target="#register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                                    <li id="registernav"><a asp-controller="" asp-action="" data-toggle="modal" data-target="#login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-
-                                </ul>
-                            </div>
-                        </div>
+                            } 
+                        
+                       
                     </div>
                 </div>
             </nav>
@@ -272,7 +277,7 @@
     <div class="container" style="margin-top:45px;">
         <footer style="text-align: center; font-size: 14px;">Aquatix &copy; 2016. All rights reserved.</footer>
     </div>
-    </div>
+    
 
     <!-- End of container -->
 
@@ -310,6 +315,7 @@
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
         <script src="~/js/home.js"></script>
         <script src="~/js/data.js"></script>
+        
     </environment>
     <environment names="Staging,Production">
         <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.1.4.min.js"
