@@ -50,6 +50,7 @@ namespace D05.Models
         public string EventStartTime { get; set; }
 
         
+
         [Display(Name = "Event End Time")]
         public string EventEndTime { get; set; }
     }
