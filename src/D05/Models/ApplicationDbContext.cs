@@ -31,5 +31,6 @@ namespace D05.Models
 
         public DbSet<Coupon> Coupons { get; set; }
 
+
     }
 }
