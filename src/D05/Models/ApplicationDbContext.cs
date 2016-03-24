@@ -33,7 +33,7 @@ namespace D05.Models
 
         public DbSet<SleepOver> SleepOvers { get; set; }
 
-        public DbSet<BirthdayParty> BirthdayPartys { get; set; }
+        public DbSet<BirthdayParty> BirthdayParties { get; set; }
 
     }
 }
