@@ -31,5 +31,9 @@ namespace D05.Models
 
         public DbSet<Coupon> Coupons { get; set; }
 
+        public DbSet<SleepOver> SleepOvers { get; set; }
+
+        public DbSet<BirthdayParty> BirthdayPartys { get; set; }
+
     }
 }
