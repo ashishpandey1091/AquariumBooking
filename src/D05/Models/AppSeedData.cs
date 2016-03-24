@@ -36,7 +36,7 @@ namespace D05.Models
             });
             context.SaveChanges();
 
-
+            
 
             //context.Users.Add(new ApplicationUser()
             //{
