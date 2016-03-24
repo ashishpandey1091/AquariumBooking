@@ -5,46 +5,23 @@ using Microsoft.Data.Entity.Metadata;
 
 namespace D05.Migrations
 {
-    public partial class Initial : Migration
+    public partial class InitialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
-                name: "Coupons",
-                columns: table => new
-                {
-                    CouponID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    CouponString = table.Column<string>(nullable: true),
-                    CreatedDate = table.Column<DateTime>(nullable: false),
-                    ExpireDate = table.Column<DateTime>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Coupons", x => x.CouponID);
-                });
-            migrationBuilder.CreateTable(
-                name: "Admin",
-                columns: table => new
-                {
-                    AdminID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Email = table.Column<string>(nullable: false),
-                    Password = table.Column<string>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Admin", x => x.AdminID);
-                });
             migrationBuilder.CreateTable(
                 name: "AspNetUsers",
                 columns: table => new
                 {
                     Id = table.Column<string>(nullable: false),
                     AccessFailedCount = table.Column<int>(nullable: false),
+                    Age = table.Column<int>(nullable: false),
+                    Answer = table.Column<string>(nullable: true),
                     ConcurrencyStamp = table.Column<string>(nullable: true),
                     Email = table.Column<string>(nullable: true),
                     EmailConfirmed = table.Column<bool>(nullable: false),
+                    FirstName = table.Column<string>(nullable: true),
+                    LastName = table.Column<string>(nullable: true),
                     LockoutEnabled = table.Column<bool>(nullable: false),
                     LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
                     NormalizedEmail = table.Column<string>(nullable: true),
@@ -52,6 +29,7 @@ namespace D05.Migrations
                     PasswordHash = table.Column<string>(nullable: true),
                     PhoneNumber = table.Column<string>(nullable: true),
                     PhoneNumberConfirmed = table.Column<bool>(nullable: false),
+                    Question = table.Column<string>(nullable: true),
                     SecurityStamp = table.Column<string>(nullable: true),
                     TwoFactorEnabled = table.Column<bool>(nullable: false),
                     UserName = table.Column<string>(nullable: true)
@@ -61,69 +39,74 @@ namespace D05.Migrations
                     table.PrimaryKey("PK_ApplicationUser", x => x.Id);
                 });
             migrationBuilder.CreateTable(
-                name: "CouponProfile",
+                name: "Coupon",
                 columns: table => new
                 {
-                    ProfileID = table.Column<int>(nullable: false)
+                    CouponID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    CouponID = table.Column<int>(nullable: false),
-                    FirstName = table.Column<string>(nullable: true),
-                    LastName = table.Column<string>(nullable: true),
-                    isUsed = table.Column<bool>(nullable: false)
+                    CouponNumber = table.Column<string>(nullable: false),
+                    CreatedDate = table.Column<DateTime>(nullable: false),
+                    ExpiryDate = table.Column<DateTime>(nullable: false),
+                    PriceReduced = table.Column<decimal>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CouponProfile", x => x.ProfileID);
+                    table.PrimaryKey("PK_Coupon", x => x.CouponID);
                 });
             migrationBuilder.CreateTable(
-                name: "CreateEvent",
+                name: "Event",
                 columns: table => new
                 {
                     EventID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    AdultPrice = table.Column<double>(nullable: false),
-                    Child = table.Column<double>(nullable: false),
+                    AdultPrice = table.Column<decimal>(nullable: false),
+                    ChildPrice = table.Column<decimal>(nullable: false),
                     Description = table.Column<string>(nullable: false),
+                    EventDate = table.Column<DateTime>(nullable: false),
+                    EventEndTime = table.Column<string>(nullable: true),
                     EventName = table.Column<string>(nullable: false),
-                    SeniorCitizen = table.Column<double>(nullable: false),
-                    SpecialEvent = table.Column<bool>(nullable: false)
+                    EventStartTime = table.Column<string>(nullable: true),
+                    IsSpecialEvent = table.Column<bool>(nullable: false),
+                    OldAgePrice = table.Column<decimal>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CreateEvent", x => x.EventID);
+                    table.PrimaryKey("PK_Event", x => x.EventID);
                 });
             migrationBuilder.CreateTable(
-                name: "Profile",
+                name: "Price",
                 columns: table => new
                 {
-                    ProfileID = table.Column<int>(nullable: false),
-                    Age = table.Column<int>(nullable: false),
-                    Answer = table.Column<string>(nullable: true),
-                    Email = table.Column<string>(nullable: false),
-                    FirstName = table.Column<string>(nullable: false),
-                    LastName = table.Column<string>(nullable: false),
-                    Password = table.Column<string>(nullable: false),
-                    PersonalCoup = table.Column<string>(nullable: true),
-                    Question = table.Column<string>(nullable: true)
+                    PriceID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    AdultPrice = table.Column<decimal>(nullable: false),
+                    ChildPrice = table.Column<decimal>(nullable: false),
+                    OldAgePrice = table.Column<decimal>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Profile", x => x.ProfileID);
+                    table.PrimaryKey("PK_Price", x => x.PriceID);
                 });
             migrationBuilder.CreateTable(
-                name: "Transaction",
+                name: "SchoolTrip",
                 columns: table => new
                 {
-                    TransactionID = table.Column<int>(nullable: false),
-                    CreatedByEmail = table.Column<string>(nullable: true),
-                    CreatedDate = table.Column<DateTime>(nullable: false),
-                    PaidAmount = table.Column<double>(nullable: false),
-                    TotalAmount = table.Column<double>(nullable: false),
-                    UsedCoupon = table.Column<string>(nullable: true)
+                    SchoolTripID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    ContactNumber = table.Column<int>(nullable: false),
+                    DateofRegistration = table.Column<DateTime>(nullable: false),
+                    DateofVisit = table.Column<DateTime>(nullable: false),
+                    Details = table.Column<string>(nullable: false),
+                    IsAdminAccepted = table.Column<string>(nullable: false),
+                    NoOfAdults = table.Column<int>(nullable: false),
+                    NoOfChildren = table.Column<int>(nullable: false),
+                    SchoolAddress = table.Column<string>(nullable: false),
+                    SchoolEmail = table.Column<string>(nullable: false),
+                    SchoolName = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Transaction", x => x.TransactionID);
+                    table.PrimaryKey("PK_SchoolTrip", x => x.SchoolTripID);
                 });
             migrationBuilder.CreateTable(
                 name: "AspNetRoles",
@@ -137,6 +120,32 @@ namespace D05.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_IdentityRole", x => x.Id);
+                });
+            migrationBuilder.CreateTable(
+                name: "OrderDetail",
+                columns: table => new
+                {
+                    OrderDetailID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    ApplicationUserId = table.Column<string>(nullable: true),
+                    ContactNumber = table.Column<int>(nullable: false),
+                    DateOfVisit = table.Column<DateTime>(nullable: false),
+                    EntryTicketPrice = table.Column<decimal>(nullable: false),
+                    OrderTotalPrice = table.Column<decimal>(nullable: false),
+                    SpecialEventPrice = table.Column<decimal>(nullable: false),
+                    TicketGeneratedDate = table.Column<DateTime>(nullable: false),
+                    VisitorEmail = table.Column<string>(nullable: true),
+                    VisitorFN = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_OrderDetail", x => x.OrderDetailID);
+                    table.ForeignKey(
+                        name: "FK_OrderDetail_ApplicationUser_ApplicationUserId",
+                        column: x => x.ApplicationUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
             migrationBuilder.CreateTable(
                 name: "AspNetUserClaims",
@@ -175,29 +184,6 @@ namespace D05.Migrations
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-            migrationBuilder.CreateTable(
-                name: "Ticket",
-                columns: table => new
-                {
-                    TicketID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    TicketGeneratedDate = table.Column<DateTime>(nullable: false),
-                    TicketType = table.Column<string>(nullable: false),
-                    TransactionID = table.Column<int>(nullable: false),
-                    VisitReason = table.Column<DateTime>(nullable: false),
-                    VisitingDate = table.Column<DateTime>(nullable: false),
-                    VisitingTime = table.Column<DateTime>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Ticket", x => x.TicketID);
-                    table.ForeignKey(
-                        name: "FK_Ticket_Transaction_TransactionID",
-                        column: x => x.TransactionID,
-                        principalTable: "Transaction",
-                        principalColumn: "TransactionID",
                         onDelete: ReferentialAction.Cascade);
                 });
             migrationBuilder.CreateTable(
@@ -259,17 +245,15 @@ namespace D05.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable("Coupons");
-            migrationBuilder.DropTable("Admin");
-            migrationBuilder.DropTable("CouponProfile");
-            migrationBuilder.DropTable("CreateEvent");
-            migrationBuilder.DropTable("Profile");
-            migrationBuilder.DropTable("Ticket");
+            migrationBuilder.DropTable("Coupon");
+            migrationBuilder.DropTable("Event");
+            migrationBuilder.DropTable("OrderDetail");
+            migrationBuilder.DropTable("Price");
+            migrationBuilder.DropTable("SchoolTrip");
             migrationBuilder.DropTable("AspNetRoleClaims");
             migrationBuilder.DropTable("AspNetUserClaims");
             migrationBuilder.DropTable("AspNetUserLogins");
             migrationBuilder.DropTable("AspNetUserRoles");
-            migrationBuilder.DropTable("Transaction");
             migrationBuilder.DropTable("AspNetRoles");
             migrationBuilder.DropTable("AspNetUsers");
         }

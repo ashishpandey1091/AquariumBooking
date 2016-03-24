@@ -8,8 +8,8 @@ using D05.Models;
 namespace D05.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20160309195329_Initial")]
-    partial class Initial
+    [Migration("20160324171506_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -17,39 +17,15 @@ namespace D05.Migrations
                 .HasAnnotation("ProductVersion", "7.0.0-rc1-16348")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("D05.Controllers.Coupons", b =>
-                {
-                    b.Property<int>("CouponID")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("CouponString");
-
-                    b.Property<DateTime>("CreatedDate");
-
-                    b.Property<DateTime>("ExpireDate");
-
-                    b.HasKey("CouponID");
-                });
-
-            modelBuilder.Entity("D05.Models.Admin", b =>
-                {
-                    b.Property<int>("AdminID")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Email")
-                        .IsRequired();
-
-                    b.Property<string>("Password")
-                        .IsRequired();
-
-                    b.HasKey("AdminID");
-                });
-
             modelBuilder.Entity("D05.Models.ApplicationUser", b =>
                 {
                     b.Property<string>("Id");
 
                     b.Property<int>("AccessFailedCount");
+
+                    b.Property<int>("Age");
+
+                    b.Property<string>("Answer");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
@@ -58,6 +34,10 @@ namespace D05.Migrations
                         .HasAnnotation("MaxLength", 256);
 
                     b.Property<bool>("EmailConfirmed");
+
+                    b.Property<string>("FirstName");
+
+                    b.Property<string>("LastName");
 
                     b.Property<bool>("LockoutEnabled");
 
@@ -74,6 +54,8 @@ namespace D05.Migrations
                     b.Property<string>("PhoneNumber");
 
                     b.Property<bool>("PhoneNumberConfirmed");
+
+                    b.Property<string>("Question");
 
                     b.Property<string>("SecurityStamp");
 
@@ -93,107 +75,122 @@ namespace D05.Migrations
                     b.HasAnnotation("Relational:TableName", "AspNetUsers");
                 });
 
-            modelBuilder.Entity("D05.Models.CouponProfile", b =>
+            modelBuilder.Entity("D05.Models.Coupon", b =>
                 {
-                    b.Property<int>("ProfileID")
+                    b.Property<int>("CouponID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("CouponID");
+                    b.Property<string>("CouponNumber")
+                        .IsRequired();
 
-                    b.Property<string>("FirstName");
+                    b.Property<DateTime>("CreatedDate");
 
-                    b.Property<string>("LastName");
+                    b.Property<DateTime>("ExpiryDate");
 
-                    b.Property<bool>("isUsed");
+                    b.Property<decimal>("PriceReduced");
 
-                    b.HasKey("ProfileID");
+                    b.HasKey("CouponID");
                 });
 
-            modelBuilder.Entity("D05.Models.CreateEvent", b =>
+            modelBuilder.Entity("D05.Models.Event", b =>
                 {
                     b.Property<int>("EventID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<double>("AdultPrice");
+                    b.Property<decimal>("AdultPrice");
 
-                    b.Property<double>("Child");
+                    b.Property<decimal>("ChildPrice");
 
                     b.Property<string>("Description")
                         .IsRequired();
 
+                    b.Property<DateTime>("EventDate");
+
+                    b.Property<string>("EventEndTime");
+
                     b.Property<string>("EventName")
                         .IsRequired();
 
-                    b.Property<double>("SeniorCitizen");
+                    b.Property<string>("EventStartTime");
 
-                    b.Property<bool>("SpecialEvent");
+                    b.Property<bool>("IsSpecialEvent");
+
+                    b.Property<decimal>("OldAgePrice");
 
                     b.HasKey("EventID");
                 });
 
-            modelBuilder.Entity("D05.Models.Profile", b =>
+            modelBuilder.Entity("D05.Models.OrderDetail", b =>
                 {
-                    b.Property<int>("ProfileID");
-
-                    b.Property<int>("Age");
-
-                    b.Property<string>("Answer");
-
-                    b.Property<string>("Email")
-                        .IsRequired();
-
-                    b.Property<string>("FirstName")
-                        .IsRequired();
-
-                    b.Property<string>("LastName")
-                        .IsRequired();
-
-                    b.Property<string>("Password")
-                        .IsRequired();
-
-                    b.Property<string>("PersonalCoup");
-
-                    b.Property<string>("Question");
-
-                    b.HasKey("ProfileID");
-                });
-
-            modelBuilder.Entity("D05.Models.Ticket", b =>
-                {
-                    b.Property<int>("TicketID")
+                    b.Property<int>("OrderDetailID")
                         .ValueGeneratedOnAdd();
+
+                    b.Property<string>("ApplicationUserId");
+
+                    b.Property<int>("ContactNumber");
+
+                    b.Property<DateTime>("DateOfVisit");
+
+                    b.Property<decimal>("EntryTicketPrice");
+
+                    b.Property<decimal>("OrderTotalPrice");
+
+                    b.Property<decimal>("SpecialEventPrice");
 
                     b.Property<DateTime>("TicketGeneratedDate");
 
-                    b.Property<string>("TicketType")
-                        .IsRequired();
+                    b.Property<string>("VisitorEmail");
 
-                    b.Property<int>("TransactionID");
+                    b.Property<string>("VisitorFN");
 
-                    b.Property<DateTime>("VisitReason");
-
-                    b.Property<DateTime>("VisitingDate");
-
-                    b.Property<DateTime>("VisitingTime");
-
-                    b.HasKey("TicketID");
+                    b.HasKey("OrderDetailID");
                 });
 
-            modelBuilder.Entity("D05.Models.Transaction", b =>
+            modelBuilder.Entity("D05.Models.Price", b =>
                 {
-                    b.Property<int>("TransactionID");
+                    b.Property<int>("PriceID")
+                        .ValueGeneratedOnAdd();
 
-                    b.Property<string>("CreatedByEmail");
+                    b.Property<decimal>("AdultPrice");
 
-                    b.Property<DateTime>("CreatedDate");
+                    b.Property<decimal>("ChildPrice");
 
-                    b.Property<double>("PaidAmount");
+                    b.Property<decimal>("OldAgePrice");
 
-                    b.Property<double>("TotalAmount");
+                    b.HasKey("PriceID");
+                });
 
-                    b.Property<string>("UsedCoupon");
+            modelBuilder.Entity("D05.Models.SchoolTrip", b =>
+                {
+                    b.Property<int>("SchoolTripID")
+                        .ValueGeneratedOnAdd();
 
-                    b.HasKey("TransactionID");
+                    b.Property<int>("ContactNumber");
+
+                    b.Property<DateTime>("DateofRegistration");
+
+                    b.Property<DateTime>("DateofVisit");
+
+                    b.Property<string>("Details")
+                        .IsRequired();
+
+                    b.Property<string>("IsAdminAccepted")
+                        .IsRequired();
+
+                    b.Property<int>("NoOfAdults");
+
+                    b.Property<int>("NoOfChildren");
+
+                    b.Property<string>("SchoolAddress")
+                        .IsRequired();
+
+                    b.Property<string>("SchoolEmail")
+                        .IsRequired();
+
+                    b.Property<string>("SchoolName")
+                        .IsRequired();
+
+                    b.HasKey("SchoolTripID");
                 });
 
             modelBuilder.Entity("Microsoft.AspNet.Identity.EntityFramework.IdentityRole", b =>
@@ -278,11 +275,11 @@ namespace D05.Migrations
                     b.HasAnnotation("Relational:TableName", "AspNetUserRoles");
                 });
 
-            modelBuilder.Entity("D05.Models.Ticket", b =>
+            modelBuilder.Entity("D05.Models.OrderDetail", b =>
                 {
-                    b.HasOne("D05.Models.Transaction")
+                    b.HasOne("D05.Models.ApplicationUser")
                         .WithMany()
-                        .HasForeignKey("TransactionID");
+                        .HasForeignKey("ApplicationUserId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNet.Identity.EntityFramework.IdentityRoleClaim<string>", b =>
