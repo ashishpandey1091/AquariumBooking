@@ -158,6 +158,33 @@ h2{
         background-position: center;
 }
 
+.show-placeholder_4{
+        width: 100%;
+	min-height: 120px;
+	background-color:#ddd;
+        background-image: url('../img/penguin-pic.jpg');
+        background-repeat: no-repeat;
+        background-position: center;
+}
+
+.show-placeholder_5{
+        width: 100%;
+	min-height: 120px;
+	background-color:#ddd;
+        background-image: url('../img/seaLion-show.jpg');
+        background-repeat: no-repeat;
+        background-position: center;
+}
+
+.show-placeholder_6{
+        width: 100%;
+	min-height: 120px;
+	background-color:#ddd;
+        background-image: url('../img/Mermaid-show.jpg');
+        background-repeat: no-repeat;
+        background-position: center;
+}
+
 
 
 .exhibit-placeholder-small{

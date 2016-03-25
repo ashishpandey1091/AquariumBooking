@@ -215,11 +215,37 @@
                     <div class="col-md-6">
                         <h3>Scheduled Events</h3>
                     </div>
-                    <div class="col-md-6 events_details">
+                    @*<div class="col-md-6 events_details">
                         <button class="btn btn-primary btn-xs" style="margin-top: 20px;margin-left: 320px;">More Events</button>
-                    </div>
+                    </div>*@
                 </div>
                 <div class="row">
+                    @{ var rowCount = 0; var eventCount = 0;}
+                    @foreach (var item in Model)
+                    {
+                        @if (item.IsSpecialEvent)
+                        {
+
+                            eventCount++;
+                            var divClass = "show-placeholder_" + eventCount;
+                            DateTime thisDate = @item.EventDate;
+                            <div class="col-md-4">
+                                <div class=@divClass>&nbsp;</div>
+                                <h4>@Html.DisplayFor(modelItem => item.EventName)</h4>
+                                <p>On @thisDate.ToString("MMMM dd, yyyy") - @Html.DisplayFor(modelItem => item.EventStartTime) to @Html.DisplayFor(modelItem => item.EventEndTime)</p>
+
+
+                            </div>
+
+
+                        }
+
+
+
+
+                    }
+                </div>
+                @*<div class="row">
                     <div class="col-md-4">
                         <div class="show-placeholder_1">&nbsp;</div>
                         <h4>Dolphin Show</h4>
@@ -239,7 +265,7 @@
                         <p>Weekdays (Apr 29 - May 29)- 4.p.m to 6.p.m</p>
 
                     </div>
-                </div>
+                </div>*@
 
                 <h3>More Aquatix</h3>
                 <div class="row">
