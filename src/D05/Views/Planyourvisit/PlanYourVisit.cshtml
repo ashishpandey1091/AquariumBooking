@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@model IEnumerable<D05.Models.Event>
+< !DOCTYPE html >
 <html>
 <head>
     <meta charset="utf-8" />
@@ -58,13 +59,28 @@
                                     <a asp-controller="" asp-action="" class="dropdown-toggle"
                                        data-toggle="dropdown" role="button">Exhibits<b class="caret"></b></a>
                                     <ul class="dropdown-menu" role="menu">
-                                        <li><a href="/Exhibits/Exhibits?tab=exone">Journey to Atlantis</a></li>
+                                        @{
+                                            var count = 0;
+                                        }
+
+                                        @foreach (var item in Model)
+                                        {
+                                            if (!item.IsSpecialEvent)
+                                            {
+                                                count++;
+                                                var url = "/Exhibits/Exhibits?tab=ex" + count;
+                                                <li><a href=@url>@Html.DisplayFor(modelItem => item.EventName)</a></li>
+                                            }
+
+                                        }
+
+                                        @*<li><a href="/Exhibits/Exhibits?tab=exone">Journey to Atlantis</a></li>
                                         <li><a href="/Exhibits/Exhibits?tab=extwo">Dolphin Notch</a></li>
                                         <li><a href="/Exhibits/Exhibits?tab=exthree">Seaworld Tower</a></li>
                                         <li><a href="/Exhibits/Exhibits?tab=exfour">Walrus Skerry</a></li>
                                         <li><a href="/Exhibits/Exhibits?tab=exfive">Killer Whales</a></li>
                                         <li><a href="/Exhibits/Exhibits?tab=exsix">Coral Reef</a></li>
-                                        <li><a href="/Exhibits/Exhibits?tab=exseven">Danty Sealions</a></li>
+                                        <li><a href="/Exhibits/Exhibits?tab=exseven">Danty Sealions</a></li>*@
 
                                     </ul>
                                 </li>
