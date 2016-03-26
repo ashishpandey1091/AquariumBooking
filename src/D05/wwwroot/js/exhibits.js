@@ -30,7 +30,7 @@ $(document).ready(function(){
      /* start of on click of links in homepage for exhibits tab**/
      var targetTab = document.getElementById("tabInfo").value; //ViewData["Key"]; //getParameterByName('tab');
     console.log("tabname"+targetTab);
-        if(targetTab === 'ex1'){
+        if(targetTab === 'exone'){
                 $("#exonetab").addClass('active');
                 $("#extwotab").removeClass('active');
                 $("#exthreetab").removeClass('active');
@@ -47,7 +47,7 @@ $(document).ready(function(){
                 $("#exseventarget").hide();
                 $("#exonetarget").show();
         }
-        if(targetTab === 'ex2'){
+        if(targetTab === 'extwo'){
             $("#extwotab").addClass('active');
                 $("#exonetab").removeClass('active');
                 $("#exthreetab").removeClass('active');
@@ -64,7 +64,7 @@ $(document).ready(function(){
                 $("#exseventarget").hide();
                 $("#extwotarget").show();
         }
-        if(targetTab === 'ex3'){
+        if(targetTab === 'exthree'){
                 $("#exthreetab").addClass('active');
                 $("#extwotab").removeClass('active');
                 $("#exonetab").removeClass('active');
@@ -81,7 +81,7 @@ $(document).ready(function(){
                 $("#exseventarget").hide();
                 $("#exthreetarget").show();
         }
-        if(targetTab === 'ex4'){
+        if(targetTab === 'exfour'){
                 $("#exfourtab").addClass('active');
                 $("#extwotab").removeClass('active');
                 $("#exthreetab").removeClass('active');
@@ -98,7 +98,7 @@ $(document).ready(function(){
                 $("#exseventarget").hide();
                 $("#exfourtarget").show();
         }
-        if(targetTab === 'ex5'){
+        if(targetTab === 'exfive'){
                 $("#exfivetab").addClass('active');
                 $("#extwotab").removeClass('active');
                 $("#exthreetab").removeClass('active');
@@ -115,7 +115,7 @@ $(document).ready(function(){
                 $("#exseventarget").hide();
                 $("#exfivetarget").show();
         }
-        if(targetTab === 'ex6'){
+        if(targetTab === 'exsix'){
             $("#exsixtab").addClass('active');
                 $("#extwotab").removeClass('active');
                 $("#exthreetab").removeClass('active');
@@ -132,7 +132,7 @@ $(document).ready(function(){
                 $("#exseventarget").hide();
                 $("#exsixtarget").show();
         }
-        if(targetTab === 'ex7'){
+        if(targetTab === 'exseven'){
             $("#exseventab").addClass('active');
                 $("#extwotab").removeClass('active');
                 $("#exthreetab").removeClass('active');
@@ -285,13 +285,13 @@ $(document).ready(function(){
     
     /** start- for click on left menu tabs in exhibits page **/
           $("#exonetab").click(function(){
-                $("#ex1").addClass('active');
-                $("#ex2").removeClass('active');
-                $("#ex3").removeClass('active');
-                $("#ex4").removeClass('active');
-                $("#ex5").removeClass('active');
-                $("#ex6").removeClass('active');
-                $("#ex7").removeClass('active');
+                $("#exone").addClass('active');
+                $("#extwo").removeClass('active');
+                $("#exthree").removeClass('active');
+                $("#exfour").removeClass('active');
+                $("#exfive").removeClass('active');
+                $("#exsix").removeClass('active');
+                $("#exseven").removeClass('active');
                 
                 $("#extwotarget").hide();
                 $("#exthreetarget").hide();
@@ -303,13 +303,13 @@ $(document).ready(function(){
           });
           
           $("#extwotab").click(function(){
-                $("#ex2").addClass('active');
-                $("#ex1").removeClass('active');
-                $("#ex3").removeClass('active');
-                $("#ex4").removeClass('active');
-                $("#ex5").removeClass('active');
-                $("#ex6").removeClass('active');
-                $("#ex7").removeClass('active');
+              $("#extwo").addClass('active');
+              $("#exone").removeClass('active');
+              $("#exthree").removeClass('active');
+              $("#exfour").removeClass('active');
+              $("#exfive").removeClass('active');
+              $("#exsix").removeClass('active');
+              $("#exseven").removeClass('active');
                 
                 $("#exseventarget").hide();
                 $("#exonetarget").hide();
@@ -321,13 +321,13 @@ $(document).ready(function(){
           });
           
           $("#exthreetab").click(function(){
-              $("#ex3").addClass('active');
-              $("#ex1").removeClass('active');
-              $("#ex2").removeClass('active');
-              $("#ex4").removeClass('active');
-              $("#ex5").removeClass('active');
-              $("#ex6").removeClass('active');
-              $("#ex7").removeClass('active');
+              $("#exthree").addClass('active');
+              $("#exone").removeClass('active');
+              $("#extwo").removeClass('active');
+              $("#exfour").removeClass('active');
+              $("#exfive").removeClass('active');
+              $("#exsix").removeClass('active');
+              $("#exseven").removeClass('active');
                 
                 $("#exseventarget").hide();
                 $("#extwotarget").hide();
@@ -339,13 +339,13 @@ $(document).ready(function(){
           });
           
           $("#exfourtab").click(function(){
-              $("#ex4").addClass('active');
-              $("#ex1").removeClass('active');
-              $("#ex3").removeClass('active');
-              $("#ex2").removeClass('active');
-              $("#ex5").removeClass('active');
-              $("#ex6").removeClass('active');
-              $("#ex7").removeClass('active');
+              $("#exfour").addClass('active');
+              $("#exone").removeClass('active');
+              $("#exthree").removeClass('active');
+              $("#extwo").removeClass('active');
+              $("#exfive").removeClass('active');
+              $("#exsix").removeClass('active');
+              $("#exseven").removeClass('active');
                 
                 $("#exseventarget").hide();
                 $("#extwotarget").hide();
@@ -357,13 +357,13 @@ $(document).ready(function(){
           });
           
           $("#exfivetab").click(function(){
-              $("#ex5").addClass('active');
-              $("#ex1").removeClass('active');
-              $("#ex3").removeClass('active');
-              $("#ex4").removeClass('active');
-              $("#ex2").removeClass('active');
-              $("#ex6").removeClass('active');
-              $("#ex7").removeClass('active');
+              $("#exfive").addClass('active');
+              $("#exone").removeClass('active');
+              $("#exthree").removeClass('active');
+              $("#exfour").removeClass('active');
+              $("#extwo").removeClass('active');
+              $("#exsix").removeClass('active');
+              $("#exseven").removeClass('active');
                 
                 $("#exseventarget").hide();
                 $("#extwotarget").hide();
@@ -375,13 +375,13 @@ $(document).ready(function(){
           });
           
           $("#exsixtab").click(function(){
-              $("#ex6").addClass('active');
-              $("#ex1").removeClass('active');
-              $("#ex3").removeClass('active');
-              $("#ex4").removeClass('active');
-              $("#ex5").removeClass('active');
-              $("#ex2").removeClass('active');
-              $("#ex7").removeClass('active');
+              $("#exsix").addClass('active');
+              $("#exone").removeClass('active');
+              $("#exthree").removeClass('active');
+              $("#exfour").removeClass('active');
+              $("#exfive").removeClass('active');
+              $("#extwo").removeClass('active');
+              $("#exseven").removeClass('active');
                 
                 $("#exseventarget").hide();
                 $("#extwotarget").hide();
@@ -394,13 +394,13 @@ $(document).ready(function(){
           });
           
           $("#exseventab").click(function(){
-              $("#ex7").addClass('active');
-              $("#ex1").removeClass('active');
-              $("#ex3").removeClass('active');
-              $("#ex4").removeClass('active');
-              $("#ex5").removeClass('active');
-              $("#ex6").removeClass('active');
-              $("#ex2").removeClass('active');
+              $("#exseven").addClass('active');
+              $("#exone").removeClass('active');
+              $("#exthree").removeClass('active');
+              $("#exfour").removeClass('active');
+              $("#exfive").removeClass('active');
+              $("#exsix").removeClass('active');
+              $("#extwo").removeClass('active');
                 
                 $("#exonetarget").hide();
                 $("#extwotarget").hide();

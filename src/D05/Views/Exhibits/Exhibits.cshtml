@@ -155,20 +155,111 @@
                     <!-- start of list for nav tab left-->
                     <div class="col-md-3" id='tabmenu'>
                         <ul class="nav nav-pills nav-stacked">
-                            <li id="exonetab"><a href="#exonetarget" data-toggle='tab'>Journey to Atlantis</a></li>
+
+                            @{
+                                var tabcount = 0;
+                                var number = "";
+                            }
+
+                            @foreach (var item in Model)
+                            {
+                                if (!item.IsSpecialEvent)
+                                {
+                                    tabcount++;
+                                    if (tabcount == 1) { number = "one"; }
+                                    if (tabcount == 2) { number = "two"; }
+                                    if (tabcount == 3) { number = "three"; }
+                                    if (tabcount == 4) { number = "four"; }
+                                    if (tabcount == 5) { number = "five"; }
+                                    if (tabcount == 6) { number = "six"; }
+                                    if (tabcount == 7) { number = "seven"; }
+                                    if (tabcount == 8) { number = "eight"; }
+                                    if (tabcount == 9) { number = "nine"; }
+                                    if (tabcount == 10) { number = "ten"; }
+
+                                    var liID = "ex" + number + "tab";
+                                    var achorHref = "#ex" + number + "target";
+                                    <li id=@liID><a href=@achorHref>@Html.DisplayFor(modelItem => item.EventName)</a></li>
+                                }
+
+                            }
+
+
+                            @*<li id="exonetab"><a href="#exonetarget" data-toggle='tab'>Journey to Atlantis</a></li>
                             <li id="extwotab"><a href="#extwotarget" data-toggle='tab'>Dolphin Notch</a></li>
                             <li id="exthreetab"><a href="#exthreetarget" data-toggle='tab'>Seaworld Tower</a></li>
                             <li id="exfourtab"><a href="#exfourtarget" data-toggle='tab'>Walrus Skerry</a></li>
                             <li id="exfivetab"><a href="#exfivetarget" data-toggle='tab'>Killer Whales</a></li>
                             <li id="exsixtab"><a href="#exsixtarget" data-toggle='tab'>Coral Reef</a></li>
-                            <li id="exseventab"><a href="#exseventarget" data-toggle='tab'>Danty Sealions</a></li>
+                            <li id="exseventab"><a href="#exseventarget" data-toggle='tab'>Danty Sealions</a></li>*@
                         </ul>
                     </div>
                     <!-- end of list for nav tab left-->
                     <!-- start of nav tab content -->
                     <div class="tab-content col-md-9">
 
-                        <!-- start of div content for ExhibitOne -->
+
+                        @{
+                            var tabcount2 = 0;
+                            
+                        }
+
+                        @foreach (var item in Model)
+                        {
+
+                            if (!item.IsSpecialEvent)
+                            {
+                                tabcount2++;
+                                if (tabcount2 == 1) { number = "one"; }
+                                else if (tabcount2 == 2) { number = "two"; }
+                                else if (tabcount2 == 3) { number = "three"; }
+                                else if (tabcount2 == 4) { number = "four"; }
+                                else if (tabcount2 == 5) { number = "five"; }
+                                else if (tabcount2 == 6) { number = "six"; }
+                                else if (tabcount2 == 7) { number = "seven"; }
+                                else if (tabcount2 == 8) { number = "eight"; }
+                                else if (tabcount2 == 9) { number = "nine"; }
+                                else if (tabcount2 == 10) { number = "ten"; }
+
+                                var liID = "ex" + number + "tab";
+                                var divID = "ex" + number + "target";
+                                var exhibitPlaceholder = "exhibit-placeholder_" + tabcount2;
+                                var descriptionDivId = "exhibitDesc" + number;
+
+                                <!-- start of div content for ExhibitOne -->
+                                <div class="tab-pane active" id=@divID>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class=@exhibitPlaceholder>&nbsp;</div>
+                                            <h4><strong>@Html.DisplayFor(modelItem => item.EventName)</strong></h4>
+                                            <div id=@descriptionDivId>@item.Description</div>
+                                                @*<script>
+                                                    function data(){
+                                                        document.getElementById("exhibitDesc").innerHTML = @item.Description;
+                                                    }
+                                                </script>*@
+                                        </div>
+                                    </div>
+                                    <div class="row exhibitnote">
+                                        <div class="col-md-9">
+                                            <h4>Note:All the exhibits can be visited with your Entry Ticket</h4>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <button class="btn btn-primary btn-sm">Buy Your Entry Tickets</button>
+                                        </div>
+                                    </div>
+                                </div>
+                        <!-- end of div content for ExhibitOne -->
+                                
+                            }
+                            
+
+                        }
+
+
+
+
+                        @*<!-- start of div content for ExhibitOne -->
                         <div class="tab-pane active" id="exonetarget">
                             <div class="row">
                                 <div class="col-md-12">
@@ -356,7 +447,7 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- end of div content for ExhibitSeven -->
+                        <!-- end of div content for ExhibitSeven -->*@
                     </div>
                     <!-- end of nav tab content -->
                 </div>
