@@ -127,9 +127,9 @@ namespace D05.Models
                     ChildPrice = 25,
                     Description = "",
                     EventDate = new DateTime(2016, 6, 6),  //"6/6/2016",
-              EventEndTime = "16:00",
+                    EventStartTime = "16:00",
                     EventName = "Dolphin Show",
-                    EventStartTime = "18:00",
+                    EventEndTime = "18:00",
                     IsSpecialEvent = true,
                     OldAgePrice = 20
                 }, new Event()
@@ -139,9 +139,9 @@ namespace D05.Models
                     ChildPrice = 25,
                     Description = "",
                     EventDate = new DateTime(2016, 6, 7),
-                    EventEndTime = "16:00",
+                    EventEndTime = "18:00",
                     EventName = "Music Fountain Show",
-                    EventStartTime = "18:00",
+                    EventStartTime = "16:00",
                     IsSpecialEvent = true,
                     OldAgePrice = 20
                 }, new Event()
@@ -151,9 +151,9 @@ namespace D05.Models
                     ChildPrice = 25,
                     Description = "",
                     EventDate = new DateTime(2016, 6, 8),
-                    EventEndTime = "16:00",
+                    EventEndTime = "18:00",
                     EventName = "Coral Show",
-                    EventStartTime = "18:00",
+                    EventStartTime = "16:00",
                     IsSpecialEvent = true,
                     OldAgePrice = 20
                 }, new Event()
@@ -163,9 +163,9 @@ namespace D05.Models
                     ChildPrice = 25,
                     Description = "",
                     EventDate = new DateTime(2016, 6, 9),
-                    EventEndTime = "16:00",
+                    EventEndTime = "18:00",
                     EventName = "Penguin show",
-                    EventStartTime = "18:00",
+                    EventStartTime = "16:00",
                     IsSpecialEvent = true,
                     OldAgePrice = 20
                 }, new Event()
@@ -175,9 +175,9 @@ namespace D05.Models
                     ChildPrice = 25,
                     Description = "",
                     EventDate = new DateTime(2016, 6, 10),
-                    EventEndTime = "16:00",
+                    EventEndTime = "18:00",
                     EventName = "sea lion show",
-                    EventStartTime = "18:00",
+                    EventStartTime = "16:00",
                     IsSpecialEvent = true,
                     OldAgePrice = 20
                 }, new Event()
@@ -187,9 +187,9 @@ namespace D05.Models
                     ChildPrice = 25,
                     Description = "",
                     EventDate = new DateTime(2016, 6, 11),
-                    EventEndTime = "16:00",
+                    EventEndTime = "18:00",
                     EventName = "Mermaid Shows",
-                    EventStartTime = "18:00",
+                    EventStartTime = "16:00",
                     IsSpecialEvent = true,
                     OldAgePrice = 20
                 });
