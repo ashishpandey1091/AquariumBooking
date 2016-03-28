@@ -179,7 +179,7 @@
 
                                     var liID = "ex" + number + "tab";
                                     var achorHref = "#ex" + number + "target";
-                                    <li id=@liID><a href=@achorHref>@Html.DisplayFor(modelItem => item.EventName)</a></li>
+                                    <li id=@liID><a href=@achorHref data-toggle='tab'>@Html.DisplayFor(modelItem => item.EventName)</a></li>
                                 }
 
                             }
