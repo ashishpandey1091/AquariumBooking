@@ -1,5 +1,5 @@
-﻿@model IEnumerable<D05.Models.Event>
-< !DOCTYPE html >
+﻿
+
 <html>
 <head>
     <meta charset="utf-8" />
@@ -24,7 +24,11 @@
 </head>
 <body>
     @using System.Security.Claims
+    @model D05.ViewModels.Planyourvisit.ShoppingCartViewModel
+    
     <input type="hidden" value=@ViewData["key"] id="tabInfo">
+    <input type="hidden" value=@ViewData["orderplaced"] id="orderInfo">
+    
     <div id="planyourvisit">
         <div class="navbar-wrapper">
             <div class="container">
@@ -63,7 +67,7 @@
                                             var count = 0;
                                         }
 
-                                        @foreach (var item in Model)
+                                        @foreach (var item in Model.Event)
                                         {
                                             if (!item.IsSpecialEvent)
                                             {
@@ -280,392 +284,492 @@
 
                                 <div class="tab-content">
                                     <!-- select your ticket -->
-                                    <div class="tab-pane active" id="type">
-                                        <!-- first row -->
-                                        <div class="row">
-
-                                            <div class="col-md-12 rowone">
-                                                <p><label>Choose Your Date of Visit<span class="mandatory">*</span> : </label>&nbsp;&nbsp;<input type="text" id="datepicker" />
-                                            </div>
-                                        </div>
-                                        <!-- first row ends -->
-                                        <!-- second row-->
-                                        <div class="row">
-
-                                            <div class="col-md-12">
-                                                <div class="panel panel-default panel-info">
-                                                    <div class="panel-heading">
-                                                        <p class="panel-title">
-                                                            Your Entry Ticket
-                                                            <!--<span>
-                                                            <label id="date">Date of Visit : </label>&nbsp;&nbsp;<input type="text" id="datepicker" />
-                                                        </span>-->
-                                                        </p>
-                                                    </div>
-                                                    <table class="table table-bordered table-striped">
-                                                        <thead>
-                                                            <tr>
-                                                                <th>Ticket Type</th>
-                                                                <th>Price</th>
-                                                                <th>Qty</th>
-                                                                <th>Subtotal</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr>
-                                                                <td>Adult</td>
-                                                                <td>$12.99</td>
-                                                                <td>
-                                                                    <select class='qty' onchange="entrypassprice('adult',this.value)">
-                                                                        <option value="0">0</option>
-                                                                        <option value="1">1</option>
-                                                                        <option value="2">2</option>
-                                                                        <option value="3">3</option>
-                                                                    </select>
-                                                                </td>
-                                                                <td id="subtotalone">--</td>
-                                                            </tr>
-
-                                                            <tr>
-                                                                <td>Child</td>
-                                                                <td>$5.99</td>
-                                                                <td>
-                                                                    <select class='qty' onchange="entrypassprice('child',this.value)">
-                                                                        <option value="0">0</option>
-                                                                        <option value="1">1</option>
-                                                                        <option value="2">2</option>
-                                                                        <option value="3">3</option>
-                                                                    </select>
-                                                                </td>
-                                                                <td id="subtotalthree">--</td>
-                                                            </tr>
-
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                            <!--<div class="panel panel-default panel-info">
-                                            <div class="panel-heading panel-info" id="entryprice">
-                                                <p class="panel-title"><b>Total:</b><span id="totalentryprice"></span></p>
-                                            </div>-->
+                                    <form asp-controller="Planyourvisit" asp-action="PlanYourVisit" method="post">
+                                        <div class="tab-pane active" id="type">
+                                            <!-- first row -->
                                             <div class="row">
-                                                <div class="col-md-12" id="addtocart">
-                                                    <label class="col-md-10"></label>
-                                                    <button class="btn btn-info col-md-2" onclick="calculateCart('entry')">Add to Cart</button>
+
+                                                <div class="col-md-12 rowone">
+                                                    <p><label>Choose Your Date of Visit<span class="mandatory">*</span> : </label>&nbsp;&nbsp;<input asp-for="OrderDetail.DateOfVisit" id="datepicker" />
                                                 </div>
                                             </div>
+                                            <!-- first row ends -->
+                                            <!-- second row-->
+                                            <div class="row">
+
+                                                <div class="col-md-12">
+                                                    <div class="panel panel-default panel-info">
+                                                        <div class="panel-heading">
+                                                            <p class="panel-title">
+                                                                Your Entry Ticket
+                                                                <!--<span>
+                                                                <label id="date">Date of Visit : </label>&nbsp;&nbsp;<input type="text" id="datepicker" />
+                                                            </span>-->
+                                                            </p>
+                                                        </div>
+                                                        <table class="table table-bordered table-striped">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Ticket Type</th>
+                                                                    <th>Price</th>
+                                                                    <th>Qty</th>
+                                                                    <th>Subtotal</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td>Adult</td>
+                                                                    <td>$ @Html.DisplayFor(model => model.Price.AdultPrice)</td>
+                                                                    <td>
+                                                                        <select class='qty' asp-for="OrderDetail.AdultTicketQty" onchange="entrypassprice('adult',this.value)">
+                                                                            <option value="0">0</option>
+                                                                            <option value="1">1</option>
+                                                                            <option value="2">2</option>
+                                                                            <option value="3">3</option>
+                                                                        </select>
+                                                                    </td>
+                                                                    <td id="subtotalone">--</td>
+                                                                </tr>
+
+                                                                <tr>
+                                                                    <td>Child</td>
+                                                                    <td>$ @Html.DisplayFor(model => model.Price.ChildPrice)</td>
+                                                                    <td>
+                                                                        <select class='qty' asp-for="OrderDetail.ChildTicketQty" onchange="entrypassprice('child',this.value)">
+                                                                            <option value="0">0</option>
+                                                                            <option value="1">1</option>
+                                                                            <option value="2">2</option>
+                                                                            <option value="3">3</option>
+                                                                        </select>
+                                                                    </td>
+                                                                    <td id="subtotaltwo">--</td>
+                                                                </tr>
+
+                                                                <tr>
+                                                                    <td>Above 60</td>
+                                                                    <td>$ @Html.DisplayFor(model => model.Price.OldAgePrice)</td>
+                                                                    <td>
+                                                                        <select class='qty' asp-for="OrderDetail.OldAgeTicketQty" onchange="entrypassprice('old',this.value)">
+                                                                            <option value="0">0</option>
+                                                                            <option value="1">1</option>
+                                                                            <option value="2">2</option>
+                                                                            <option value="3">3</option>
+                                                                        </select>
+                                                                    </td>
+                                                                    <td id="subtotalthree">--</td>
+                                                                </tr>
+
+
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                                <!--<div class="panel panel-default panel-info">
+                <div class="panel-heading panel-info" id="entryprice">
+                    <p class="panel-title"><b>Total:</b><span id="totalentryprice"></span></p>
+                </div>-->
+                                                <div class="row">
+                                                    <div class="col-md-12" id="addtocart">
+                                                        <label class="col-md-10"></label>
+                                                        <button class="btn btn-info col-md-2" onclick="calculateCart('entry')">Add to Cart</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+
+                                            <!-- second row ends-->
+                                            <!-- third row -->
+                                            <div class="row" style="position: relative;">
+                                                <h3 style="padding-left: 10px;">Scheduled Events</h3>
+                                                <div class="col-md-4">
+                                                    <div class="show-placeholder_1 event-details-pop" data-pop-id="1">&nbsp;</div>
+                                                    <h4>Dolphin Show</h4><input type="button" class="btn btn-primary dolphinButton" value="Add Show" onclick="addShow('dolphin')">
+                                                </div>
+
+                                                <div class="col-md-4">
+                                                    <div class="show-placeholder_2 event-details-pop" data-pop-id="2">&nbsp;</div>
+                                                    <h4>Music Fountain Show</h4><input type="button" class="btn btn-primary musicButton" value="Add Show" onclick="addShow('music')">
+
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="show-placeholder_3 event-details-pop" data-pop-id="3">&nbsp;</div>
+                                                    <h4>Coral Show</h4><input type="button" class="btn btn-primary coralButton" value="Add Show" onclick="addShow('coral')">
+
+                                                </div>
+
+                                                <div class="event-details event-details-1">
+                                                    <h3>Event Name</h3>
+                                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec volutpat faucibus neque, quis sagittis massa ullamcorper in. Praesent dictum metus velit, nec pellentesque nunc vehicula ut. Donec vitae risus nibh. Donec ut lobortis ante, eget sodales dolor. Morbi nec fringilla massa, ac laoreet orci. Nulla a mi sit amet enim euismod semper ut lacinia urna. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In imperdiet id dolor at congue. Nulla venenatis massa in lobortis lobortis. Nunc semper nisi eu urna venenatis, at consectetur dolor porttitor. Maecenas pellentesque lorem quis ultrices dapibus. Fusce nec erat tempus, tincidunt dolor nec, gravida lacus. Sed nec elit et lacus faucibus malesuada quis ut magna. Aliquam ac fermentum lorem.</p>
+                                                    <p>For Adults: <strong>$55</strong>, For Children: <strong>$25</strong></p>
+                                                </div>
+
+                                                <div class="event-details event-details-2">
+                                                    <h3>Event Name</h3>
+                                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec volutpat faucibus neque, quis sagittis massa ullamcorper in. Praesent dictum metus velit, nec pellentesque nunc vehicula ut. Donec vitae risus nibh. Donec ut lobortis ante, eget sodales dolor. Morbi nec fringilla massa, ac laoreet orci. Nulla a mi sit amet enim euismod semper ut lacinia urna. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In imperdiet id dolor at congue. Nulla venenatis massa in lobortis lobortis. Nunc semper nisi eu urna venenatis, at consectetur dolor porttitor. Maecenas pellentesque lorem quis ultrices dapibus. Fusce nec erat tempus, tincidunt dolor nec, gravida lacus. Sed nec elit et lacus faucibus malesuada quis ut magna. Aliquam ac fermentum lorem.</p>
+                                                    <p>For Adults: <strong>$55</strong>, For Children: <strong>$25</strong></p>
+                                                </div>
+
+                                                <div class="event-details event-details-3">
+                                                    <h3>Event Name</h3>
+                                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec volutpat faucibus neque, quis sagittis massa ullamcorper in. Praesent dictum metus velit, nec pellentesque nunc vehicula ut. Donec vitae risus nibh. Donec ut lobortis ante, eget sodales dolor. Morbi nec fringilla massa, ac laoreet orci. Nulla a mi sit amet enim euismod semper ut lacinia urna. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In imperdiet id dolor at congue. Nulla venenatis massa in lobortis lobortis. Nunc semper nisi eu urna venenatis, at consectetur dolor porttitor. Maecenas pellentesque lorem quis ultrices dapibus. Fusce nec erat tempus, tincidunt dolor nec, gravida lacus. Sed nec elit et lacus faucibus malesuada quis ut magna. Aliquam ac fermentum lorem.</p>
+                                                    <p>For Adults: <strong>$55</strong>, For Children: <strong>$25</strong></p>
+                                                </div>
+                                            </div>
+                                            <!-- third row ends -->
+                                            <!-- fourth row starts -->
+                                            <div class="row" id="cart">
+                                                <div class="col-md-12">
+                                                    <div class="panel panel-default panel-info">
+                                                        <div class="panel-heading">
+                                                            <div class="panel-title">
+                                                                <span class="glyphicon glyphicon-shopping-cart"></span>Cart
+                                                            </div>
+                                                        </div>
+                                                        <table class="table table-bordered table-hover">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Item</th>
+                                                                    <th>Subtotal</th>
+                                                                    <th>Edit</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody id="cartitems">
+                                                                <tr>
+                                                                    <td colspan="3">There are no tickets currently added to your cart</td>
+
+                                                                </tr>
+                                                                <tr id="totalpricerow"><td colspan="2">Total:</td><td id="cartprice">$0.0</td></tr>
+
+                                                            </tbody>
+                                                        </table>
+                                                        <input type="hidden" asp-for="OrderDetail.EntryTicketPrice" id="hiddenentryprice" />
+                                                        <input type="hidden" asp-for="OrderDetail.SpecialShowName1" id="hiddenshowname1" />
+                                                        <input type="hidden" asp-for="OrderDetail.SpecialEventPrice" id="hiddenshowprice1" />
+                                                        <input type="hidden" asp-for="OrderDetail.OrderTotalPrice" id="hiddentotalprice" />
+                                                        <input type="hidden" asp-for="OrderDetail.ShowCount" id="hiddenshowcount" />
+                                                        
+                                                     
+                                                    </div>
+                                                    <div id="next">
+                                                        <input type="button" class="btn btn-primary" value="Next" onclick="showFacilities()">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- fourth row ends -->
                                         </div>
 
+                                        <!-- select your ticket ends -->
 
+                                        <div class="tab-pane" id="facilities" style="padding-top: 20px;">
+                                            <!-- personal details row-->
+                                            <div class="row">
+                                                <div class="col-md-12">
 
-                                        <!-- second row ends-->
-                                        <!-- third row -->
-                                        <div class="row" style="position: relative;">
-                                            <h3 style="padding-left: 10px;">Scheduled Events</h3>
-                                            <div class="col-md-4">
-                                                <div class="show-placeholder_1 event-details-pop" data-pop-id="1">&nbsp;</div>
-                                                <h4>Dolphin Show</h4><input type="button" class="btn btn-primary dolphinButton" value="Add Show" onclick="addShow('dolphin')">
-                                            </div>
+                                                    <div class="panel panel-success">
+                                                        <div class="panel-heading">
+                                                            <div class="panel-title">Enter Personal Details</div>
+                                                        </div>
+                                                        @if (User.IsSignedIn())
+                                                        {
+                                                        <table class="table">
+                                                            <tr>
+                                                                <td>First Name <span class="mandatory">*</span>:</td>
+                                                                <td><input asp-for="OrderDetail.VisitorFN" id="fn">@Html.DisplayFor(model => model.User.FirstName)</td>
+                                                                <td>Last Name <span class="mandatory">*</span>:</td>
+                                                                <td><input asp-for="OrderDetail.VisitorLN" id="ln">@Html.DisplayFor(model => model.User.LastName)</td>
+                                                            </tr>
 
-                                            <div class="col-md-4">
-                                                <div class="show-placeholder_2 event-details-pop" data-pop-id="2">&nbsp;</div>
-                                                <h4>Music Fountain Show</h4><input type="button" class="btn btn-primary musicButton" value="Add Show" onclick="addShow('music')">
+                                                            <tr>
+                                                                <td>Mobile no <span class="mandatory">*</span>:</td>
+                                                                <td><input asp-for="OrderDetail.ContactNumber" id="mob">@Html.DisplayFor(model => model.User.PhoneNumber)</td>
+                                                                <td>Email <span class="mandatory">*</span>:</td>
+                                                                <td><input asp-for="OrderDetail.VisitorEmail" id="email">@Html.DisplayFor(model => model.User.Email)</td>
+                                                            </tr>
+                                                        </table>
+                                                        }
+                                                        else
+                                                        {
+                                                            <table class="table">
+                                                                <tr>
+                                                                    <td>First Name <span class="mandatory">*</span>:</td>
+                                                                    <td><input asp-for="OrderDetail.VisitorFN" id="fn"></td>
+                                                                    <td>Last Name <span class="mandatory">*</span>:</td>
+                                                                    <td><input asp-for="OrderDetail.VisitorLN" id="ln"></td>
+                                                                </tr>
 
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="show-placeholder_3 event-details-pop" data-pop-id="3">&nbsp;</div>
-                                                <h4>Coral Show</h4><input type="button" class="btn btn-primary coralButton" value="Add Show" onclick="addShow('coral')">
+                                                                <tr>
+                                                                    <td>Mobile no <span class="mandatory">*</span>:</td>
+                                                                    <td><input asp-for="OrderDetail.ContactNumber" id="mob"></td>
+                                                                    <td>Email <span class="mandatory">*</span>:</td>
+                                                                    <td><input asp-for="OrderDetail.VisitorEmail" id="email"></td>
+                                                                </tr>
+                                                            </table>
 
-                                            </div>
+                                                        }
+                                                    </div>
+                                                    <!-- personal details end-->
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div id="selectFacilities">
+                                                                <h4><strong>Additional Facilities</strong></h4>
+                                                                @*<p><strong>Guide Needed</strong> ?&nbsp;<input type="radio" name="guide" value="yes"> Yes</p>*@
+                                                                <p>
+                                                                    <strong>Reserve Your Meal</strong> : &nbsp;
+                                                                    <strong>Qty</strong> : <select id="mealqty" asp-for="OrderDetail.MealQty">
+                                                                        <option value="0">0</option>
+                                                                        <option value="1">1</option>
+                                                                        <option value="2">2</option>
+                                                                        <option value="3">3</option>
+                                                                        <option value="4">4</option>
+                                                                    </select>&nbsp;&nbsp;
+                                                                    <input type="checkbox" id="lunch" value="Lunch" data-toggle="popover" title="Reserve your table for lunch."
+                                                                        asp-for="OrderDetail.Lunch"    data-content="You can choose your menu when you arrive." onclick="mealPlan()"> Lunch &nbsp;&nbsp;
 
-                                            <div class="event-details event-details-1">
-                                                <h3>Event Name</h3>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec volutpat faucibus neque, quis sagittis massa ullamcorper in. Praesent dictum metus velit, nec pellentesque nunc vehicula ut. Donec vitae risus nibh. Donec ut lobortis ante, eget sodales dolor. Morbi nec fringilla massa, ac laoreet orci. Nulla a mi sit amet enim euismod semper ut lacinia urna. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In imperdiet id dolor at congue. Nulla venenatis massa in lobortis lobortis. Nunc semper nisi eu urna venenatis, at consectetur dolor porttitor. Maecenas pellentesque lorem quis ultrices dapibus. Fusce nec erat tempus, tincidunt dolor nec, gravida lacus. Sed nec elit et lacus faucibus malesuada quis ut magna. Aliquam ac fermentum lorem.</p>
-                                                <p>For Adults: <strong>$55</strong>, For Children: <strong>$25</strong></p>
-                                            </div>
+                                                                </p>
+                                                                <p>
+                                                                    <strong>Ride with Sea Animals(only adults)</strong> : &nbsp;
+                                                                    <strong>Qty</strong> : <select id="rideqty"  asp-for="OrderDetail.RideQty">
+                                                                        <option value="0">0</option>
+                                                                        <option value="1">1</option>
+                                                                        <option value="2">2</option>
+                                                                        <option value="2">3</option>
 
-                                            <div class="event-details event-details-2">
-                                                <h3>Event Name</h3>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec volutpat faucibus neque, quis sagittis massa ullamcorper in. Praesent dictum metus velit, nec pellentesque nunc vehicula ut. Donec vitae risus nibh. Donec ut lobortis ante, eget sodales dolor. Morbi nec fringilla massa, ac laoreet orci. Nulla a mi sit amet enim euismod semper ut lacinia urna. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In imperdiet id dolor at congue. Nulla venenatis massa in lobortis lobortis. Nunc semper nisi eu urna venenatis, at consectetur dolor porttitor. Maecenas pellentesque lorem quis ultrices dapibus. Fusce nec erat tempus, tincidunt dolor nec, gravida lacus. Sed nec elit et lacus faucibus malesuada quis ut magna. Aliquam ac fermentum lorem.</p>
-                                                <p>For Adults: <strong>$55</strong>, For Children: <strong>$25</strong></p>
-                                            </div>
+                                                                    </select>&nbsp;&nbsp;
+                                                                    <input type="checkbox" id="ride" data-toggle="popover" title="Lunch"
+                                                                      asp-for="OrderDetail.RidePlan"     data-content="Includes recording your ride and taking pictures" onclick="ridePlan()">Yes &nbsp;&nbsp;
 
-                                            <div class="event-details event-details-3">
-                                                <h3>Event Name</h3>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec volutpat faucibus neque, quis sagittis massa ullamcorper in. Praesent dictum metus velit, nec pellentesque nunc vehicula ut. Donec vitae risus nibh. Donec ut lobortis ante, eget sodales dolor. Morbi nec fringilla massa, ac laoreet orci. Nulla a mi sit amet enim euismod semper ut lacinia urna. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In imperdiet id dolor at congue. Nulla venenatis massa in lobortis lobortis. Nunc semper nisi eu urna venenatis, at consectetur dolor porttitor. Maecenas pellentesque lorem quis ultrices dapibus. Fusce nec erat tempus, tincidunt dolor nec, gravida lacus. Sed nec elit et lacus faucibus malesuada quis ut magna. Aliquam ac fermentum lorem.</p>
-                                                <p>For Adults: <strong>$55</strong>, For Children: <strong>$25</strong></p>
-                                            </div>
-                                        </div>
-                                        <!-- third row ends -->
-                                        <!-- fourth row starts -->
-                                        <div class="row" id="cart">
-                                            <div class="col-md-12">
-                                                <div class="panel panel-default panel-info">
-                                                    <div class="panel-heading">
-                                                        <div class="panel-title">
-                                                            <span class="glyphicon glyphicon-shopping-cart"></span>Cart
+                                                                </p>
+
+                                                                <p style="padding-top: 10px;">
+                                                                    <strong>
+                                                                        Note:Snacks are offered for free when you arrive.Please contact <span class="glyphicon glyphicon-phone">97035678</span>
+                                                                        for the cancellation of your reservation or you may choose to cancel when you arrive
+                                                                    </strong>
+                                                                </p>
+                                                                <br />
+                                                                <p><strong>Note:Guidance tools like Maps and GPS are provided free of cost if necessary</strong></p>
+                                                            </div>
+                                                            <br />
+                                                            <div id="pickup">
+                                                                <p>For Pickup and Drop Facilities contact <span class="glyphicon glyphicon-phone"><b>9018572427</b></span></p>
+                                                            </div>
+                                                            <div id="ridePlan">
+                                                                <p id="ridePrice"></p>
+                                                                
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                    <table class="table table-bordered table-hover">
-                                                        <thead>
-                                                            <tr>
-                                                                <th>Item</th>
-                                                                <th>Subtotal</th>
-                                                                <th>Edit</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody id="cartitems">
-                                                            <tr>
-                                                                <td colspan="3">There are no tickets currently added to your cart</td>
-
-                                                            </tr>
-                                                            <tr id="totalpricerow"><td colspan="2">Total:</td><td id="cartprice">$0.0</td></tr>
-
-                                                        </tbody>
-                                                    </table>
-
-                                                </div>
-                                                <div id="next">
-                                                    <input type="button" class="btn btn-primary" value="Next" onclick="showFacilities()">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <input type="button" class="btn btn-primary" value="Back" onclick="showTicket()">
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <input type="button" class="btn btn-primary" value="Proceed to Payment" onclick="showPayment('next')">
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- fourth row ends -->
-                                    </div>
+                                        <div class="tab-pane" id="payment">
+                                            <div class="row" style="padding-top: 20px;">
+                                                <div class="col-md-12">
+                                                    <!-- card details -->
+                                                    <div class="panel panel-success">
+                                                        <div class="panel-heading">
+                                                            <div class="panel-title">Payment Details</div>
+                                                        </div>
+                                                        <table class="table">
+                                                            <tr>
+                                                                <td>Card Type<span class="mandatory">*</span> :</td>
+                                                                <td>
+                                                                    <select id="cardtype" required="">
+                                                                        <option value="none">Select</option>
+                                                                        <option value="visa">Visa</option>
+                                                                        <option value="master">Master</option>
 
-                                    <!-- select your ticket ends -->
+                                                                    </select>
+                                                                </td>
 
-                                    <div class="tab-pane" id="facilities" style="padding-top: 20px;">
-                                        <!-- personal details row-->
-                                        <div class="row">
-                                            <div class="col-md-12">
+                                                            </tr>
 
-                                                <div class="panel panel-success">
-                                                    <div class="panel-heading">
-                                                        <div class="panel-title">Enter Personal Details</div>
+                                                            <tr>
+                                                                <td>Card Number<span class="mandatory">*</span> : </td>
+                                                                <td><input  typ="text" size="16" required="" id="cardno">&nbsp;&nbsp;<span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" data-placement="top" data-original-title="Please enter 16 digit number of your card"></span></td>
+
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Expiry Date<span class="mandatory">*</span> : </td>
+                                                                <td>
+                                                                    Month*&nbsp; <select required="" id="month">
+                                                                        <option value="none">Select</option>
+                                                                        <option value="1">1</option>
+                                                                        <option value="2">2</option>
+                                                                        <option value="3">3</option>
+                                                                        <option value="4">4</option>
+                                                                        <option value="5">5</option>
+                                                                        <option value="6">6</option>
+                                                                        <option value="7">7</option>
+                                                                        <option value="8">8</option>
+                                                                        <option value="9">9</option>
+                                                                        <option value="10">10</option>
+                                                                        <option value="11">11</option>
+                                                                        <option value="12">12</option>
+                                                                    </select> &nbsp;&nbsp;Year*&nbsp;<select required="" id="year">
+                                                                        <option value="none">Select</option>
+                                       
+                                                                        <option>2016</option>
+                                                                        <option>2017</option>
+                                                                    </select>
+                                                                </td>
+
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Security Code<span class="mandatory">*</span> : </td>
+                                                                <td>
+                                                                    <input type="text" size="3" required="" id="sec">
+                                                                    &nbsp;&nbsp;<span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" data-placement="top" data-original-title="Please enter last 3 digits on the back of your card"></span>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
                                                     </div>
-                                                    <table class="table">
-                                                        <tr>
-                                                            <td>First Name <span class="mandatory">*</span>:</td>
-                                                            <td><input type="text" id="fn"></td>
-                                                            <td>Last Name <span class="mandatory">*</span>:</td>
-                                                            <td><input type="text" id="ln"></td>
-                                                        </tr>
-
-                                                        <tr>
-                                                            <td>Mobile no <span class="mandatory">*</span>:</td>
-                                                            <td><input type="text" id="mob"></td>
-                                                            <td>Email <span class="mandatory">*</span>:</td>
-                                                            <td><input type="text" id="email"></td>
-                                                        </tr>
-                                                    </table>
                                                 </div>
-                                                <!-- personal details end-->
+                                            </div>
+
+                                            <!-- card details end-->
+                                            <!-- preview order -->
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="panel panel-default panel-info">
+                                                        <div class="panel-heading">
+                                                            <div class="panel-title">
+                                                                <span class="glyphicon glyphicon-shopping-cart"></span>Preview Order
+                                                            </div>
+                                                        </div>
+                                                        <table class="table">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Item</th>
+
+                                                                    <th>Subtotal</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody id="previewcart"></tbody>
+                                                        </table>
+
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- preview order ends -->
+                                            <div class="row" style="padding-top: 5px;">
+                                                <div class="col-md-12">
+                                                    <div class="tnc">
+                                                        <h3>Terms & Conditions:</h3>
+                                                        <p>
+                                                            <strong>Please bring your booking reference number or email printout</strong>.Tickets once purchased online tickets may not be used in conjunction with any other offer.
+                                                            No tickets may be resold.Any discounts or offers online are available in limited quantities
+                                                            and for limited periods only and shall not be available on bookings made y phone or in person.
+                                                            Some exhibits may be closed due to safety or technical reasons.
+                                                            Prices are subject to change without notification.
+                                                            Membership cards are not transferable.
+                                                            We cannot replace your Day Pass once it has been issued.
+                                                        </p>
+                                                        <p><input type="checkbox" value="checked" id="agree"><strong>I agree to the terms and conditions</strong></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <input type="button" class="btn btn-primary" value="Back" onclick="showPayment('back')">
+                                                </div>
+                                                <div class="col-md-6">
+                                                    @*<input type="button" class="btn btn-primary" value="Confirm Order" onclick="showConfirm()">*@
+                                                    <button type="submit" class="btn btn-default">Confirm Order</button>
+
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                        </form>
+                                            <div class="tab-pane" id="confirm" style="padding-top: 20px;">
                                                 <div class="row">
                                                     <div class="col-md-12">
-                                                        <div id="selectFacilities">
-                                                            <h4><strong>Additional Facilities</strong></h4>
-                                                            <p><strong>Guide Needed</strong> ?&nbsp;<input type="radio" name="guide" value="yes"> Yes</p>
-                                                            <p>
-                                                                <strong>Reserve Your Meal</strong> : &nbsp;
-                                                                <strong>Qty</strong> : <select id="mealqty">
-                                                                    <option value="0">0</option>
-                                                                    <option value="1">1</option>
-                                                                    <option value="2">2</option>
-                                                                    <option value="3">3</option>
-                                                                    <option value="4">4</option>
-                                                                </select>&nbsp;&nbsp;
-                                                                <input type="checkbox" id="lunch" value="Lunch" data-toggle="popover" title="Reserve your table for lunch."
-                                                                       data-content="You can choose your menu when you arrive." onclick="mealPlan()"> Lunch &nbsp;&nbsp;
+                                                        <div class="panel panel-success">
+                                                            <div class="panel-heading">
+                                                                <div class="panel-title" id="reference">
+                                                                    Congratulations !.<span>@Html.DisplayFor(model => model.User.FirstName) </span> Your order is processed successfully;
+                                                                </div>
+                                                            </div>
 
-                                                            </p>
-                                                            <p>
-                                                                <strong>Ride with Sea Animals(only adults)</strong> : &nbsp;
-                                                                <strong>Qty</strong> : <select id="rideqty">
-                                                                    <option value="0">0</option>
-                                                                    <option value="1">1</option>
-                                                                    <option value="2">2</option>
-                                                                    <option value="2">3</option>
+                                                            <p id="refId">Your Ticket Id is <span> @Html.DisplayFor(model => model.OrderDetail.OrderDetailID)</span>.Email has been seen to <span> @Html.DisplayFor(model => model.User.Email)</span> and a message has been sent to your registered mobile no.";</p>
+                                                            <div>
 
-                                                                </select>&nbsp;&nbsp;
-                                                                <input type="checkbox" id="ride" data-toggle="popover" title="Price : 30$"
-                                                                       data-content="Includes recording your ride and taking pictures" onclick="ridePlan()">Yes &nbsp;&nbsp;
+                                                                <h4>Order Details</h4>
+                                                                <table id="orderTable" style="padding-top: 5px;">
+                                                                    <tr>
+                                                                        <td>Ticket Confirmation Id </td>
+                                                                        <td>@Html.DisplayFor(model => model.OrderDetail.OrderDetailID)</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Date Of Visit</td>
+                                                                        <td>@Html.DisplayFor(model => model.OrderDetail.DateOfVisit)</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Entry Ticket Price</td>
+                                                                        <td>@Html.DisplayFor(model => model.OrderDetail.EntryTicketPrice)</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>ShowCount</td>
+                                                                        <td>@Html.DisplayFor(model => model.OrderDetail.ShowCount)</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>@Html.DisplayFor(model => model.OrderDetail.SpecialShowName1)</td>
+                                                                        <td>@Html.DisplayFor(model => model.OrderDetail.SpecialEventPrice)</td>
+                                                                    </tr>
 
-                                                            </p>
 
-                                                            <p style="padding-top: 10px;">
-                                                                <strong>
-                                                                    Note:Snacks are offered for free when you arrive.Please contact <span class="glyphicon glyphicon-phone">97035678</span>
-                                                                    for the cancellation of your reservation or you may choose to cancel when you arrive
-                                                                </strong>
-                                                            </p>
-                                                            <p><strong>Note:Guidance tools like Maps and GPS are provided free of cost if necessary</strong></p>
+
+                                                                    <tr>
+                                                                        <td>Order Total</td>
+                                                                        <td>@Html.DisplayFor(model => model.OrderDetail.OrderTotalPrice)</td>
+                                                                    </tr>
+
+                                                                </table>
+                                                                <h4 style="padding-top: 10px;">Personal details</h4>
+                                                                <table id="personaldetails" style="padding-top: 5px;">
+                                                                    <tr>
+                                                                        <td>First Name</td>
+                                                                        <td>@Html.DisplayFor(model => model.OrderDetail.VisitorFN) </td>
+                                                                    </tr>
+
+                                                                    <tr>
+                                                                        <td>Last Name</td>
+                                                                        <td>@Html.DisplayFor(model => model.OrderDetail.VisitorLN) </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Email Id</td>
+                                                                        <td>@Html.DisplayFor(model => model.OrderDetail.VisitorEmail) </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Contact Number</td>
+                                                                        <td>@Html.DisplayFor(model => model.OrderDetail.ContactNumber) </td>
+                                                                    </tr>
+
+                                                                </table>
+                                                            </div>
                                                         </div>
-                                                        <div id="pickup">
-                                                            <p>For Pickup and Drop Facilities contact <span class="glyphicon glyphicon-phone"><b>9018572427</b></span></p>
-                                                        </div>
-                                                        <div id="ridePlan">
-                                                            <p id="ridePrice"></p>
-                                                            <p id="orderTotal"></p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <input type="button" class="btn btn-primary" value="Back" onclick="showTicket()">
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <input type="button" class="btn btn-primary" value="Proceed to Payment" onclick="showPayment('next')">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="tab-pane" id="payment">
-                                        <div class="row" style="padding-top: 20px;">
-                                            <div class="col-md-12">
-                                                <!-- card details -->
-                                                <div class="panel panel-success">
-                                                    <div class="panel-heading">
-                                                        <div class="panel-title">Payment Details</div>
-                                                    </div>
-                                                    <table class="table">
-                                                        <tr>
-                                                            <td>Card Type<span class="mandatory">*</span> :</td>
-                                                            <td>
-                                                                <select id="cardtype" required="">
-                                                                    <option value="none">Select</option>
-                                                                    <option value="visa">Visa</option>
-                                                                    <option value="master">Master</option>
-
-                                                                </select>
-                                                            </td>
-
-                                                        </tr>
-
-                                                        <tr>
-                                                            <td>Card Number<span class="mandatory">*</span> : </td>
-                                                            <td><input type="text" size="16" required="" id="cardno">&nbsp;&nbsp;<span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" data-placement="top" data-original-title="Please enter 16 digit number of your card"></span></td>
-
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Expiry Date<span class="mandatory">*</span> : </td>
-                                                            <td>
-                                                                Month*&nbsp; <select required="" id="month">
-                                                                    <option value="none">Select</option>
-                                                                    <option value="1">1</option>
-                                                                    <option value="2">2</option>
-                                                                    <option value="3">3</option>
-                                                                    <option value="4">4</option>
-                                                                    <option value="5">5</option>
-                                                                    <option value="6">6</option>
-                                                                    <option value="7">7</option>
-                                                                    <option value="8">8</option>
-                                                                    <option value="9">9</option>
-                                                                    <option value="10">10</option>
-                                                                    <option value="11">11</option>
-                                                                    <option value="12">12</option>
-                                                                </select> &nbsp;&nbsp;Year*&nbsp;<select required="" id="year">
-                                                                    <option value="none">Select</option>
-                                                                    <option>2015</option>
-                                                                    <option>2016</option>
-                                                                    <option>2017</option>
-                                                                </select>
-                                                            </td>
-
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Security Code<span class="mandatory">*</span> : </td>
-                                                            <td>
-                                                                <input type="text" size="3" required="" id="sec">
-                                                                &nbsp;&nbsp;<span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" data-placement="top" data-original-title="Please enter last 3 digits on the back of your card"></span>
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <!-- card details end-->
-                                        <!-- preview order -->
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="panel panel-default panel-info">
-                                                    <div class="panel-heading">
-                                                        <div class="panel-title">
-                                                            <span class="glyphicon glyphicon-shopping-cart"></span>Preview Order
-                                                        </div>
-                                                    </div>
-                                                    <table class="table">
-                                                        <thead>
-                                                            <tr>
-                                                                <th>Item</th>
-
-                                                                <th>Subtotal</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody id="previewcart"></tbody>
-                                                    </table>
-
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- preview order ends -->
-                                        <div class="row" style="padding-top: 5px;">
-                                            <div class="col-md-12">
-                                                <div class="tnc">
-                                                    <h3>Terms & Conditions:</h3>
-                                                    <p>
-                                                        <strong>Please bring your booking reference number or email printout</strong>.Tickets once purchased online tickets may not be used in conjunction with any other offer.
-                                                        No tickets may be resold.Any discounts or offers online are available in limited quantities
-                                                        and for limited periods only and shall not be available on bookings made y phone or in person.
-                                                        Some exhibits may be closed due to safety or technical reasons.
-                                                        Prices are subject to change without notification.
-                                                        Membership cards are not transferable.
-                                                        We cannot replace your Day Pass once it has been issued.
-                                                    </p>
-                                                    <p><input type="checkbox" value="checked" id="agree"><strong>I agree to the terms and conditions</strong></p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <input type="button" class="btn btn-primary" value="Back" onclick="showPayment('back')">
-                                            </div>
-                                            <div class="col-md-6">
-                                                <input type="button" class="btn btn-primary" value="Confirm Order" onclick="showConfirm()">
-                                            </div>
-                                        </div>
-
-
-                                    </div>
-                                    <div class="tab-pane" id="confirm" style="padding-top: 20px;">
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="panel panel-success">
-                                                    <div class="panel-heading">
-                                                        <div class="panel-title" id="reference">
-
+                                                        <br />
+                                                        <div id="imp">
+                                                            <p>Please make sure to bring your Ticket reference Id or a printout of the email confirmation</p>
+                                                            <p>Have a Great visit to <strong>Aquatix</strong></p>
+                                                            <p>Visit us <a href="#">www.aquatix.com</a></p>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <p id="refId"></p>
-                                                <div>
-                                                    <h4>Order Details</h4>
-                                                    <table id="orderTable" style="padding-top: 5px;"></table>
-                                                    <h4 style="padding-top: 10px;">Personal details</h4>
-                                                    <table id="personaldetails" style="padding-top: 5px;"></table>
-                                                </div>
-                                                <div id="imp">
-                                                    <p>Please make sure to bring your Ticket reference Id or a printout of the email confirmation</p>
-                                                    <p>Have a Great visit to <strong>Aquatix</strong></p>
-                                                    <p>Visit us <a href="#">www.aquatix.com</a></p>
-                                                </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                </div>
+</div>
                             </div>
                         </div>
 
