@@ -6,19 +6,23 @@
 
 subtotal = 0.0;
 total = 0.0;
-adult_price = 12.99;
-child_price = 5.99;
+adult_price = 75.00;
+child_price = 15.00;
+old_price = 6.00;
 adult_price_show = 55.0;
 child_price_show = 25.0;
 subtotaladult = 0.0;
 subtotalchild = 0.0;
+subtotalold = 0.0;
 totalentryprice = 0.0;
 totalshowprice = 0.0;
 totalprice = 0.0;
 adultqty = 0;
 childqty = 0;
+oldqty = 0;
 adult ="false";
 child = "false";
+old="false"
 entryTicketAdded = "false";
 guide = "no";
 meal = "no";
@@ -37,7 +41,7 @@ lunchplan = "no";
 rideqty = 0;
 ridePlans = "no";
 ridePrice = 30;
-entryTicketDescription = "";
+entryTicketDescription = "Your Entry Ticket for";
 entry_desc1 = "";
 entry_desc2 = "";
 firstName = "";
@@ -63,7 +67,7 @@ function hoursPageClicked() {
 } */
 
 $(document).ready(function () {
-    alert("ready");
+    console.log("ready");
        
     console.log("in visit us js");
      
@@ -95,10 +99,37 @@ $(document).ready(function () {
     
     $('[data-toggle="tooltip"]').tooltip();
     
-    /* start of on click of links in homepage **/
-    var targetTab = document.getElementById("tabInfo").value;   // ViewData["Key"];     //getParameterByName('tab');
-    console.log("tabname"+targetTab);
     
+    /* start of on click of links in homepage **/
+    var targetTab = document.getElementById("tabInfo").value;
+    var orderPlaced = document.getElementById("orderInfo").value; // ViewData["Key"];     //getParameterByName('tab');
+    console.log("tabname"+targetTab);
+    console.log("orderplaced" + orderPlaced);
+
+
+    if (orderPlaced === 'true') {
+        console.log("in order placed");
+      
+        $("#hourstab").removeClass('active');
+        $("#occsntab").removeClass('active');
+        $("#ticketstab").addClass('active');
+        $("#hours").hide();
+        
+        $("#occasions").hide();
+        
+        $("#tickets").show();
+
+        $("#typeli").removeClass('active');
+        $("#facilitiesli").removeClass('active');
+        $("#paymentli").removeClass('active');
+        $("#confirmli").addClass('active');
+        $("#type").hide();
+        $("#facilities").hide();
+        $("#payment").hide();
+        $("#confirm").show();
+    }
+
+
     if(targetTab === 'hours'){
         /**$("#htab").addClass('active');
         $("#ttab").removeClass('active');
@@ -298,6 +329,8 @@ $(document).ready(function () {
                 $("#faq").hide();
                 $("#tickets").show();
           });
+        
+          
           
           $("#findtab").click(function(){
                 $("#ftab").addClass('active');
@@ -505,9 +538,20 @@ function entrypassprice(tickettype,qty){
         child = "true";
         subtotalchild = childqty * child_price;
         if(subtotalchild === 0.0){
-            $('#subtotalthree').html("--"); 
+            $('#subtotaltwo').html("--");
         }else{
-            $('#subtotalthree').html(subtotalchild); 
+            $('#subtotaltwo').html(subtotalchild);
+        }
+    }
+
+    if (tickettype === 'old') {
+        oldqty = qty;
+        old = "true";
+        subtotalold = oldqty * old_price;
+        if (subtotalold === 0.0) {
+            $('#subtotalthree').html("--");
+        } else {
+            $('#subtotalthree').html(subtotalold);
         }
     }
     
@@ -515,18 +559,21 @@ function entrypassprice(tickettype,qty){
 
 function addShow(showType){
     showCount++;
+    
     console.log("shwcnt"+showCount);
-    if(showCount > 2){
-        alert("You cannot add more than 2 shows per day.");
+    if (showCount > 1) {
+        showCount--;
+        alert("You cannot add more than 1 show per day.");
         return;
     }
+    $("#hiddenshowcount").val(showCount);
     calculateCart(showType);
 }
 
 function calculateCart(checkTicket){
    
    $("html,body").scrollTop(1000);
-   totalentryprice = subtotaladult + subtotalchild;
+   totalentryprice = subtotaladult + subtotalchild + subtotalold;
    
     if(totalentryprice === 0.0 ||  totalentryprice === undefined){
         alert("Please select your type of ticket to proceed!");
@@ -538,16 +585,21 @@ function calculateCart(checkTicket){
             entryTicketAdded = "true";
             $("#cartitems").html("");
             $(".totalpricerow").remove();
-            
+            $(".dolphinButton").prop('disabled', false);
+            $(".musicButton").prop('disabled', false);
+            $(".coralButton").prop('disabled', false);
+
             $("#cartitems").append("<tr>"+
                     "<td>"+"Entry Ticket Price"+"</td>"+
                     "<td>"+"<span>$</span>"+totalentryprice+"</td>"+
                     "<td>"+"<button class='btn btn-default btn-xs rementryPrice'>Remove</button>"+"</td>"+
                     "</tr>");
-            $("#cartitems").append("<tr class='discountpricerow'>"+"<td  colspan='2'>"+"Discount:"+"</td>"+
-                    "<td>"+"<span>$</span>"+discountPrice+"</td>"+"</tr>");
+            /**$("#cartitems").append("<tr class='discountpricerow'>"+"<td  colspan='2'>"+"Discount:"+"</td>"+
+                    "<td>"+"<span>$</span>"+discountPrice+"</td>"+"</tr>");**/
             $("#cartitems").append("<tr class='totalpricerow'>"+"<td colspan='2'>"+"Total:"+"</td>"+
-                    "<td>"+"<span>$</span>"+totalentryprice+"</td>"+"</tr>");
+                    "<td>" + "<span>$</span>" + totalentryprice + "</td>" + "</tr>");
+            totalprice = totalentryprice;
+            $("#hiddenentryprice").val(totalentryprice);
     }
     if(checkTicket !== "entry"){
         showAdded = "true";
@@ -555,16 +607,17 @@ function calculateCart(checkTicket){
             alert("Please Add an Entry Ticket before adding Shows!");
             return;
         }
-        if(showCount === 2){
+       /**if(showCount === 2){
             discount="true";
             alert("You have got a discount of 30% on adding 2 shows .");
             
-        }
+        }**/
         showprice = 0.0;
         
         
         if(checkTicket === "dolphin"){
             showname = "Dolphin Show";
+            
             $(".dolphinButton").prop('disabled',true);
             
                 if(adult === "true"){
@@ -573,6 +626,10 @@ function calculateCart(checkTicket){
 
                 if(child === "true"){
                     p_dolphinshow += childqty * child_price_show;
+                }
+
+                if (old === "true") {
+                    p_dolphinshow += oldqty * adult_price_show;
                 }
              showprice = p_dolphinshow;   
              shows.push(showname)
@@ -587,6 +644,9 @@ function calculateCart(checkTicket){
 
                     if(child === "true"){
                         p_musicshow += childqty * child_price_show;
+                    }
+                    if (old === "true") {
+                        p_musicshow += oldqty * adult_price_show;
                     }
                 showprice = p_musicshow;
                 shows.push(showname);
@@ -603,6 +663,9 @@ function calculateCart(checkTicket){
                     if(child === "true"){
                         p_coralshow += childqty * child_price_show;
                     }
+                    if (old === "true") {
+                        p_coralshow += oldqty * adult_price_show;
+                    }
                 showprice = p_coralshow;
                 shows.push(showname);
                 showPrices.push(p_coralshow);
@@ -610,22 +673,21 @@ function calculateCart(checkTicket){
        
         
         totalshowprice += showprice;
-        if(showCount === 2){
-            discountPrice = ((0.3)*totalshowprice);
-            discountshowprice = (totalshowprice) - discountPrice;
-            totalprice = totalentryprice + discountshowprice;
-        }else{
+            
+        $("#hiddenshowprice1").val(totalshowprice);
+        $("#hiddenshowname1").val(showname);
+            
             totalprice = totalentryprice + totalshowprice;
-        }
+        
          
-        $(".discountpricerow").remove();
+        /**$(".discountpricerow").remove();**/
          $("#cartitems").append("<tr>"+
                     "<td class='c_showname'>"+showname+"</td>"+
                     "<td>"+"<span>$</span>"+showprice+"</td>"+
                     "<td>"+"<button class='btn btn-default btn-xs remshow' >Remove</button>"+"</td>"+"</tr>");
            $(".totalpricerow").remove();
-           $("#cartitems").append("<tr class='discountpricerow'>"+"<td  colspan='2'>"+"Discount Price"+"</td>"+
-                    "<td>"+"<span>$</span>"+discountPrice+"</td>"+"</tr>");
+         /**  $("#cartitems").append("<tr class='discountpricerow'>"+"<td  colspan='2'>"+"Discount Price"+"</td>"+
+                    "<td>"+"<span>$</span>"+discountPrice+"</td>"+"</tr>");**/
            $("#cartitems").append("<tr class='totalpricerow'>"+"<td colspan='2'>"+"Total Price"+"</td>"+
                     "<td>"+"<span>$</span>"+totalprice+"</td>"+"</tr>");
     }
@@ -639,7 +701,21 @@ $(document).on("click",".rementryPrice",function(){
         alert("Shows added to the cart will also be removed.");
         
     }
-   $("#cartitems").html(""); 
+
+    $("#cartitems").html("");
+    totalentryprice = 0.0;
+    totalprice = 0.0;
+    totalshowprice = 0.0;
+    showCount = 0;
+    showname = "null";
+    showAdded = "false";
+    $("#hiddenshowcount").val(0);
+    $("#hiddenentryprice").val(0.0);
+    $("#hiddenshowprice1").val(0.0);
+    $("#hiddenshowname1").val("");
+    $("#hiddentotalprice").val("");
+
+
    $("#cartitems").append("<tr>"+
                     "<td colspan='3'>"+"There are no tickets currently added to your cart"+"</td>"+
                     "</tr>");
@@ -654,7 +730,7 @@ $(document).on("click",".remshow",function(){
     if(showCount == 0){
         showAdded = "false";
     }
-    discountPrice = 0.0;
+    //discountPrice = 0.0;
     console.log("in remove show");
     var showremoved = $(this).parents('tr:first').find('.c_showname').text();
     console.log("showname:"+$(this).parents('tr:first').find('.c_showname').text());
@@ -679,13 +755,16 @@ $(document).on("click",".remshow",function(){
     
     $(this).parents('tr:first').remove();
     
-    $(".discountpricerow").remove();
+    //$(".discountpricerow").remove();
     $(".totalpricerow").remove();
     totalprice = totalentryprice + totalshowprice;
-    $("#cartitems").append("<tr class='discountpricerow'>"+"<td  colspan='2'>"+"Discount:"+"</td>"+
-                    "<td>"+"<span>$</span>"+discountPrice+"</td>"+"</tr>");
+    //$("#cartitems").append("<tr class='discountpricerow'>"+"<td  colspan='2'>"+"Discount:"+"</td>"+
+    //                "<td>"+"<span>$</span>"+discountPrice+"</td>"+"</tr>");
             $("#cartitems").append("<tr class='totalpricerow'>"+"<td colspan='2'>"+"Total:"+"</td>"+
-                    "<td>"+"<span>$</span>"+totalprice+"</td>"+"</tr>");
+                    "<td>" + "<span>$</span>" + totalprice + "</td>" + "</tr>");
+
+    $("#hiddenshowprice1").val(0.0);
+    $("#hiddenshowname1").val("");
        
 });
 
@@ -706,22 +785,22 @@ function showFacilities(){
     $("#type").hide();
     $("#facilities").show();
     
-    if(userName !== "null"){
-        firstname = $.cookie("firstname");
-        lastname = $.cookie("lastname");
-        email = $.cookie("email");
-        contact = $.cookie("contact");
-        $("#fn").val(firstname);
-        $("#ln").val(lastname);
-        $("#mob").val(email);
-        $("#email").val(contact);
-}
+//    if(userName !== "null"){
+//        firstname = $.cookie("firstname");
+//        lastname = $.cookie("lastname");
+//        email = $.cookie("email");
+//        contact = $.cookie("contact");
+//        $("#fn").val(firstname);
+//        $("#ln").val(lastname);
+//        $("#mob").val(email);
+//        $("#email").val(contact);
+//}
     
 };
 
 function mealPlan(){
     //alert("in meal plan"+$("#lunch").is(":checked"));
-    guide = $(":radio[name = guide]:checked").val();
+   // guide = $(":radio[name = guide]:checked").val();
     if($("#lunch").is(":checked")){
         lunchplan = "yes";
         mealqty = $("#mealqty").val();
@@ -750,18 +829,18 @@ function ridePlan(){
             alert("Please select quantity");
             return;
         }
-        ridePrice = rideqty * ridePrice;
-        totalprice += ridePrice;
-        console.log("total price in facilities"+totalprice);
-       $("#ridePrice").html("You have chosen for a ride with sea animals for "+rideqty+" adults.Your Order Total is: $"+totalprice);
+        //ridePrice = rideqty * ridePrice;
+        //totalprice += ridePrice;
+        //console.log("total price in facilities"+totalprice);
+       $("#ridePrice").html("You have chosen for a ride with sea animals for "+rideqty+" adults.");
        //$("#orderTotal").html("Your Order Total is: $"+totalprice);
        
     }else{
-        totalprice -= ridePrice;
-        ridePrice = 30;
+        //totalprice -= ridePrice;
+        //ridePrice = 30;
         ridePlans = "no"
         $("#rideqty").val('0');
-        $("#ridePrice").html("Your Order for Ride with Sea animals is cancelled by you.Odrer Total is: $"+totalprice);
+        $("#ridePrice").html("Your Order for Ride with Sea animals is cancelled by you.");
     }
 }
 
@@ -799,14 +878,15 @@ function showPayment(redirection){
     $("#facilities").hide();
     $("#payment").show();
     
-    if(adult == "true" && child == "true"){
-        entryTicketDescription = "Your Entry Ticket Price for" +adultqty + " Adult(s) and "+childqty+" Child(s)";
+   
+     if(adult == "true"){
+        entryTicketDescription = adultqty + " Adult(s)";
     }
-    else if(adult == "true"){
-        entryTicketDescription = "Your Entry Ticket for" +adultqty + " Adult(s)";
+     if(child == "true"){
+       entryTicketDescription = childqty + "Child(s)"; 
     }
-    else if(child == "true"){
-       entryTicketDescription = "Your Entry Ticket for " +childqty + "Child(s)"; 
+     if (old == "true") {
+        entryTicketDescription = oldqty + "Above 60";
     }
     
     
@@ -814,18 +894,18 @@ function showPayment(redirection){
             "<td>"+totalentryprice+"</td>"+"</tr>");
     
     if(showAdded !== "false"){
-    for(i = 0;i < showCount;i++){
+    
     $("#previewcart").append("<tr>"+
-                    "<td>"+shows[i]+"</td>"+
+                    "<td>"+showname+"</td>"+
                     
-                    "<td>"+showPrices[i]+"</td>"+"</tr>");
-    }
+                    "<td>"+totalshowprice+"</td>"+"</tr>");
+    
    
 }
-    if(guide == "yes"){
-        $("#previewcart").append("<tr>"+"<td>"+"Guide Needed:"+"</td>"+
-                    "<td>"+"Yes"+"</td>"+"</tr>");
-    }
+    //if(guide == "yes"){
+    //    $("#previewcart").append("<tr>"+"<td>"+"Guide Needed:"+"</td>"+
+    //                "<td>"+"Yes"+"</td>"+"</tr>");
+    //}
     
     if(lunchplan == "yes"){
         $("#previewcart").append("<tr>"+"<td>"+"Lunch Reservation for "+mealqty+"</td>"+
@@ -834,7 +914,7 @@ function showPayment(redirection){
     
     if(ridePlans == "yes"){
         $("#previewcart").append("<tr>"+"<td>"+"Ride with Sea Animals for "+rideqty+"</td>"+
-                    "<td>"+"<span>$</span>"+ridePrice+"</td>"+"</tr>");
+                    "<td>" + "Reserved" + "</td>" + "</tr>");
     }
     
     $("#previewcart").append("<tr>"+"<td>"+"OrderTotal:"+"</td>"+
