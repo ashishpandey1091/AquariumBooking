@@ -19,7 +19,10 @@ namespace D05.Models
                 return;
             }
 
-
+            if (context.Prices.Any())
+            {
+                return;
+            }
 
             if (!context.Roles.Any()) { 
                 context.Roles.AddRange(new Microsoft.AspNet.Identity.EntityFramework.IdentityRole()
@@ -33,6 +36,16 @@ namespace D05.Models
                 });
                 context.SaveChanges();
             }
+
+            context.Prices.Add(new Price()
+            {
+                AdultPrice = 75,
+                ChildPrice = 15,
+                OldAgePrice = 6
+
+            });
+
+            context.SaveChanges();
 
             if (!context.Events.Any()) {
                 context.Events.AddRange(
@@ -156,43 +169,8 @@ namespace D05.Models
                     EventStartTime = "16:00",
                     IsSpecialEvent = true,
                     OldAgePrice = 20
-                }, new Event()
-                {
-              //            EventID = 11,
-              AdultPrice = 55,
-                    ChildPrice = 25,
-                    Description = "",
-                    EventDate = new DateTime(2016, 6, 9),
-                    EventEndTime = "18:00",
-                    EventName = "Penguin show",
-                    EventStartTime = "16:00",
-                    IsSpecialEvent = true,
-                    OldAgePrice = 20
-                }, new Event()
-                {
-              //            EventID = 12,
-              AdultPrice = 55,
-                    ChildPrice = 25,
-                    Description = "",
-                    EventDate = new DateTime(2016, 6, 10),
-                    EventEndTime = "18:00",
-                    EventName = "sea lion show",
-                    EventStartTime = "16:00",
-                    IsSpecialEvent = true,
-                    OldAgePrice = 20
-                }, new Event()
-                {
-              //            EventID = 13,
-              AdultPrice = 55,
-                    ChildPrice = 25,
-                    Description = "",
-                    EventDate = new DateTime(2016, 6, 11),
-                    EventEndTime = "18:00",
-                    EventName = "Mermaid Shows",
-                    EventStartTime = "16:00",
-                    IsSpecialEvent = true,
-                    OldAgePrice = 20
-                });
+                }
+               );
                 context.SaveChanges();
             }
 

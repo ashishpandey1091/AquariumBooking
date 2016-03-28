@@ -14,11 +14,26 @@ namespace D05.Models
         [Required]
         public DateTime DateOfVisit { get; set; }
 
+        
+        public int AdultTicketQty { get; set; }
+
+        
+        public int ChildTicketQty { get; set; }
+
+        
+        public int OldAgeTicketQty { get; set; }
+
+
         [Required]
         public decimal EntryTicketPrice { get; set; }
 
-        [Required]
+        
         public decimal SpecialEventPrice { get; set; }
+
+        public string SpecialShowName1 { get; set; }      
+
+        public int ShowCount { get; set; } 
+
 
         [Required]
         public decimal OrderTotalPrice { get; set; }
@@ -31,7 +46,17 @@ namespace D05.Models
 
         public string VisitorFN { get; set; }
 
+        public string VisitorLN { get; set; }
+
         public int ContactNumber { get; set; }
+
+        public int MealQty { get; set; }
+
+        public bool Lunch { get; set; }
+
+        public int RideQty { get; set; }
+
+        public bool RidePlan { get; set; }
 
         public virtual ApplicationUser ApplicationUser { get; set; }
     }
