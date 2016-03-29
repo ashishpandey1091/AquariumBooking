@@ -48,15 +48,15 @@ namespace D05.Models
 
         public string VisitorLN { get; set; }
 
-        public int ContactNumber { get; set; }
+        public string ContactNumber { get; set; }
 
         public int MealQty { get; set; }
 
-        public bool Lunch { get; set; }
+        public string Lunch { get; set; }
 
         public int RideQty { get; set; }
 
-        public bool RidePlan { get; set; }
+        public string RidePlan { get; set; }
 
         public virtual ApplicationUser ApplicationUser { get; set; }
     }
