@@ -600,6 +600,7 @@ function calculateCart(checkTicket){
                     "<td>" + "<span>$</span>" + totalentryprice + "</td>" + "</tr>");
             totalprice = totalentryprice;
             $("#hiddenentryprice").val(totalentryprice);
+            $("#hiddentotalprice").val(totalentryprice);
     }
     if(checkTicket !== "entry"){
         showAdded = "true";
@@ -678,7 +679,7 @@ function calculateCart(checkTicket){
         $("#hiddenshowname1").val(showname);
             
             totalprice = totalentryprice + totalshowprice;
-        
+            $("#hiddentotalprice").val(totalprice);
          
         /**$(".discountpricerow").remove();**/
          $("#cartitems").append("<tr>"+
@@ -804,6 +805,7 @@ function mealPlan(){
     if($("#lunch").is(":checked")){
         lunchplan = "yes";
         mealqty = $("#mealqty").val();
+        $("#hiddenlunch").val(lunchplan);
         if(mealqty == 0){
             alert("Please select quantity");
             
@@ -813,6 +815,7 @@ function mealPlan(){
         return;
     }else{
         lunchplan = "no";
+        $("#hiddenlunch").val(lunchplan);
         alert("Your Lunch Reservation is cancelled by you.");
         $("#mealqty").val('0');
         return;
@@ -825,6 +828,7 @@ function ridePlan(){
     if($("#ride").is(":checked")){
         ridePlans = "yes";
         rideqty = $("#rideqty").val();
+        $("#hiddenride").val(ridePlans);
         if(rideqty == 0){
             alert("Please select quantity");
             return;
@@ -839,6 +843,7 @@ function ridePlan(){
         //totalprice -= ridePrice;
         //ridePrice = 30;
         ridePlans = "no"
+        $("#hiddenride").val(ridePlans);
         $("#rideqty").val('0');
         $("#ridePrice").html("Your Order for Ride with Sea animals is cancelled by you.");
     }
@@ -846,24 +851,26 @@ function ridePlan(){
 
 function showPayment(redirection){
     
-    if($("#fn").val() === "" || $("#fn").val() === undefined){
-        alert("Please enter Your First Name");
-        return;
-    }
-    
-    if($("#ln").val() === "" || $("#ln").val() === undefined){
-        alert("Please enter Your Last Name Name");
-        return;
-    }
-    
-    if($("#email").val() === "" || $("#email").val() === undefined){
-        alert("Please enter Your Email");
-        return;
-    }
-    
-    if($("#mob").val() === "" || $("#mob").val() === undefined){
-        alert("Please enter Your Contact No.");
-        return;
+    if ($("#loggedin").val() != "true") {
+        if ($("#fn").val() === "" || $("#fn").val() === undefined) {
+            alert("Please enter Your First Name");
+            return;
+        }
+
+        if ($("#ln").val() === "" || $("#ln").val() === undefined) {
+            alert("Please enter Your Last Name Name");
+            return;
+        }
+
+        if ($("#email").val() === "" || $("#email").val() === undefined) {
+            alert("Please enter Your Email");
+            return;
+        }
+
+        if ($("#mob").val() === "" || $("#mob").val() === undefined) {
+            alert("Please enter Your Contact No.");
+            return;
+        }
     }
     
         if(userName == "null" || userName == undefined){
@@ -961,45 +968,7 @@ function showConfirm(){
     $("#facilities").hide();
     $("#payment").hide();
     $("#confirm").show();
-    ticketId = Math.round(Math.random() + 9);
-    
-    refDetails1 = "Congratulations "+firstname+"!.Your order is processed successfully";
-    refDetails2 = "Your Ticket Id is "+ticketId+".An email has been seen to "+email+" and a message has been sent to your registered mobile no.";
-    $("#reference").html(refDetails1);
-    $("#refId").html(refDetails2);
-    
-    $("#orderTable").append("<tr>"+"<td>"+"Ticket Confirmation Id "+"</td>"+
-                    "<td>"+ticketId+"</td>"+"</tr>");
-    
-    $("#orderTable").append("<tr>"+"<td>"+"Date Of Visit "+"</td>"+
-                    "<td>"+dateofVisit+"</td>"+"</tr>");
-            
-    $("#orderTable").append("<tr>"+"<td>"+entryTicketDescription +"</td>"+
-                    "<td>"+"<span>"+"$"+"</span>"+totalentryprice+"</td>"+"</tr>");
-    
-    $("#orderTable").append("<tr>"+"<td colspan='2'>"+"You ordered for "+showCount+" Show(s) "+"</td>"+
-                    "</tr>");
-            
-    for(i = 1;i <= showCount ; i++){
-        $("#orderTable").append("<tr>"+"<td>"+shows[i]+" Price"+"</td>"+
-                    "<td>"+"<span>"+"$"+"</span>"+showPrices[i]+"</td>"+"</tr>");
-        $("#orderTable").append("<tr>"+"<td>"+shows[i]+" Timings"+"Price"+"</td>"+
-                    "<td>"+"<span>"+"$"+"</span>"+""+"</td>"+"</tr>");
-    }
-    
-    $("#orderTable").append("<tr>"+"<td>"+"Your Order Total "+"</td>"+
-                    "<td>"+"<span>"+"$"+"</span>"+totalprice+"</td>"+"</tr>");
-            
-            
-    $("#personaldetails").append("<tr>"+"<td>"+"First name"+"</td>"+
-                    "<td>"+firstname+"</td>"+"</tr>");
-            
-    $("#personaldetails").append("<tr>"+"<td>"+"Last name"+"</td>"+
-                    "<td>"+lastname+"</td>"+"</tr>");
-    $("#personaldetails").append("<tr>"+"<td>"+"Email Id"+"</td>"+
-                    "<td>"+email+"</td>"+"</tr>");
-    $("#personaldetails").append("<tr>"+"<td>"+"Contact"+"</td>"+
-                    "<td>"+contact+"</td>"+"</tr>");
+   
             
 }
 
