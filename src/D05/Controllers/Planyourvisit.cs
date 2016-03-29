@@ -15,9 +15,10 @@ namespace D05.Controllers
         private ApplicationDbContext _context;
         private UserManager<ApplicationUser> _userManager;
 
-        public Planyourvisit(ApplicationDbContext context)
+        public Planyourvisit(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         public IActionResult PlanYourVisit(string tab)
@@ -28,7 +29,8 @@ namespace D05.Controllers
 
             if (User.IsInRole("user"))
             {
-                 user = _userManager.FindByNameAsync(User.Identity.Name).Result;
+                ViewData["loggedin"] = "true";
+                user = _userManager.FindByNameAsync(User.Identity.Name).Result;
             }
            
             

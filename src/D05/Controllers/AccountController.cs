@@ -117,7 +117,7 @@ namespace D05.Controllers
                 }
                 
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email, FirstName = model.FirstName ,LastName=model.LastName,
-                Age = model.Age,Question=model.Question,Answer=model.Answer};
+                Age = model.Age,Question=model.Question,Answer=model.Answer,PhoneNumber = model.ContactNumber};
 
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
