@@ -28,6 +28,8 @@
     
     <input type="hidden" value=@ViewData["key"] id="tabInfo">
     <input type="hidden" value=@ViewData["orderplaced"] id="orderInfo">
+    <input type="hidden" value=@ViewData["loggedin"] id="loggedin">
+    
     
     <div id="planyourvisit">
         <div class="navbar-wrapper">
@@ -452,7 +454,7 @@
                                                      
                                                     </div>
                                                     <div id="next">
-                                                        <input type="button" class="btn btn-primary" value="Next" onclick="showFacilities()">
+                                                        <input type="button" class="btn btn-primary" value="Next &rarr;" onclick="showFacilities()">
                                                     </div>
                                                 </div>
                                             </div>
@@ -474,27 +476,37 @@
                                                         {
                                                         <table class="table">
                                                             <tr>
-                                                                <td>First Name <span class="mandatory">*</span>:</td>
-                                                                <td><input asp-for="OrderDetail.VisitorFN" id="fn">@Html.DisplayFor(model => model.User.FirstName)</td>
-                                                                <td>Last Name <span class="mandatory">*</span>:</td>
-                                                                <td><input asp-for="OrderDetail.VisitorLN" id="ln">@Html.DisplayFor(model => model.User.LastName)</td>
+                                                                <td>First Name <span class="mandatory">*</span>: </td>
+                                                                <td><h4 id="fn1">@Html.DisplayFor(model => model.User.FirstName)</h4></td>
+                                                                <td>Last Name <span class="mandatory">*</span>: </td>
+                                                                <td id="ln">@Html.DisplayFor(model => model.User.LastName)</td>
                                                             </tr>
 
                                                             <tr>
-                                                                <td>Mobile no <span class="mandatory">*</span>:</td>
-                                                                <td><input asp-for="OrderDetail.ContactNumber" id="mob">@Html.DisplayFor(model => model.User.PhoneNumber)</td>
-                                                                <td>Email <span class="mandatory">*</span>:</td>
-                                                                <td><input asp-for="OrderDetail.VisitorEmail" id="email">@Html.DisplayFor(model => model.User.Email)</td>
+                                                                <td>Mobile no <span class="mandatory">*</span>: </td>
+                                                                <td id="mob">@Html.DisplayFor(model => model.User.PhoneNumber)</td>
+                                                                <td>Email <span class="mandatory">*</span>: </td>
+                                                                <td id="email">@Html.DisplayFor(model => model.User.Email)</td>
                                                             </tr>
                                                         </table>
+                                                            var firstname = Model.User.FirstName;
+                                                            var lastname = Model.User.LastName;
+                                                            var contact = Model.User.PhoneNumber;
+                                                            var email = Model.User.Email;
+
+                                                            
+                                                        <input type="hidden" asp-for="OrderDetail.VisitorFN"  value="@firstname"/>
+                                                        <input type="hidden" asp-for="OrderDetail.VisitorLN" value="@lastname"/>
+                                                        <input type="hidden" asp-for="OrderDetail.ContactNumber" value="@contact"/>
+                                                        <input type="hidden" asp-for="OrderDetail.VisitorEmail" value="@email"/>
                                                         }
                                                         else
                                                         {
                                                             <table class="table">
                                                                 <tr>
-                                                                    <td>First Name <span class="mandatory">*</span>:</td>
+                                                                    <td>First Name <span class="mandatory">*</span>: </td>
                                                                     <td><input asp-for="OrderDetail.VisitorFN" id="fn"></td>
-                                                                    <td>Last Name <span class="mandatory">*</span>:</td>
+                                                                    <td>Last Name <span class="mandatory">*</span>: </td>
                                                                     <td><input asp-for="OrderDetail.VisitorLN" id="ln"></td>
                                                                 </tr>
 
@@ -517,27 +529,27 @@
                                                                 <p>
                                                                     <strong>Reserve Your Meal</strong> : &nbsp;
                                                                     <strong>Qty</strong> : <select id="mealqty" asp-for="OrderDetail.MealQty">
-                                                                        <option value="0">0</option>
+                                                                        <option value="1">0</option>
                                                                         <option value="1">1</option>
                                                                         <option value="2">2</option>
                                                                         <option value="3">3</option>
                                                                         <option value="4">4</option>
                                                                     </select>&nbsp;&nbsp;
                                                                     <input type="checkbox" id="lunch" value="Lunch" data-toggle="popover" title="Reserve your table for lunch."
-                                                                        asp-for="OrderDetail.Lunch"    data-content="You can choose your menu when you arrive." onclick="mealPlan()"> Lunch &nbsp;&nbsp;
+                                                                           data-content="You can choose your menu when you arrive." onclick="mealPlan()"> Lunch &nbsp;&nbsp;
 
                                                                 </p>
                                                                 <p>
                                                                     <strong>Ride with Sea Animals(only adults)</strong> : &nbsp;
                                                                     <strong>Qty</strong> : <select id="rideqty"  asp-for="OrderDetail.RideQty">
-                                                                        <option value="0">0</option>
+                                                                        <option value="1">0</option>
                                                                         <option value="1">1</option>
                                                                         <option value="2">2</option>
                                                                         <option value="2">3</option>
 
                                                                     </select>&nbsp;&nbsp;
                                                                     <input type="checkbox" id="ride" data-toggle="popover" title="Lunch"
-                                                                      asp-for="OrderDetail.RidePlan"     data-content="Includes recording your ride and taking pictures" onclick="ridePlan()">Yes &nbsp;&nbsp;
+                                                                           data-content="Includes recording your ride and taking pictures" onclick="ridePlan()">Yes &nbsp;&nbsp;
 
                                                                 </p>
 
@@ -559,13 +571,16 @@
                                                                 
                                                             </div>
                                                         </div>
+                                                        <input type="hidden" asp-for="OrderDetail.Lunch" id="hiddenlunch" />
+                                                        <input type="hidden" asp-for="OrderDetail.RidePlan" id="hiddenride" />
+                                                        
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-md-6">
                                                             <input type="button" class="btn btn-primary" value="Back" onclick="showTicket()">
                                                         </div>
                                                         <div class="col-md-6">
-                                                            <input type="button" class="btn btn-primary" value="Proceed to Payment" onclick="showPayment('next')">
+                                                            <input type="button" class="btn btn-primary" value="Proceed to Payment &rarr;" onclick="showPayment('next')" style="float:right">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -685,7 +700,7 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     @*<input type="button" class="btn btn-primary" value="Confirm Order" onclick="showConfirm()">*@
-                                                    <button type="submit" class="btn btn-default">Confirm Order</button>
+                                                    <button type="submit" class="btn btn-primary" style="float:right">Confirm Order&rarr;</button>
 
                                                 </div>
                                             </div>
@@ -693,80 +708,108 @@
 
                                         </div>
                                         </form>
-                                            <div class="tab-pane" id="confirm" style="padding-top: 20px;">
+                                            <div  class="tab-pane"   id="confirm" style="padding-top: 20px;">
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         <div class="panel panel-success">
                                                             <div class="panel-heading">
                                                                 <div class="panel-title" id="reference">
-                                                                    Congratulations !.<span>@Html.DisplayFor(model => model.User.FirstName) </span> Your order is processed successfully;
+                                                                    Congratulations !<span>@Html.DisplayFor(model => model.User.FirstName) </span> Your order is processed successfully
                                                                 </div>
                                                             </div>
-
-                                                            <p id="refId">Your Ticket Id is <span> @Html.DisplayFor(model => model.OrderDetail.OrderDetailID)</span>.Email has been seen to <span> @Html.DisplayFor(model => model.User.Email)</span> and a message has been sent to your registered mobile no.";</p>
-                                                            <div>
-
-                                                                <h4>Order Details</h4>
-                                                                <table id="orderTable" style="padding-top: 5px;">
-                                                                    <tr>
-                                                                        <td>Ticket Confirmation Id </td>
-                                                                        <td>@Html.DisplayFor(model => model.OrderDetail.OrderDetailID)</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>Date Of Visit</td>
-                                                                        <td>@Html.DisplayFor(model => model.OrderDetail.DateOfVisit)</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>Entry Ticket Price</td>
-                                                                        <td>@Html.DisplayFor(model => model.OrderDetail.EntryTicketPrice)</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>ShowCount</td>
-                                                                        <td>@Html.DisplayFor(model => model.OrderDetail.ShowCount)</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>@Html.DisplayFor(model => model.OrderDetail.SpecialShowName1)</td>
-                                                                        <td>@Html.DisplayFor(model => model.OrderDetail.SpecialEventPrice)</td>
-                                                                    </tr>
-
-
-
-                                                                    <tr>
-                                                                        <td>Order Total</td>
-                                                                        <td>@Html.DisplayFor(model => model.OrderDetail.OrderTotalPrice)</td>
-                                                                    </tr>
-
-                                                                </table>
-                                                                <h4 style="padding-top: 10px;">Personal details</h4>
-                                                                <table id="personaldetails" style="padding-top: 5px;">
-                                                                    <tr>
-                                                                        <td>First Name</td>
-                                                                        <td>@Html.DisplayFor(model => model.OrderDetail.VisitorFN) </td>
-                                                                    </tr>
-
-                                                                    <tr>
-                                                                        <td>Last Name</td>
-                                                                        <td>@Html.DisplayFor(model => model.OrderDetail.VisitorLN) </td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>Email Id</td>
-                                                                        <td>@Html.DisplayFor(model => model.OrderDetail.VisitorEmail) </td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>Contact Number</td>
-                                                                        <td>@Html.DisplayFor(model => model.OrderDetail.ContactNumber) </td>
-                                                                    </tr>
-
-                                                                </table>
+                                                            <div class="panel-body">
+                                                                <p id="refId">Your Ticket Id is <span> @Html.DisplayFor(model => model.OrderDetail.OrderDetailID)</span>.Email has been seen to <span> @Html.DisplayFor(model => model.OrderDetail.VisitorEmail)</span> and a message has been sent to your registered mobile no ;</p>
                                                             </div>
                                                         </div>
-                                                        <br />
-                                                        <div id="imp">
-                                                            <p>Please make sure to bring your Ticket reference Id or a printout of the email confirmation</p>
-                                                            <p>Have a Great visit to <strong>Aquatix</strong></p>
-                                                            <p>Visit us <a href="#">www.aquatix.com</a></p>
+
+                                                        <div class="panel panel-default">
+                                                            <div class="panel-heading">
+                                                                Order Details
+                                                            </div>
+                                                            <table id="orderTable" style="padding-top: 5px; width:100%" class="table table-bordered">
+                                                                <tr>
+                                                                    <td>Ticket Confirmation Id </td>
+                                                                    <td>@Html.DisplayFor(model => model.OrderDetail.OrderDetailID)</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Date Of Visit</td>
+                                                                    <td>@Html.DisplayFor(model => model.OrderDetail.DateOfVisit)</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Entry Ticket Price</td>
+                                                                    <td>@Html.DisplayFor(model => model.OrderDetail.EntryTicketPrice)</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Shows Booked</td>
+                                                                    <td>@Html.DisplayFor(model => model.OrderDetail.ShowCount)</td>
+                                                                </tr>
+
+                                                                @if (Model.OrderDetail != null && Model.OrderDetail.ShowCount != 0 ) { 
+                                                                <tr>
+                                                                    <td>@Html.DisplayFor(model => model.OrderDetail.SpecialShowName1)</td>
+                                                                    <td>@Html.DisplayFor(model => model.OrderDetail.SpecialEventPrice)</td>
+                                                                </tr>
+                                                                }
+                                                                @if (Model.OrderDetail != null && Model.OrderDetail.Lunch != null && Model.OrderDetail.Lunch.Equals("yes"))
+                                                                {
+                                                                    <tr>
+                                                                        <td>Lunch </td>
+                                                                        <td>Table reserved for @Html.DisplayFor(model => model.OrderDetail.MealQty)</td>
+                                                                    </tr>
+                                                                }
+
+                                                                @if (Model.OrderDetail != null && Model.OrderDetail.RidePlan != null && Model.OrderDetail.RidePlan.Equals("yes"))
+                                                                {
+                                                                    <tr>
+                                                                        <td>Ride with Sea Animals</td>
+                                                                        <td>@Html.DisplayFor(model => model.OrderDetail.RideQty) Adults</td>
+                                                                    </tr>
+                                                                }
+
+
+                                                                <tr>
+                                                                    <td>Order Total</td>
+                                                                    <td>@Html.DisplayFor(model => model.OrderDetail.OrderTotalPrice)</td>
+                                                                </tr>
+
+                                                            </table>
+                                                            </div>
+                                                        <div class="panel panel-default">
+                                                            <div class="panel-heading">
+                                                                Personal Details
+                                                            </div>
+                                                            <table id="personaldetails" style="padding-top: 5px;width:100%" class="table table-bordered">
+                                                                <tr>
+                                                                    <td>First Name</td>
+                                                                    <td>@Html.DisplayFor(model => model.OrderDetail.VisitorFN) </td>
+                                                                </tr>
+
+                                                                <tr>
+                                                                    <td>Last Name</td>
+                                                                    <td>@Html.DisplayFor(model => model.OrderDetail.VisitorLN) </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Email Id</td>
+                                                                    <td>@Html.DisplayFor(model => model.OrderDetail.VisitorEmail) </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Contact Number</td>
+                                                                    <td>@Html.DisplayFor(model => model.OrderDetail.ContactNumber) </td>
+                                                                </tr>
+
+                                                            </table>
                                                         </div>
-                                                    </div>
+
+
+
+                                                            <br />
+                                                            <div id="imp">
+                                                                <p>Please make sure to bring your Ticket reference Id or a printout of the email confirmation</p>
+                                                                <p>Have a Great visit to <strong>Aquatix</strong></p>
+                                                                <p>Visit us <a href="#">www.aquatix.com</a></p>
+                                                            </div>
+                                                        </div>
+
                                                 </div>
                                             </div>
 </div>

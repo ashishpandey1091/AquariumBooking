@@ -41,5 +41,9 @@ namespace D05.ViewModels.Account
         [Required]
         [Display(Name = "Answer")]
         public string Answer { get;  set; }
+
+        [Required]
+        [Display(Name = "Contact Number")]
+        public string ContactNumber { get; set; }
     }
 }
