@@ -48,5 +48,10 @@ namespace D05.Controllers
         {
             return View(_context.Events.ToList());
         }
+
+        public IActionResult Webpage2 ()
+        {
+            return View(_context.Events.ToList());
+        }
     }
 }
