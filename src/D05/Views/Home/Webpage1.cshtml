@@ -1,0 +1,240 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] Aquatix</title>
+
+    <environment names="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/animate.css" />
+        <link rel="stylesheet" href="~/css/home.css" />
+
+    </environment>
+    <environment names="Staging,Production">
+        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.5/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+
+    </environment>
+    <style>
+        #aboutus {
+            // background-image:url('/img/background.jpg');
+            background-size: contain;
+        }
+
+        .linksHover a {
+            opacity: 0.6;
+        }
+
+            .linksHover a:hover {
+                opacity: 1;
+            }
+    </style>
+</head>
+<body>
+    @using System.Security.Claims
+    <div id="aboutus">
+        <div class="navbar-wrapper">
+            <div class="container">
+                <!-- start  of navigation bar-->
+
+                <nav class="navbar navbar-inverse" id="navid">
+                    <div class="container">
+
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-controls="navbar">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" href="#">Aquatix Aquarium</a>
+                        </div>
+                        <div id="navbar" class="navbar-collapse collapse">
+                            <ul class="nav navbar-nav">
+                                <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                                <li class="dropdown">
+                                    <a href="html/planyourvisit.html" class="dropdown-toggle"
+                                       data-toggle="dropdown" role="button">Visitor Info<b class="caret"></b></a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a href="/Planyourvisit/PlanYourVisit?tab=hours">Hours and Prices</a></li>
+                                        <li><a href="/Planyourvisit/PlanYourVisit?tab=tickets">Buy Tickets</a></li>
+
+                                        <li><a href="/Planyourvisit/PlanYourVisit?tab=occasions">Special Occasions</a></li>
+
+                                    </ul>
+                                </li>
+
+                                <li class="dropdown">
+                                    <a asp-controller="" asp-action="" class="dropdown-toggle"
+                                       data-toggle="dropdown" role="button">Exhibits<b class="caret"></b></a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        @{
+                                            var count = 0;
+                                        }
+
+                                        @foreach (var item in Model)
+                                        {
+                                            if (!item.IsSpecialEvent)
+                                            {
+                                                count++;
+                                                var url = "/Exhibits/Exhibits?tab=ex" + count;
+                                                //<li><a href=@url>@Html.DisplayFor(modelItem => item.EventName)</a></li>
+                                            }
+
+                                        }
+
+                                        @*<li><a href="/Exhibits/Exhibits?tab=exone">Journey to Atlantis</a></li>
+                                            <li><a href="/Exhibits/Exhibits?tab=extwo">Dolphin Notch</a></li>
+                                            <li><a href="/Exhibits/Exhibits?tab=exthree">Seaworld Tower</a></li>
+                                            <li><a href="/Exhibits/Exhibits?tab=exfour">Walrus Skerry</a></li>
+                                            <li><a href="/Exhibits/Exhibits?tab=exfive">Killer Whales</a></li>
+                                            <li><a href="/Exhibits/Exhibits?tab=exsix">Coral Reef</a></li>
+                                            <li><a href="/Exhibits/Exhibits?tab=exseven">Danty Sealions</a></li>*@
+
+                                    </ul>
+                                </li>
+                                <li class="dropdown">
+                                    <a asp-controller="" asp-action="" class="dropdown-toggle"
+                                       data-toggle="dropdown" role="button">More Info<b class="caret"></b></a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a asp-controller="Home" asp-action="About">About us</a></li>
+                                        <li><a asp-controller="Home" asp-action="Contact">Contact us</a></li>
+                                        <li><a asp-controller="Home" asp-action="FAQs">FAQs</a></li>
+                                        <li><a href="">Webpage1</a></li>
+                                        <li><a href="">Webpage2</a></li>
+                                        <li><a href="">Webpage3</a></li>
+
+                                    </ul>
+                                </li>
+                                @if (User.IsSignedIn() && User.IsInRole("admin"))
+                                {
+                                    <li><a asp-controller="Admin" asp-action="Index">Admin</a></li>
+                                }
+                            </ul>
+
+
+                            @if (User.IsSignedIn())
+                            {
+                                <div id="myaccount" style="padding-right:30px">
+                                    <form asp-controller="Account" asp-action="LogOff" method="post" id="logoutForm" class="nav navbar-nav navbar-right">
+                                        <ul class="nav navbar-nav">
+                                            <li>
+                                                <a asp-controller="Manage" asp-action="Index">Hello @User.GetUserName()</a>
+                                            </li>
+                                            <li>
+                                                <button type="submit" class="btn btn-link navbar-btn navbar-link">Log off</button>
+                                            </li>
+                                        </ul>
+                                    </form>
+                                </div>
+                            }
+                            else {
+                                <div id="loginlinks" style="padding-right:30px">
+                                    <ul class="nav navbar-nav navbar-right">
+                                        <li><a asp-controller="Account" asp-action="Register">Register</a></li>
+                                        <li><a asp-controller="Account" asp-action="Login">Log in</a></li>
+                                    </ul>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </nav>
+
+                <!-- end of navigation bar-->
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h4>Team 5: Generation of Miracles</h4>
+                </div>
+            </div>
+
+            <hr/>
+
+            <div class="container">
+                
+                <!--Ashish Pandey-->
+                <div class="row">
+                    <div class="col-md-3">
+                        <img class="img-responsive" src="~/img/IMhb_1.jpg" />
+                    </div>
+                    <div class="col-md-9">
+                        <h3>Role</h3>
+                        <h4>Subheading</h4>
+                        <p>Lorem ipsum Dolor</p>
+                    </div>
+                </div>
+
+                <hr />
+
+                <!--Nadeem Ansari-->
+                <div class="row">
+                    <div class="col-md-3">
+                        <img class="img-responsive" src="~/img/Nadeem.jpg" />
+                    </div>
+                    <div class="col-md-9">
+                        <h3>Role</h3>
+                        <h4>Subheading</h4>
+                        <p>Lorem ipsum Dolor</p>
+                    </div>
+                </div>
+
+                <hr />
+
+                <!--Sai Sharanya-->
+                <div class="row">
+                    <div class="col-md-3">
+                        <img class="img-responsive" src="~/img/SaiShar.jpg" />
+                    </div>
+                    <div class="col-md-9">
+                        <h3>Role</h3>
+                        <h4>Subheading</h4>
+                        <p>Lorem ipsum Dolor</p>
+                    </div>
+                </div>
+
+                <hr />
+
+                <!--Vijay Gopi-->
+                <div class="row">
+                    <div class="col-md-3">
+                        <img class="img-responsive" src="~/img/VijayGopi.jpg" />
+                    </div>
+                    <div class="col-md-9">
+                        <h3>Role</h3>
+                        <h4>Subheading</h4>
+                        <p>Lorem ipsum Dolor</p>
+                    </div>
+                </div>
+
+                <hr />
+
+                <!--Suprem Raju-->
+                <div class="row">
+                    <div class="col-md-3">
+                        <img class="img-responsive" src="~/img/Suprem.jpg" />
+                    </div>
+                    <div class="col-md-9">
+                        <h3>Role</h3>
+                        <h4>Subheading</h4>
+                        <p>Lorem ipsum Dolor</p>
+                    </div>
+                </div>
+
+                <hr />
+
+            </div>
+        </div>
+        
+</div>
+</body>
+</html>
