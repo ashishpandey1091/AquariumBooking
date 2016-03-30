@@ -53,5 +53,10 @@ namespace D05.Controllers
         {
             return View(_context.Events.ToList());
         }
+
+        public IActionResult Webpage3 ()
+        {
+            return View(_context.Events.ToList());
+        }
     }
 }
