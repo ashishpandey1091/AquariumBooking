@@ -44,17 +44,17 @@ namespace D05.Controllers
             return View(_context.Events.ToList());
         }
 
-        public IActionResult Webpage1 ()
+        public IActionResult TeamRoles ()
         {
             return View(_context.Events.ToList());
         }
 
-        public IActionResult Webpage2 ()
+        public IActionResult Milestone ()
         {
             return View(_context.Events.ToList());
         }
 
-        public IActionResult Webpage3 ()
+        public IActionResult RemainingWorkPlan ()
         {
             return View(_context.Events.ToList());
         }
