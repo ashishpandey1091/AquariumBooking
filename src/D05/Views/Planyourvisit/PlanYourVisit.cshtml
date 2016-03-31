@@ -305,7 +305,7 @@
                                             <div class="row">
 
                                                 <div class="col-md-12 rowone">
-                                                    <p><label>Choose Your Date of Visit<span class="mandatory">*</span> : </label>&nbsp;&nbsp;<input asp-for="OrderDetail.DateOfVisit" id="datepicker" />
+                                                    <p><label>Choose Your Date of Visit<span class="mandatory">*</span> (MM/DD/YYYY) : </label>&nbsp;&nbsp;<input asp-for="OrderDetail.DateOfVisit" id="datepicker" />
                                                 </div>
                                             </div>
                                             <!-- first row ends -->
@@ -727,11 +727,11 @@
                                                 <div class="panel panel-success">
                                                     <div class="panel-heading">
                                                         <div class="panel-title" id="reference">
-                                                            Congratulations !<span>@Html.DisplayFor(model => model.User.FirstName) </span> Your order is processed successfully
+                                                            Congratulations <span>@Html.DisplayFor(model => model.User.FirstName)</span>! Your order is processed successfully
                                                         </div>
                                                     </div>
                                                     <div class="panel-body">
-                                                        <p id="refId">Your Ticket Id is <span> @Html.DisplayFor(model => model.OrderDetail.OrderDetailID)</span>.Email has been seen to <span> @Html.DisplayFor(model => model.OrderDetail.VisitorEmail)</span> and a message has been sent to your registered mobile no ;</p>
+                                                        <p id="refId">Your Ticket Id is <span> @Html.DisplayFor(model => model.OrderDetail.OrderDetailID)</span>.Email has been seen to <span> @Html.DisplayFor(model => model.OrderDetail.VisitorEmail)</span> and a message has been sent to your registered mobile no </p>
                                                     </div>
                                                 </div>
 
