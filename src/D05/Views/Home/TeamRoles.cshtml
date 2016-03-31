@@ -79,6 +79,7 @@
                                     <ul class="dropdown-menu" role="menu">
                                         @{
                                             var count = 0;
+                                            var number = "";
                                         }
 
                                         @foreach (var item in Model)
@@ -86,7 +87,17 @@
                                             if (!item.IsSpecialEvent)
                                             {
                                                 count++;
-                                                var url = "/Exhibits/Exhibits?tab=ex" + count;
+                                                if (count == 1) { number = "one"; }
+                                                else if (count == 2) { number = "two"; }
+                                                else if (count == 3) { number = "three"; }
+                                                else if (count == 4) { number = "four"; }
+                                                else if (count == 5) { number = "five"; }
+                                                else if (count == 6) { number = "six"; }
+                                                else if (count == 7) { number = "seven"; }
+                                                else if (count == 8) { number = "eight"; }
+                                                else if (count == 9) { number = "nine"; }
+                                                else if (count == 10) { number = "ten"; }
+                                                var url = "/Exhibits/Exhibits?tab=ex" + number;
                                                 <li><a href=@url>@Html.DisplayFor(modelItem => item.EventName)</a></li>
                                             }
 
@@ -198,9 +209,9 @@
                         <img class="img-responsive" src="~/img/SaiShar.jpg" />
                     </div>
                     <div class="col-md-9">
-                        <h3>Role</h3>
-                        <h4>Subheading</h4>
-                        <p>Lorem ipsum Dolor</p>
+                        <h3>Sai Saranya</h3>
+                        <h4>Web Designer / System Developer</h4>
+                        <p>Role based authentication is the most important task I handled.</p>
                     </div>
                 </div>
 
@@ -212,9 +223,9 @@
                         <img class="img-responsive" src="~/img/VijayGopi.jpg" />
                     </div>
                     <div class="col-md-9">
-                        <h3>Role</h3>
-                        <h4>Subheading</h4>
-                        <p>Lorem ipsum Dolor</p>
+                        <h3>Vijay Gopi</h3>
+                        <h4>Web Designer / System Developer / </h4>
+                        <p>Aquarium Events with two types, special and general are the most important tasks I handled.</p>
                     </div>
                 </div>
 

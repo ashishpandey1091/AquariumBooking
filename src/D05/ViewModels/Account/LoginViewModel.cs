@@ -1,4 +1,5 @@
-﻿using System;
+﻿using D05.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -18,5 +19,7 @@ namespace D05.ViewModels.Account
 
         [Display(Name = "Remember me?")]
         public bool RememberMe { get; set; }
+
+        public List<Event> Event { get; set; }
     }
 }

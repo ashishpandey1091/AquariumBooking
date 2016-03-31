@@ -62,6 +62,7 @@
                                     <ul class="dropdown-menu" role="menu">
                                         @{
                                             var count = 0;
+                                            var number = "";
                                         }
 
                                         @foreach (var item in Model)
@@ -69,7 +70,17 @@
                                             if (!item.IsSpecialEvent)
                                             {
                                                 count++;
-                                                var url = "/Exhibits/Exhibits?tab=ex" + count;
+                                                if (count == 1) { number = "one"; }
+                                                else if (count == 2) { number = "two"; }
+                                                else if (count == 3) { number = "three"; }
+                                                else if (count == 4) { number = "four"; }
+                                                else if (count == 5) { number = "five"; }
+                                                else if (count == 6) { number = "six"; }
+                                                else if (count == 7) { number = "seven"; }
+                                                else if (count == 8) { number = "eight"; }
+                                                else if (count == 9) { number = "nine"; }
+                                                else if (count == 10) { number = "ten"; }
+                                                var url = "/Exhibits/Exhibits?tab=ex" + number;
                                                 <li><a href=@url>@Html.DisplayFor(modelItem => item.EventName)</a></li>
                                             }
 
@@ -158,7 +169,7 @@
 
                             @{
                                 var tabcount = 0;
-                                var number = "";
+                                var numbers = "";
                             }
 
                             @foreach (var item in Model)
@@ -166,19 +177,19 @@
                                 if (!item.IsSpecialEvent)
                                 {
                                     tabcount++;
-                                    if (tabcount == 1) { number = "one"; }
-                                    if (tabcount == 2) { number = "two"; }
-                                    if (tabcount == 3) { number = "three"; }
-                                    if (tabcount == 4) { number = "four"; }
-                                    if (tabcount == 5) { number = "five"; }
-                                    if (tabcount == 6) { number = "six"; }
-                                    if (tabcount == 7) { number = "seven"; }
-                                    if (tabcount == 8) { number = "eight"; }
-                                    if (tabcount == 9) { number = "nine"; }
-                                    if (tabcount == 10) { number = "ten"; }
+                                    if (tabcount == 1) { numbers = "one"; }
+                                    if (tabcount == 2) { numbers = "two"; }
+                                    if (tabcount == 3) { numbers = "three"; }
+                                    if (tabcount == 4) { numbers = "four"; }
+                                    if (tabcount == 5) { numbers = "five"; }
+                                    if (tabcount == 6) { numbers = "six"; }
+                                    if (tabcount == 7) { numbers = "seven"; }
+                                    if (tabcount == 8) { numbers = "eight"; }
+                                    if (tabcount == 9) { numbers = "nine"; }
+                                    if (tabcount == 10) { numbers = "ten"; }
 
-                                    var liID = "ex" + number + "tab";
-                                    var achorHref = "#ex" + number + "target";
+                                    var liID = "ex" + numbers + "tab";
+                                    var achorHref = "#ex" + numbers + "target";
                                     <li id=@liID><a href=@achorHref data-toggle='tab'>@Html.DisplayFor(modelItem => item.EventName)</a></li>
                                 }
 
@@ -244,9 +255,9 @@
                                         <div class="col-md-9">
                                             <h4>Note:All the exhibits can be visited with your Entry Ticket</h4>
                                         </div>
-                                        <div class="col-md-3">
-                                            <button class="btn btn-primary btn-sm">Buy Your Entry Tickets</button>
-                                        </div>
+                                        <a class="col-md-3" asp-controller="Planyourvisit" asp-action="PlanYourVisit" asp-fragment="?tab=tickets">
+                                            <input type="button" class="btn btn-primary btn-sm" value="Buy Your Entry Tickets" />
+                                        </a>
                                     </div>
                                 </div>
                         <!-- end of div content for ExhibitOne -->
