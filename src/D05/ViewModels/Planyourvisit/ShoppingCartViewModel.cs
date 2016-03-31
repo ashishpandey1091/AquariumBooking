@@ -15,5 +15,11 @@ namespace D05.ViewModels.Planyourvisit
         public List<Event> Event { get; set; }
 
         public ApplicationUser User { get; set; }
+
+        public BirthdayParty BirthDayParty { get; set; }
+
+        public SleepOver SleepOver { get; set; }
+
+        public SchoolTrip SchoolTrip { get; set; }
     }
 }

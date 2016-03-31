@@ -5,6 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] Aquatix</title>
+
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
@@ -20,21 +21,20 @@
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
 
     </environment>
-    <script>
-  $(function() {
-    $( "#datepicker" ).datepicker();
-  });
-    </script>
+    <style>
+
+    </style>
 </head>
 <body>
     @using System.Security.Claims
     @model D05.ViewModels.Planyourvisit.ShoppingCartViewModel
-    
+
     <input type="hidden" value=@ViewData["key"] id="tabInfo">
     <input type="hidden" value=@ViewData["orderplaced"] id="orderInfo">
     <input type="hidden" value=@ViewData["loggedin"] id="loggedin">
-    
-    
+    <input type="hidden" value=@ViewData["birthday"] id="birthdayInfo">
+
+
     <div id="planyourvisit">
         <div class="navbar-wrapper">
             <div class="container">
@@ -85,12 +85,12 @@
                                         }
 
                                         @*<li><a href="/Exhibits/Exhibits?tab=exone">Journey to Atlantis</a></li>
-                                        <li><a href="/Exhibits/Exhibits?tab=extwo">Dolphin Notch</a></li>
-                                        <li><a href="/Exhibits/Exhibits?tab=exthree">Seaworld Tower</a></li>
-                                        <li><a href="/Exhibits/Exhibits?tab=exfour">Walrus Skerry</a></li>
-                                        <li><a href="/Exhibits/Exhibits?tab=exfive">Killer Whales</a></li>
-                                        <li><a href="/Exhibits/Exhibits?tab=exsix">Coral Reef</a></li>
-                                        <li><a href="/Exhibits/Exhibits?tab=exseven">Danty Sealions</a></li>*@
+                                            <li><a href="/Exhibits/Exhibits?tab=extwo">Dolphin Notch</a></li>
+                                            <li><a href="/Exhibits/Exhibits?tab=exthree">Seaworld Tower</a></li>
+                                            <li><a href="/Exhibits/Exhibits?tab=exfour">Walrus Skerry</a></li>
+                                            <li><a href="/Exhibits/Exhibits?tab=exfive">Killer Whales</a></li>
+                                            <li><a href="/Exhibits/Exhibits?tab=exsix">Coral Reef</a></li>
+                                            <li><a href="/Exhibits/Exhibits?tab=exseven">Danty Sealions</a></li>*@
 
                                     </ul>
                                 </li>
@@ -137,7 +137,7 @@
                                         <li><a asp-controller="Account" asp-action="Login">Log in</a></li>
                                     </ul>
                                 </div>
-                            } 
+                            }
                         </div>
                     </div>
                 </nav>
@@ -158,7 +158,6 @@
                 </div>
             </div>
             <!-- end  of breadcrumb -->
-
             <!-- start of nav tab left -->
             <div class="tabbable tabs-left">
                 <div class="row">
@@ -174,7 +173,6 @@
                         </ul>
                     </div>
                     <!-- end of list for nav tab left-->
-
                     <!-- start of nav tab content -->
                     <div class="tab-content col-md-9">
 
@@ -258,17 +256,17 @@
                             <!-- second row ends-->
                             <!-- third row-->
                             <!--<div class="row">
-                            <div class="col-md-12">
-                                <div class="panel panel-default">
-                                    <div class="panel-body">
+                                <div class="col-md-12">
+                                    <div class="panel panel-default">
+                                        <div class="panel-body">
 
-                                    </div>
-                                    <div class="panel-footer">
+                                        </div>
+                                        <div class="panel-footer">
 
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>-->
+                            </div>-->
                             <!-- third row ends-->
                         </div>
                         <!-- end of div content for hours and prices-->
@@ -309,8 +307,8 @@
                                                             <p class="panel-title">
                                                                 Your Entry Ticket
                                                                 <!--<span>
-                                                                <label id="date">Date of Visit : </label>&nbsp;&nbsp;<input type="text" id="datepicker" />
-                                                            </span>-->
+                                                                    <label id="date">Date of Visit : </label>&nbsp;&nbsp;<input type="text" id="datepicker" />
+                                                                </span>-->
                                                             </p>
                                                         </div>
                                                         <table class="table table-bordered table-striped">
@@ -371,9 +369,9 @@
                                                     </div>
                                                 </div>
                                                 <!--<div class="panel panel-default panel-info">
-                <div class="panel-heading panel-info" id="entryprice">
-                    <p class="panel-title"><b>Total:</b><span id="totalentryprice"></span></p>
-                </div>-->
+                                                <div class="panel-heading panel-info" id="entryprice">
+                                                    <p class="panel-title"><b>Total:</b><span id="totalentryprice"></span></p>
+                                                </div>-->
                                                 <div class="row">
                                                     <div class="col-md-12" id="addtocart">
                                                         <label class="col-md-10"></label>
@@ -454,8 +452,8 @@
                                                         <input type="hidden" asp-for="OrderDetail.SpecialEventPrice" id="hiddenshowprice1" />
                                                         <input type="hidden" asp-for="OrderDetail.OrderTotalPrice" id="hiddentotalprice" />
                                                         <input type="hidden" asp-for="OrderDetail.ShowCount" id="hiddenshowcount" />
-                                                        
-                                                     
+
+
                                                     </div>
                                                     <div id="next">
                                                         <input type="button" class="btn btn-primary" value="Next &rarr;" onclick="showFacilities()">
@@ -478,31 +476,31 @@
                                                         </div>
                                                         @if (User.IsSignedIn())
                                                         {
-                                                        <table class="table">
-                                                            <tr>
-                                                                <td>First Name <span class="mandatory">*</span>: </td>
-                                                                <td><h4 id="fn1">@Html.DisplayFor(model => model.User.FirstName)</h4></td>
-                                                                <td>Last Name <span class="mandatory">*</span>: </td>
-                                                                <td id="ln">@Html.DisplayFor(model => model.User.LastName)</td>
-                                                            </tr>
+                                                            <table class="table">
+                                                                <tr>
+                                                                    <td>First Name <span class="mandatory">*</span>: </td>
+                                                                    <td><h4 id="fn1">@Html.DisplayFor(model => model.User.FirstName)</h4></td>
+                                                                    <td>Last Name <span class="mandatory">*</span>: </td>
+                                                                    <td id="ln">@Html.DisplayFor(model => model.User.LastName)</td>
+                                                                </tr>
 
-                                                            <tr>
-                                                                <td>Mobile no <span class="mandatory">*</span>: </td>
-                                                                <td id="mob">@Html.DisplayFor(model => model.User.PhoneNumber)</td>
-                                                                <td>Email <span class="mandatory">*</span>: </td>
-                                                                <td id="email">@Html.DisplayFor(model => model.User.Email)</td>
-                                                            </tr>
-                                                        </table>
+                                                                <tr>
+                                                                    <td>Mobile no <span class="mandatory">*</span>: </td>
+                                                                    <td id="mob">@Html.DisplayFor(model => model.User.PhoneNumber)</td>
+                                                                    <td>Email <span class="mandatory">*</span>: </td>
+                                                                    <td id="email">@Html.DisplayFor(model => model.User.Email)</td>
+                                                                </tr>
+                                                            </table>
                                                             var firstname = Model.User.FirstName;
                                                             var lastname = Model.User.LastName;
                                                             var contact = Model.User.PhoneNumber;
                                                             var email = Model.User.Email;
 
-                                                            
-                                                        <input type="hidden" asp-for="OrderDetail.VisitorFN"  value="@firstname"/>
-                                                        <input type="hidden" asp-for="OrderDetail.VisitorLN" value="@lastname"/>
-                                                        <input type="hidden" asp-for="OrderDetail.ContactNumber" value="@contact"/>
-                                                        <input type="hidden" asp-for="OrderDetail.VisitorEmail" value="@email"/>
+
+                                                            <input type="hidden" asp-for="OrderDetail.VisitorFN" value="@firstname" />
+                                                            <input type="hidden" asp-for="OrderDetail.VisitorLN" value="@lastname" />
+                                                            <input type="hidden" asp-for="OrderDetail.ContactNumber" value="@contact" />
+                                                            <input type="hidden" asp-for="OrderDetail.VisitorEmail" value="@email" />
                                                         }
                                                         else
                                                         {
@@ -545,7 +543,7 @@
                                                                 </p>
                                                                 <p>
                                                                     <strong>Ride with Sea Animals(only adults)</strong> : &nbsp;
-                                                                    <strong>Qty</strong> : <select id="rideqty"  asp-for="OrderDetail.RideQty">
+                                                                    <strong>Qty</strong> : <select id="rideqty" asp-for="OrderDetail.RideQty">
                                                                         <option value="1">0</option>
                                                                         <option value="1">1</option>
                                                                         <option value="2">2</option>
@@ -572,12 +570,12 @@
                                                             </div>
                                                             <div id="ridePlan">
                                                                 <p id="ridePrice"></p>
-                                                                
+
                                                             </div>
                                                         </div>
                                                         <input type="hidden" asp-for="OrderDetail.Lunch" id="hiddenlunch" />
                                                         <input type="hidden" asp-for="OrderDetail.RidePlan" id="hiddenride" />
-                                                        
+
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-md-6">
@@ -614,7 +612,7 @@
 
                                                             <tr>
                                                                 <td>Card Number<span class="mandatory">*</span> : </td>
-                                                                <td><input  typ="text" size="16" required="" id="cardno">&nbsp;&nbsp;<span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" data-placement="top" data-original-title="Please enter 16 digit number of your card"></span></td>
+                                                                <td><input typ="text" size="16" required="" id="cardno">&nbsp;&nbsp;<span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" data-placement="top" data-original-title="Please enter 16 digit number of your card"></span></td>
 
                                                             </tr>
                                                             <tr>
@@ -636,7 +634,7 @@
                                                                         <option value="12">12</option>
                                                                     </select> &nbsp;&nbsp;Year*&nbsp;<select required="" id="year">
                                                                         <option value="none">Select</option>
-                                       
+
                                                                         <option>2016</option>
                                                                         <option>2017</option>
                                                                     </select>
@@ -711,152 +709,153 @@
 
 
                                         </div>
-                                        </form>
-                                            <div  class="tab-pane"   id="confirm" style="padding-top: 20px;">
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="panel panel-success">
-                                                            <div class="panel-heading">
-                                                                <div class="panel-title" id="reference">
-                                                                    Congratulations !<span>@Html.DisplayFor(model => model.User.FirstName) </span> Your order is processed successfully
-                                                                </div>
-                                                            </div>
-                                                            <div class="panel-body">
-                                                                <p id="refId">Your Ticket Id is <span> @Html.DisplayFor(model => model.OrderDetail.OrderDetailID)</span>.Email has been seen to <span> @Html.DisplayFor(model => model.OrderDetail.VisitorEmail)</span> and a message has been sent to your registered mobile no.</p>
-                                                            </div>
+                                    </form>
+                                    <div class="tab-pane" id="confirm" style="padding-top: 20px;">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="panel panel-success">
+                                                    <div class="panel-heading">
+                                                        <div class="panel-title" id="reference">
+                                                            Congratulations !<span>@Html.DisplayFor(model => model.User.FirstName) </span> Your order is processed successfully
                                                         </div>
+                                                    </div>
+                                                    <div class="panel-body">
+                                                        <p id="refId">Your Ticket Id is <span> @Html.DisplayFor(model => model.OrderDetail.OrderDetailID)</span>.Email has been seen to <span> @Html.DisplayFor(model => model.OrderDetail.VisitorEmail)</span> and a message has been sent to your registered mobile no ;</p>
+                                                    </div>
+                                                </div>
 
-                                                        <div class="panel panel-default">
-                                                            <div class="panel-heading">
-                                                                Order Details
-                                                            </div>
-                                                            <table id="orderTable" style="padding-top: 5px; width:100%" class="table table-bordered">
-                                                                <tr>
-                                                                    <td>Ticket Confirmation Id </td>
-                                                                    <td>@Html.DisplayFor(model => model.OrderDetail.OrderDetailID)</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>Date Of Visit</td>
-                                                                    <td>@Html.DisplayFor(model => model.OrderDetail.DateOfVisit)</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>Entry Ticket Price</td>
-                                                                    <td>$ @Html.DisplayFor(model => model.OrderDetail.EntryTicketPrice)</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>Shows Booked</td>
-                                                                    <td>@Html.DisplayFor(model => model.OrderDetail.ShowCount)</td>
-                                                                </tr>
+                                                <div class="panel panel-default">
+                                                    <div class="panel-heading">
+                                                        Order Details
+                                                    </div>
+                                                    <table id="orderTable" style="padding-top: 5px; width:100%" class="table table-bordered">
+                                                        <tr>
+                                                            <td>Ticket Confirmation Id </td>
+                                                            <td>@Html.DisplayFor(model => model.OrderDetail.OrderDetailID)</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Date Of Visit</td>
+                                                            <td>@Html.DisplayFor(model => model.OrderDetail.DateOfVisit)</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Entry Ticket Price</td>
+                                                            <td>@Html.DisplayFor(model => model.OrderDetail.EntryTicketPrice)</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Shows Booked</td>
+                                                            <td>@Html.DisplayFor(model => model.OrderDetail.ShowCount)</td>
+                                                        </tr>
 
-                                                                @if (Model.OrderDetail != null && Model.OrderDetail.ShowCount != 0 ) { 
-                                                                <tr>
-                                                                    <td>@Html.DisplayFor(model => model.OrderDetail.SpecialShowName1)</td>
-                                                                    <td>$ @Html.DisplayFor(model => model.OrderDetail.SpecialEventPrice)</td>
-                                                                </tr>
-                                                                }
-                                                                @if (Model.OrderDetail != null && Model.OrderDetail.Lunch != null && Model.OrderDetail.Lunch.Equals("yes"))
-                                                                {
-                                                                    <tr>
-                                                                        <td>Lunch </td>
-                                                                        <td>Table reserved for @Html.DisplayFor(model => model.OrderDetail.MealQty)</td>
-                                                                    </tr>
-                                                                }
+                                                        @if (Model.OrderDetail != null && Model.OrderDetail.ShowCount != 0)
+                                                        {
+                                                            <tr>
+                                                                <td>@Html.DisplayFor(model => model.OrderDetail.SpecialShowName1)</td>
+                                                                <td>@Html.DisplayFor(model => model.OrderDetail.SpecialEventPrice)</td>
+                                                            </tr>
+                                                        }
+                                                        @if (Model.OrderDetail != null && Model.OrderDetail.Lunch != null && Model.OrderDetail.Lunch.Equals("yes"))
+                                                        {
+                                                            <tr>
+                                                                <td>Lunch </td>
+                                                                <td>Table reserved for @Html.DisplayFor(model => model.OrderDetail.MealQty)</td>
+                                                            </tr>
+                                                        }
 
-                                                                @if (Model.OrderDetail != null && Model.OrderDetail.RidePlan != null && Model.OrderDetail.RidePlan.Equals("yes"))
-                                                                {
-                                                                    <tr>
-                                                                        <td>Ride with Sea Animals</td>
-                                                                        <td>@Html.DisplayFor(model => model.OrderDetail.RideQty) Adults</td>
-                                                                    </tr>
-                                                                }
-
-
-                                                                <tr>
-                                                                    <td>Order Total</td>
-                                                                    <td>$ @Html.DisplayFor(model => model.OrderDetail.OrderTotalPrice)</td>
-                                                                </tr>
-
-                                                            </table>
-                                                            </div>
-                                                        <div class="panel panel-default">
-                                                            <div class="panel-heading">
-                                                                Personal Details
-                                                            </div>
-                                                            <table id="personaldetails" style="padding-top: 5px;width:100%" class="table table-bordered">
-                                                                <tr>
-                                                                    <td>First Name</td>
-                                                                    <td>@Html.DisplayFor(model => model.OrderDetail.VisitorFN) </td>
-                                                                </tr>
-
-                                                                <tr>
-                                                                    <td>Last Name</td>
-                                                                    <td>@Html.DisplayFor(model => model.OrderDetail.VisitorLN) </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>Email Id</td>
-                                                                    <td>@Html.DisplayFor(model => model.OrderDetail.VisitorEmail) </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>Contact Number</td>
-                                                                    <td>@Html.DisplayFor(model => model.OrderDetail.ContactNumber) </td>
-                                                                </tr>
-
-                                                            </table>
-                                                        </div>
+                                                        @if (Model.OrderDetail != null && Model.OrderDetail.RidePlan != null && Model.OrderDetail.RidePlan.Equals("yes"))
+                                                        {
+                                                            <tr>
+                                                                <td>Ride with Sea Animals</td>
+                                                                <td>@Html.DisplayFor(model => model.OrderDetail.RideQty) Adults</td>
+                                                            </tr>
+                                                        }
 
 
+                                                        <tr>
+                                                            <td>Order Total</td>
+                                                            <td>@Html.DisplayFor(model => model.OrderDetail.OrderTotalPrice)</td>
+                                                        </tr>
 
-                                                            <br />
-                                                            <div id="imp">
-                                                                <p>Please make sure to bring your Ticket reference Id or a printout of the email confirmation</p>
-                                                                <p>Have a Great visit to <strong>Aquatix</strong></p>
-                                                                <p>Visit us <a href="#">www.aquatix.com</a></p>
-                                                            </div>
-                                                        </div>
+                                                    </table>
+                                                </div>
+                                                <div class="panel panel-default">
+                                                    <div class="panel-heading">
+                                                        Personal Details
+                                                    </div>
+                                                    <table id="personaldetails" style="padding-top: 5px;width:100%" class="table table-bordered">
+                                                        <tr>
+                                                            <td>First Name</td>
+                                                            <td>@Html.DisplayFor(model => model.OrderDetail.VisitorFN) </td>
+                                                        </tr>
 
+                                                        <tr>
+                                                            <td>Last Name</td>
+                                                            <td>@Html.DisplayFor(model => model.OrderDetail.VisitorLN) </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Email Id</td>
+                                                            <td>@Html.DisplayFor(model => model.OrderDetail.VisitorEmail) </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Contact Number</td>
+                                                            <td>@Html.DisplayFor(model => model.OrderDetail.ContactNumber) </td>
+                                                        </tr>
+
+                                                    </table>
+                                                </div>
+
+
+
+                                                <br />
+                                                <div id="imp">
+                                                    <p>Please make sure to bring your Ticket reference Id or a printout of the email confirmation</p>
+                                                    <p>Have a Great visit to <strong>Aquatix</strong></p>
+                                                    <p>Visit us <a href="#">www.aquatix.com</a></p>
                                                 </div>
                                             </div>
-</div>
+
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
                         <!-- end of div content for tickets-->
                         <!-- start of div content for finding us-->
                         @*<div class="tab-pane" id="find">
-                            <div class="row">
-                                <h3>
-                                    Finding Your Way  To The Aquatix Aquarium
-                                </h3>
-                                <p>
-                                    The Aquatix Aquarium is located in beautiful Mulbery St in downtown Maryville.
-                                    Consider exploring the beauty of the park, or visit one of the many other attractions
-                                    or restaurants before or after your visit to the Aquarium. We encourage our visitors to consider taking
-                                    environmentally-friendly modes of transportation whenever possible.
-                                </p>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <h4>Getting Here</h4>
+                                <div class="row">
+                                    <h3>
+                                        Finding Your Way  To The Aquatix Aquarium
+                                    </h3>
                                     <p>
-                                        There are many alternatives for finding your way here to the Aquatix Aquarium.
-                                        For more in-depth information, call us at 901-857-2427or find us on
+                                        The Aquatix Aquarium is located in beautiful Mulbery St in downtown Maryville.
+                                        Consider exploring the beauty of the park, or visit one of the many other attractions
+                                        or restaurants before or after your visit to the Aquarium. We encourage our visitors to consider taking
+                                        environmentally-friendly modes of transportation whenever possible.
                                     </p>
-
-                                    <h4>Public Transportation</h4>
-                                    <p>
-                                        For your convenience, the #19 Bus to Maryville will bring you within a
-                                        five minute walk to the Aquatix Aquarium.
-                                    </p>
-
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div id="map"></div>
-                                </div>
-                            </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h4>Getting Here</h4>
+                                        <p>
+                                            There are many alternatives for finding your way here to the Aquatix Aquarium.
+                                            For more in-depth information, call us at 901-857-2427or find us on
+                                        </p>
 
-                        </div>*@
+                                        <h4>Public Transportation</h4>
+                                        <p>
+                                            For your convenience, the #19 Bus to Maryville will bring you within a
+                                            five minute walk to the Aquatix Aquarium.
+                                        </p>
+
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div id="map"></div>
+                                    </div>
+                                </div>
+
+                            </div>*@
                         <!-- end of div content for finding us-->
                         <!-- start of div content for special occasions-->
                         <div class="tab-pane" id="occasions">
@@ -890,62 +889,71 @@
                                                 <h3>Party Booking Enquiry</h3>
                                                 <h6>(Please enter all the fields)</h6>
                                                 <div class="well">
-                                                    <form role="form">
+                                                    <form role="form" asp-controller="Planyourvisit" asp-action="PlanYourVisit">
 
                                                         <h4>Contact Details</h4>
                                                         <div class="row form-group-sm">
-                                                            <label class="col-md-4 control-label">First Name:</label>
+                                                            <label class="col-md-4 control-label">@Html.DisplayNameFor(model => Model.BirthDayParty.FirstName):</label>
                                                             <div class="col-md-7">
-                                                                <input class="form-control" type="text" placeholder="enter your first name" required="" />
+                                                                <input class="form-control" asp-for="BirthDayParty.FirstName" type="text" placeholder="enter your first name" required="" />
                                                             </div>
                                                         </div>
                                                         <div class="row form-group-sm">
-                                                            <label class="col-md-4 control-label">Last Name:</label>
+                                                            <label class="col-md-4 control-label">@Html.DisplayNameFor(model => Model.BirthDayParty.LastName):</label>
                                                             <div class="col-md-7">
-                                                                <input class="form-control" type="text" placeholder="enter your last name" required="" />
+                                                                <input class="form-control" asp-for="BirthDayParty.LastName" type="text" placeholder="enter your last name" required="" />
                                                             </div>
                                                         </div>
                                                         <div class="row form-group-sm">
-                                                            <label class="col-md-4 control-label">Telephone:</label>
+                                                            <label class="col-md-4 control-label">@Html.DisplayNameFor(model => Model.BirthDayParty.ContactNumber):</label>
                                                             <div class="col-md-7">
-                                                                <input class="form-control" type="tel" placeholder="contact number" required="" />
+                                                                <input class="form-control" asp-for="BirthDayParty.ContactNumber" type="tel" placeholder="contact number" required="" />
                                                             </div>
                                                         </div>
                                                         <div class="row form-group-sm">
-                                                            <label class="col-md-4 control-label">Email:</label>
+                                                            <label class="col-md-4 control-label">@Html.DisplayNameFor(model => Model.BirthDayParty.UserEmail):</label>
                                                             <div class="col-md-7">
-                                                                <input class="form-control" type="email" placeholder="enter your email" required="" />
+                                                                <input class="form-control" asp-for="BirthDayParty.UserEmail" type="email" placeholder="enter your email" required="" />
                                                             </div>
                                                         </div>
                                                         <h4>Birthday Party Details</h4>
                                                         <div class="row form-group-sm">
-                                                            <label class="col-md-4 control-label">Childs Name:</label>
+                                                            <label class="col-md-4 control-label">@Html.DisplayNameFor(model => Model.BirthDayParty.BirthdayPersonName):</label>
                                                             <div class="col-md-7">
-                                                                <input class="form-control" type="text" placeholder="enter childs name" required="" />
+                                                                <input class="form-control" asp-for="BirthDayParty.BirthdayPersonName" type="text" placeholder="enter childs name" required="" />
                                                             </div>
                                                         </div>
                                                         <div class="row form-group-sm">
-                                                            <label class="col-md-4 control-label">Childs Age:</label>
+                                                            <label class="col-md-4 control-label">@Html.DisplayNameFor(model => Model.BirthDayParty.BirthdayPersonAge):</label>
                                                             <div class="col-md-7">
-                                                                <input class="form-control" type="text" placeholder="enter childs age" required="" />
+                                                                <input class="form-control" asp-for="BirthDayParty.BirthdayPersonAge" type="text" placeholder="enter childs age" required="" />
                                                             </div>
                                                         </div>
                                                         <div class="row form-group-sm">
-                                                            <label class="col-md-4 control-label">Date:</label>
+                                                            <label class="col-md-4 control-label">@Html.DisplayNameFor(model => Model.BirthDayParty.DateofVisit)</label>
                                                             <div class="col-md-7">
-                                                                <input class="form-control" type="date" required="" />
+                                                                <input class="form-control" asp-for="BirthDayParty.DateofVisit" type="date" required="" />
                                                             </div>
                                                         </div>
+
                                                         <div class="row form-group-sm">
-                                                            <label class="col-md-4 control-label">No. Children:</label>
+                                                            <label class="col-md-4 control-label">@Html.DisplayNameFor(model => Model.BirthDayParty.DateofRegistration):</label>
                                                             <div class="col-md-7">
-                                                                <input class="form-control" type="text" placeholder="enter no of children" required="" />
+                                                                <input class="form-control" asp-for="BirthDayParty.DateofRegistration" type="date" required="" />
+                                                            </div>
+                                                        </div>
+
+
+                                                        <div class="row form-group-sm">
+                                                            <label class="col-md-4 control-label">@Html.DisplayNameFor(model => Model.BirthDayParty.AttendeesNumber):</label>
+                                                            <div class="col-md-7">
+                                                                <input class="form-control" asp-for="BirthDayParty.AttendeesNumber" type="text" placeholder="enter no of children" required="" />
                                                             </div>
                                                         </div>
                                                         <div class="row form-group">
-                                                            <label class="col-md-4 control-label">Details/Food:</label>
+                                                            <label class="col-md-4 control-label">@Html.DisplayNameFor(model => Model.BirthDayParty.FoodDetails):</label>
                                                             <div class="col-md-7">
-                                                                <textarea cols="10" rows="3" required="" class="form-control" placeholder="enter food details"></textarea>
+                                                                <textarea cols="10" rows="3" required="" class="form-control" asp-for="BirthDayParty.FoodDetails" placeholder="enter food details"></textarea>
                                                             </div>
                                                         </div>
                                                         <div class="row form-group-sm">
@@ -974,58 +982,65 @@
                                                 <h3>School Booking Enquiry</h3>
                                                 <h6>(Please enter all the fields)</h6>
                                                 <div class="well">
-                                                    <form role="form">
+                                                    <form role="form" asp-controller="Planyourvisit" asp-action="PlanYourVisit">
 
                                                         <h4>Contact Details</h4>
                                                         <div class="row form-group-sm">
-                                                            <label class="col-md-4 control-label">School Name:</label>
+                                                            <label class="col-md-4 control-label">@Html.DisplayNameFor(model => Model.SchoolTrip.SchoolName):</label>
                                                             <div class="col-md-7">
-                                                                <input class="form-control" type="text" placeholder="enter your first name" required="" />
+                                                                <input class="form-control" asp-for="SchoolTrip.SchoolName" type="text" placeholder="enter your first name" required="" />
                                                             </div>
                                                         </div>
                                                         <div class="row form-group-sm">
-                                                            <label class="col-md-4 control-label">School Address:</label>
+                                                            <label class="col-md-4 control-label">@Html.DisplayNameFor(model => Model.SchoolTrip.SchoolAddress):</label>
                                                             <div class="col-md-7">
-                                                                <textarea cols="10" rows="3" required="" class="form-control" placeholder="enter school address"></textarea>
+                                                                <textarea cols="10" rows="3" required="" class="form-control" asp-for="SchoolTrip.SchoolAddress" placeholder="enter school address"></textarea>
 
                                                             </div>
                                                         </div>
                                                         <div class="row form-group-sm">
-                                                            <label class="col-md-4 control-label">Telephone:</label>
+                                                            <label class="col-md-4 control-label">@Html.DisplayNameFor(model => Model.SchoolTrip.ContactNumber):</label>
                                                             <div class="col-md-7">
-                                                                <input class="form-control" type="tel" placeholder="contact number" required="" />
+                                                                <input class="form-control" asp-for="SchoolTrip.ContactNumber" type="tel" placeholder="contact number" required="" />
                                                             </div>
                                                         </div>
                                                         <div class="row form-group-sm">
-                                                            <label class="col-md-4 control-label">Email:</label>
+                                                            <label class="col-md-4 control-label">@Html.DisplayNameFor(model => Model.SchoolTrip.SchoolEmail):</label>
                                                             <div class="col-md-7">
-                                                                <input class="form-control" type="email" placeholder="enter your email" required="" />
+                                                                <input class="form-control" asp-for="SchoolTrip.SchoolEmail" type="email" placeholder="enter your email" required="" />
                                                             </div>
                                                         </div>
                                                         <h4>School Party Details</h4>
                                                         <div class="row form-group-sm">
-                                                            <label class="col-md-4 control-label">Children</label>
+                                                            <label class="col-md-4 control-label">@Html.DisplayNameFor(model => Model.SchoolTrip.NoOfChildren)</label>
                                                             <div class="col-md-7">
-                                                                <input class="form-control" type="text" placeholder="no. children" required="" />
+                                                                <input class="form-control" asp-for="SchoolTrip.NoOfChildren" type="text" placeholder="no. children" required="" />
                                                             </div>
                                                         </div>
                                                         <div class="row form-group-sm">
-                                                            <label class="col-md-4 control-label">Adults</label>
+                                                            <label class="col-md-4 control-label">@Html.DisplayNameFor(model => Model.SchoolTrip.NoOfAdults)</label>
                                                             <div class="col-md-7">
-                                                                <input class="form-control" type="text" placeholder="no. adults" required="" />
+                                                                <input class="form-control" asp-for="SchoolTrip.NoOfAdults" type="text" placeholder="no. adults" required="" />
                                                             </div>
                                                         </div>
                                                         <div class="row form-group-sm">
-                                                            <label class="col-md-4 control-label">Date:</label>
+                                                            <label class="col-md-4 control-label">@Html.DisplayNameFor(model => Model.SchoolTrip.DateofVisit):</label>
                                                             <div class="col-md-7">
-                                                                <input class="form-control" type="date" required="" />
+                                                                <input class="form-control" asp-for="SchoolTrip.DateofVisit" type="date" required="" />
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row form-group-sm">
+                                                            <label class="col-md-4 control-label">@Html.DisplayNameFor(model => Model.SchoolTrip.DateofRegistration):</label>
+                                                            <div class="col-md-7">
+                                                                <input class="form-control" asp-for="SchoolTrip.DateofRegistration" type="date" required="" />
                                                             </div>
                                                         </div>
 
                                                         <div class="row form-group">
-                                                            <label class="col-md-4 control-label">Details:</label>
+                                                            <label class="col-md-4 control-label">@Html.DisplayNameFor(model => Model.SchoolTrip.Details):</label>
                                                             <div class="col-md-7">
-                                                                <textarea cols="10" rows="3" required="" class="form-control" placeholder="enter details if any"></textarea>
+                                                                <textarea cols="10" rows="3" required="" class="form-control" asp-for="SchoolTrip.Details" placeholder="enter details if any"></textarea>
                                                             </div>
                                                         </div>
                                                         <div class="row form-group-sm">
@@ -1047,7 +1062,7 @@
                                                 <h3>Sleepovers</h3>
                                                 <p>Explore the Aquarium after we’ve closed to the public and learn about different spices in our interactive aquarium Lab.</p>
                                                 <p>An expert guide will lead you through special behind-the-scenes areas of the Aquarium. As the night winds down, set up your sleeping bag and fall asleep under the watchful eye of different under water species</p>
-                                                
+
                                                 <p><strong>For more informaion please fill the form below or contact us on 0871 000 0000</strong></p>
 
                                             </div>
@@ -1055,53 +1070,60 @@
                                                 <h3>Sleepovers Booking Enquiry</h3>
                                                 <h6>(Please enter all the fields)</h6>
                                                 <div class="well">
-                                                    <form role="form">
+                                                    <form role="form" asp-controller="Planyourvisit" asp-action="PlanYourVisit">
 
                                                         <h4>Contact Details</h4>
                                                         <div class="row form-group-sm">
-                                                            <label class="col-md-4 control-label">First Name:</label>
+                                                            <label class="col-md-4 control-label">@Html.DisplayNameFor(model => Model.SleepOver.FirstName):</label>
                                                             <div class="col-md-7">
-                                                                <input class="form-control" type="text" placeholder="enter your first name" required="" />
+                                                                <input class="form-control" asp-for="SleepOver.FirstName" type="text" placeholder="enter your first name" required="" />
                                                             </div>
                                                         </div>
                                                         <div class="row form-group-sm">
-                                                            <label class="col-md-4 control-label">Last Name:</label>
+                                                            <label class="col-md-4 control-label">@Html.DisplayNameFor(model => Model.SleepOver.LastName):</label>
                                                             <div class="col-md-7">
-                                                                <input class="form-control" type="text" placeholder="enter your last name" required="" />
+                                                                <input class="form-control" asp-for="SleepOver.LastName" type="text" placeholder="enter your last name" required="" />
                                                             </div>
                                                         </div>
                                                         <div class="row form-group-sm">
-                                                            <label class="col-md-4 control-label">Telephone:</label>
+                                                            <label class="col-md-4 control-label">@Html.DisplayNameFor(model => Model.SleepOver.ContactNumber):</label>
                                                             <div class="col-md-7">
-                                                                <input class="form-control" type="tel" placeholder="contact number" required="" />
+                                                                <input class="form-control" asp-for="SleepOver.ContactNumber" type="tel" placeholder="contact number" required="" />
                                                             </div>
                                                         </div>
                                                         <div class="row form-group-sm">
-                                                            <label class="col-md-4 control-label">Email:</label>
+                                                            <label class="col-md-4 control-label">@Html.DisplayNameFor(model => Model.SleepOver.UserEmail):</label>
                                                             <div class="col-md-7">
-                                                                <input class="form-control" type="email" placeholder="enter your email" required="" />
+                                                                <input class="form-control" asp-for="SleepOver.UserEmail" type="email" placeholder="enter your email" required="" />
                                                             </div>
                                                         </div>
                                                         <h4>Sleepovers Party Details</h4>
                                                         <div class="row form-group-sm">
-                                                            <label class="col-md-4 control-label">Date:</label>
+                                                            <label class="col-md-4 control-label">@Html.DisplayNameFor(model => Model.SleepOver.DateofVisit):</label>
                                                             <div class="col-md-7">
-                                                                <input class="form-control" type="date" required="" />
+                                                                <input class="form-control" asp-for="SleepOver.DateofVisit" type="date" required="" />
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row form-group-sm">
+                                                            <label class="col-md-4 control-label">@Html.DisplayNameFor(model => Model.SleepOver.DateofRegistration):</label>
+                                                            <div class="col-md-7">
+                                                                <input class="form-control" asp-for="SleepOver.DateofRegistration" type="date" required="" />
                                                             </div>
                                                         </div>
                                                         <div class="row form-group-sm">
-                                                            <label class="col-md-4 control-label">No. People:</label>
+                                                            <label class="col-md-4 control-label">@Html.DisplayNameFor(model => Model.SleepOver.AttendeesNumber):</label>
                                                             <div class="col-md-7">
-                                                                <input class="form-control" type="text" placeholder="enter no of people" required="" />
+                                                                <input class="form-control" asp-for="SleepOver.AttendeesNumber" type="text" placeholder="enter no of people" required="" />
                                                             </div>
                                                         </div>
                                                         <div class="row form-group">
                                                             <label class="col-md-4 control-label">AddOns:</label>
                                                             <div class="col-md-7">
-                                                                <label><input type="checkbox" value="">Food</label>
-                                                                <label><input type="checkbox" value="">Mattress</label>
-                                                                <label><input type="checkbox" value="">Virtual Reality(Gear vr)</label>
-                                                           </div>
+                                                                <label><input type="checkbox" asp-for="SleepOver.IsNeedInFood">@Html.DisplayNameFor(model => Model.SleepOver.IsNeedInFood)</label>
+                                                                <label><input type="checkbox" asp-for="SleepOver.IsNeedInMattress">@Html.DisplayNameFor(model => Model.SleepOver.IsNeedInMattress)</label>
+                                                                <label><input type="checkbox" asp-for="SleepOver.IsNeedInVR">@Html.DisplayNameFor(model => Model.SleepOver.IsNeedInVR)</label>
+                                                            </div>
                                                         </div>
                                                         <div class="row form-group-sm">
                                                             <div class="col-md-3"></div>
@@ -1121,7 +1143,7 @@
                         <!-- start of div content for faqs-->
                         @*<div class="tab-pane" id="faq">
 
-                        </div>*@
+                            </div>*@
                         <!-- end of div content for faqs-->
                     </div>
                     <!-- end of nav tab content -->
@@ -1132,7 +1154,7 @@
         </div>
         <!-- end of container-->
 
-        
+
         <div class="container" style="margin-top:45px;">
             <footer style="text-align: center; font-size: 14px;">Aquatix &copy; 2016. All rights reserved.</footer>
         </div>
@@ -1161,5 +1183,4 @@
     </environment>
 
 </body>
-
 </html>

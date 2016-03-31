@@ -8,6 +8,7 @@ namespace D05.Models
 {
     public class BirthdayParty
     {
+
         [ScaffoldColumn(false)]
         public int BirthdayPartyID { get; set; }
 

@@ -39,5 +39,6 @@ namespace D05.Models
         [Required]
         public string IsAdminAccepted { get; set; }
 
+
     }
 }
