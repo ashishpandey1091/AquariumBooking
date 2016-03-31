@@ -59,6 +59,17 @@ namespace D05.Controllers
         {
             ApplicationUser user = null;
 
+
+            var viewModel = new ShoppingCartViewModel
+            {
+                Price = _context.Prices.Single(),
+                Event = _context.Events.ToList(),
+                User = user,
+                OrderDetail = shoppingCart.OrderDetail
+
+            };
+
+
             if (User.IsInRole("user"))
             {
                 user = _userManager.FindByNameAsync(User.Identity.Name).Result;
@@ -74,7 +85,7 @@ namespace D05.Controllers
                 bp.IsAdminAccepted = "N/A";
                 _context.BirthdayParties.Add(bp);
 
-                var birthdayViewModel = new ShoppingCartViewModel
+                viewModel = new ShoppingCartViewModel
                 {
 
                     Event = _context.Events.ToList(),
@@ -82,9 +93,7 @@ namespace D05.Controllers
 
 
                 };
-                _context.SaveChanges();
                 ViewData["birthday"] = "true";
-                return View(birthdayViewModel);
 
             }
 
@@ -94,7 +103,7 @@ namespace D05.Controllers
                 st.IsAdminAccepted = "N/A";
                 _context.SchoolTrips.Add(st);
 
-                var schoolTripViewModel = new ShoppingCartViewModel
+                viewModel = new ShoppingCartViewModel
                 {
 
                     Event = _context.Events.ToList(),
@@ -102,9 +111,7 @@ namespace D05.Controllers
 
 
                 };
-                _context.SaveChanges();
                 ViewData["schooltrip"] = "true";
-                return View(schoolTripViewModel);
 
             }
 
@@ -114,7 +121,7 @@ namespace D05.Controllers
                 so.IsAdminAccepted = "N/A";
                 _context.SleepOvers.Add(so);
 
-                var sleepOverViewModel = new ShoppingCartViewModel
+                viewModel = new ShoppingCartViewModel
                 {
 
                     Event = _context.Events.ToList(),
@@ -122,26 +129,26 @@ namespace D05.Controllers
 
 
                 };
-                _context.SaveChanges();
                 ViewData["sleepover"] = "true";
-                return View(sleepOverViewModel);
 
             }
 
 
-            _context.SaveChanges();
-
-            ViewData["orderplaced"] = "true";
-
-            var viewModel = new ShoppingCartViewModel
+            
+            if (shoppingCart.OrderDetail != null)
             {
-                Price = _context.Prices.Single(),
-                Event = _context.Events.ToList(),
-                User = user,
-                OrderDetail = shoppingCart.OrderDetail
+                ViewData["orderplaced"] = "true";
 
-            };
+                viewModel = new ShoppingCartViewModel
+                {
+                    Price = _context.Prices.Single(),
+                    Event = _context.Events.ToList(),
+                    User = user,
+                    OrderDetail = shoppingCart.OrderDetail
 
+                };
+            }
+            _context.SaveChanges();
             return View(viewModel);
         }
 
