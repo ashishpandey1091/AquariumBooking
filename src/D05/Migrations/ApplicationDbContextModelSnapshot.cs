@@ -157,23 +157,43 @@ namespace D05.Migrations
                     b.Property<int>("OrderDetailID")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<int>("AdultTicketQty");
+
                     b.Property<string>("ApplicationUserId");
 
-                    b.Property<int>("ContactNumber");
+                    b.Property<int>("ChildTicketQty");
+
+                    b.Property<string>("ContactNumber");
 
                     b.Property<DateTime>("DateOfVisit");
 
                     b.Property<decimal>("EntryTicketPrice");
 
+                    b.Property<string>("Lunch");
+
+                    b.Property<int>("MealQty");
+
+                    b.Property<int>("OldAgeTicketQty");
+
                     b.Property<decimal>("OrderTotalPrice");
 
+                    b.Property<string>("RidePlan");
+
+                    b.Property<int>("RideQty");
+
+                    b.Property<int>("ShowCount");
+
                     b.Property<decimal>("SpecialEventPrice");
+
+                    b.Property<string>("SpecialShowName1");
 
                     b.Property<DateTime>("TicketGeneratedDate");
 
                     b.Property<string>("VisitorEmail");
 
                     b.Property<string>("VisitorFN");
+
+                    b.Property<string>("VisitorLN");
 
                     b.HasKey("OrderDetailID");
                 });

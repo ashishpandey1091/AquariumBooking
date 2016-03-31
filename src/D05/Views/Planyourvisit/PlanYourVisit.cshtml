@@ -5,7 +5,9 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] Aquatix</title>
-
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     <environment names="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="~/css/home.css" />
@@ -18,9 +20,11 @@
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
 
     </environment>
-    <style>
-        
-    </style>
+    <script>
+  $(function() {
+    $( "#datepicker" ).datepicker();
+  });
+    </script>
 </head>
 <body>
     @using System.Security.Claims
@@ -718,7 +722,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="panel-body">
-                                                                <p id="refId">Your Ticket Id is <span> @Html.DisplayFor(model => model.OrderDetail.OrderDetailID)</span>.Email has been seen to <span> @Html.DisplayFor(model => model.OrderDetail.VisitorEmail)</span> and a message has been sent to your registered mobile no ;</p>
+                                                                <p id="refId">Your Ticket Id is <span> @Html.DisplayFor(model => model.OrderDetail.OrderDetailID)</span>.Email has been seen to <span> @Html.DisplayFor(model => model.OrderDetail.VisitorEmail)</span> and a message has been sent to your registered mobile no.</p>
                                                             </div>
                                                         </div>
 
@@ -737,7 +741,7 @@
                                                                 </tr>
                                                                 <tr>
                                                                     <td>Entry Ticket Price</td>
-                                                                    <td>@Html.DisplayFor(model => model.OrderDetail.EntryTicketPrice)</td>
+                                                                    <td>$ @Html.DisplayFor(model => model.OrderDetail.EntryTicketPrice)</td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td>Shows Booked</td>
@@ -747,7 +751,7 @@
                                                                 @if (Model.OrderDetail != null && Model.OrderDetail.ShowCount != 0 ) { 
                                                                 <tr>
                                                                     <td>@Html.DisplayFor(model => model.OrderDetail.SpecialShowName1)</td>
-                                                                    <td>@Html.DisplayFor(model => model.OrderDetail.SpecialEventPrice)</td>
+                                                                    <td>$ @Html.DisplayFor(model => model.OrderDetail.SpecialEventPrice)</td>
                                                                 </tr>
                                                                 }
                                                                 @if (Model.OrderDetail != null && Model.OrderDetail.Lunch != null && Model.OrderDetail.Lunch.Equals("yes"))
@@ -769,7 +773,7 @@
 
                                                                 <tr>
                                                                     <td>Order Total</td>
-                                                                    <td>@Html.DisplayFor(model => model.OrderDetail.OrderTotalPrice)</td>
+                                                                    <td>$ @Html.DisplayFor(model => model.OrderDetail.OrderTotalPrice)</td>
                                                                 </tr>
 
                                                             </table>
@@ -1157,4 +1161,5 @@
     </environment>
 
 </body>
+
 </html>
