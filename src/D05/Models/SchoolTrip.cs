@@ -12,36 +12,46 @@ namespace D05.Models
         public int SchoolTripID { get; set; }
 
         [Required]
+        [Display(Name = "School Name")]
         public string SchoolName { get; set; }
 
         [Required]
+        [Display(Name = "School Address")]
         public string SchoolAddress { get; set; }
 
         [Required]
-        public int ContactNumber { get; set; }
+        [Display(Name = "Telephone")]
+        public string ContactNumber { get; set; }
 
         [DataType(DataType.EmailAddress)]
         [Required]
-        public string  SchoolEmail { get; set; }
+        [Display(Name = "Email")]
+        public string SchoolEmail { get; set; }
 
         [Required]
+        [Display(Name = "Number of Children")]
         public int NoOfChildren { get; set; }
 
         [Required]
+        [Display(Name = "Number of Adults")]
         public int NoOfAdults { get; set; }
 
         [Required]
+        [Display(Name = "Date of visit")]
         public DateTime DateofVisit { get; set; }
 
+
+
         [Required]
+        [Display(Name = "Details")]
         public string Details { get; set; }
 
         [Required]
         public string IsAdminAccepted { get; set; }
 
         [Required]
+        [Display(Name = "Date of Registration")]
         public DateTime DateofRegistration { get; set; }
-      
 
 
     }
