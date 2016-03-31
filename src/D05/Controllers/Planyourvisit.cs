@@ -64,10 +64,72 @@ namespace D05.Controllers
                 user = _userManager.FindByNameAsync(User.Identity.Name).Result;
             }
 
-            
-            
+
+            if (shoppingCart.OrderDetail != null)
                 _context.OrderDetails.Add(shoppingCart.OrderDetail);
+
+            if (shoppingCart.BirthDayParty != null)
+            {
+                BirthdayParty bp = shoppingCart.BirthDayParty;
+                bp.IsAdminAccepted = "N/A";
+                _context.BirthdayParties.Add(bp);
+
+                var birthdayViewModel = new ShoppingCartViewModel
+                {
+
+                    Event = _context.Events.ToList(),
+                    User = user,
+
+
+                };
                 _context.SaveChanges();
+                ViewData["birthday"] = "true";
+                return View(birthdayViewModel);
+
+            }
+
+            if (shoppingCart.SchoolTrip != null)
+            {
+                SchoolTrip st = shoppingCart.SchoolTrip;
+                st.IsAdminAccepted = "N/A";
+                _context.SchoolTrips.Add(st);
+
+                var schoolTripViewModel = new ShoppingCartViewModel
+                {
+
+                    Event = _context.Events.ToList(),
+                    User = user,
+
+
+                };
+                _context.SaveChanges();
+                ViewData["schooltrip"] = "true";
+                return View(schoolTripViewModel);
+
+            }
+
+            if (shoppingCart.SleepOver != null)
+            {
+                SleepOver so = shoppingCart.SleepOver;
+                so.IsAdminAccepted = "N/A";
+                _context.SleepOvers.Add(so);
+
+                var sleepOverViewModel = new ShoppingCartViewModel
+                {
+
+                    Event = _context.Events.ToList(),
+                    User = user,
+
+
+                };
+                _context.SaveChanges();
+                ViewData["sleepover"] = "true";
+                return View(sleepOverViewModel);
+
+            }
+
+
+            _context.SaveChanges();
 
             ViewData["orderplaced"] = "true";
 
