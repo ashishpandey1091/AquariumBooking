@@ -11,6 +11,7 @@ child_price = 15.00;
 old_price = 6.00;
 adult_price_show = 55.0;
 child_price_show = 25.0;
+old_price_show = 20.0;
 subtotaladult = 0.0;
 subtotalchild = 0.0;
 subtotalold = 0.0;
@@ -630,7 +631,7 @@ function calculateCart(checkTicket){
                 }
 
                 if (old === "true") {
-                    p_dolphinshow += oldqty * adult_price_show;
+                    p_dolphinshow += oldqty * old_price_show;
                 }
              showprice = p_dolphinshow;   
              shows.push(showname)
@@ -647,7 +648,7 @@ function calculateCart(checkTicket){
                         p_musicshow += childqty * child_price_show;
                     }
                     if (old === "true") {
-                        p_musicshow += oldqty * adult_price_show;
+                        p_musicshow += oldqty * old_price_show;
                     }
                 showprice = p_musicshow;
                 shows.push(showname);
@@ -665,7 +666,7 @@ function calculateCart(checkTicket){
                         p_coralshow += childqty * child_price_show;
                     }
                     if (old === "true") {
-                        p_coralshow += oldqty * adult_price_show;
+                        p_coralshow += oldqty * old_price_show;
                     }
                 showprice = p_coralshow;
                 shows.push(showname);
@@ -887,13 +888,13 @@ function showPayment(redirection){
     
    
      if(adult == "true"){
-        entryTicketDescription = adultqty + " Adult(s)";
+        entryTicketDescription += adultqty + " Adult(s)";
     }
      if(child == "true"){
-       entryTicketDescription = childqty + "Child(s)"; 
+       entryTicketDescription += childqty + "Child(s)"; 
     }
      if (old == "true") {
-        entryTicketDescription = oldqty + "Above 60";
+        entryTicketDescription += oldqty + "Above 60";
     }
     
     
