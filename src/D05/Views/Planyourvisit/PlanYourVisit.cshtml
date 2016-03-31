@@ -735,7 +735,10 @@
                                                         </tr>
                                                         <tr>
                                                             <td>Date Of Visit</td>
-                                                            <td>@Html.DisplayFor(model => model.OrderDetail.DateOfVisit)</td>
+                                                            @{
+                                                                DateTime thisDate = Model.OrderDetail.DateOfVisit;
+                                                            }
+                                                            <td>@thisDate.ToString("MMMM dd, yyyy")</td>
                                                         </tr>
                                                         <tr>
                                                             <td>Entry Ticket Price</td>
