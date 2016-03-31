@@ -747,9 +747,14 @@
                                                         <tr>
                                                             <td>Date Of Visit</td>
                                                             @{
-                                                                DateTime thisDate = Model.OrderDetail.DateOfVisit;
+                                                                DateTime thisDate ;
+                                                                if (Model.OrderDetail != null)
+                                                                {
+                                                                    thisDate = Model.OrderDetail.DateOfVisit;
+                                                                    <td>@thisDate.ToString("MMMM dd, yyyy")</td>
+                                                                }
+
                                                             }
-                                                            <td>@thisDate.ToString("MMMM dd, yyyy")</td>
                                                         </tr>
                                                         <tr>
                                                             <td>Entry Ticket Price</td>
