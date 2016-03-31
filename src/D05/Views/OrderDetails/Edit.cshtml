@@ -1,0 +1,156 @@
+@model D05.Models.OrderDetail
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<form asp-action="Edit">
+    <div class="form-horizontal">
+        <h4>OrderDetail</h4>
+        <hr />
+        <div asp-validation-summary="ValidationSummary.ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="AdultTicketQty" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="AdultTicketQty" class="form-control" />
+                <span asp-validation-for="AdultTicketQty" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="ChildTicketQty" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="ChildTicketQty" class="form-control" />
+                <span asp-validation-for="ChildTicketQty" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="ContactNumber" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="ContactNumber" class="form-control" />
+                <span asp-validation-for="ContactNumber" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="DateOfVisit" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="DateOfVisit" class="form-control" />
+                <span asp-validation-for="DateOfVisit" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="EntryTicketPrice" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="EntryTicketPrice" class="form-control" />
+                <span asp-validation-for="EntryTicketPrice" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Lunch" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Lunch" class="form-control" />
+                <span asp-validation-for="Lunch" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="MealQty" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="MealQty" class="form-control" />
+                <span asp-validation-for="MealQty" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="OldAgeTicketQty" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="OldAgeTicketQty" class="form-control" />
+                <span asp-validation-for="OldAgeTicketQty" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="OrderTotalPrice" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="OrderTotalPrice" class="form-control" />
+                <span asp-validation-for="OrderTotalPrice" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="RidePlan" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="RidePlan" class="form-control" />
+                <span asp-validation-for="RidePlan" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="RideQty" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="RideQty" class="form-control" />
+                <span asp-validation-for="RideQty" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="ShowCount" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="ShowCount" class="form-control" />
+                <span asp-validation-for="ShowCount" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="SpecialEventPrice" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="SpecialEventPrice" class="form-control" />
+                <span asp-validation-for="SpecialEventPrice" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="SpecialShowName1" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="SpecialShowName1" class="form-control" />
+                <span asp-validation-for="SpecialShowName1" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="TicketGeneratedDate" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="TicketGeneratedDate" class="form-control" />
+                <span asp-validation-for="TicketGeneratedDate" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="VisitorEmail" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="VisitorEmail" class="form-control" />
+                <span asp-validation-for="VisitorEmail" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="VisitorFN" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="VisitorFN" class="form-control" />
+                <span asp-validation-for="VisitorFN" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="VisitorLN" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="VisitorLN" class="form-control" />
+                <span asp-validation-for="VisitorLN" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}
