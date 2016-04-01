@@ -1,0 +1,126 @@
+@model D05.Models.OrderDetail
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>OrderDetail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AdultTicketQty)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AdultTicketQty)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ChildTicketQty)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ChildTicketQty)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ContactNumber)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ContactNumber)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DateOfVisit)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DateOfVisit)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EntryTicketPrice)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EntryTicketPrice)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Lunch)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Lunch)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MealQty)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MealQty)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.OldAgeTicketQty)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.OldAgeTicketQty)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderTotalPrice)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.OrderTotalPrice)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.RidePlan)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.RidePlan)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.RideQty)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.RideQty)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ShowCount)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ShowCount)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SpecialEventPrice)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SpecialEventPrice)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SpecialShowName1)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SpecialShowName1)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TicketGeneratedDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TicketGeneratedDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.VisitorEmail)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.VisitorEmail)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.VisitorFN)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.VisitorFN)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.VisitorLN)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.VisitorLN)
+        </dd>
+    </dl>
+</div>
+<p>
+    <a asp-action="Edit" asp-route-id="@Model.OrderDetailID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</p>

@@ -528,7 +528,7 @@ function entrypassprice(tickettype,qty){
         if(subtotaladult === 0.0){
             $('#subtotalone').html("--");
         }else{
-            $('#subtotalone').html(subtotaladult);
+            $('#subtotalone').html("$"+subtotaladult);
         }
         
     }
@@ -541,7 +541,7 @@ function entrypassprice(tickettype,qty){
         if(subtotalchild === 0.0){
             $('#subtotaltwo').html("--");
         }else{
-            $('#subtotaltwo').html(subtotalchild);
+            $('#subtotaltwo').html("$" + subtotalchild);
         }
     }
 
@@ -552,7 +552,7 @@ function entrypassprice(tickettype,qty){
         if (subtotalold === 0.0) {
             $('#subtotalthree').html("--");
         } else {
-            $('#subtotalthree').html(subtotalold);
+            $('#subtotalthree').html("$" + subtotalold);
         }
     }
     

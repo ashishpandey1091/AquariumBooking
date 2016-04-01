@@ -59,17 +59,6 @@ namespace D05.Controllers
         {
             ApplicationUser user = null;
 
-            if (User.IsInRole("user"))
-            {
-                user = _userManager.FindByNameAsync(User.Identity.Name).Result;
-            }
-
-            
-            
-                _context.OrderDetails.Add(shoppingCart.OrderDetail);
-                _context.SaveChanges();
-
-            ViewData["orderplaced"] = "true";
 
             var viewModel = new ShoppingCartViewModel
             {
@@ -80,6 +69,86 @@ namespace D05.Controllers
 
             };
 
+
+            if (User.IsInRole("user"))
+            {
+                user = _userManager.FindByNameAsync(User.Identity.Name).Result;
+            }
+
+
+            if (shoppingCart.OrderDetail != null)
+                _context.OrderDetails.Add(shoppingCart.OrderDetail);
+
+            if (shoppingCart.BirthDayParty != null)
+            {
+                BirthdayParty bp = shoppingCart.BirthDayParty;
+                bp.IsAdminAccepted = "N/A";
+                _context.BirthdayParties.Add(bp);
+
+                viewModel = new ShoppingCartViewModel
+                {
+
+                    Event = _context.Events.ToList(),
+                    User = user,
+
+
+                };
+                ViewData["birthday"] = "true";
+
+            }
+
+            if (shoppingCart.SchoolTrip != null)
+            {
+                SchoolTrip st = shoppingCart.SchoolTrip;
+                st.IsAdminAccepted = "N/A";
+                _context.SchoolTrips.Add(st);
+
+                viewModel = new ShoppingCartViewModel
+                {
+
+                    Event = _context.Events.ToList(),
+                    User = user,
+
+
+                };
+                ViewData["schooltrip"] = "true";
+
+            }
+
+            if (shoppingCart.SleepOver != null)
+            {
+                SleepOver so = shoppingCart.SleepOver;
+                so.IsAdminAccepted = "N/A";
+                _context.SleepOvers.Add(so);
+
+                viewModel = new ShoppingCartViewModel
+                {
+
+                    Event = _context.Events.ToList(),
+                    User = user,
+
+
+                };
+                ViewData["sleepover"] = "true";
+
+            }
+
+
+            
+            if (shoppingCart.OrderDetail != null)
+            {
+                ViewData["orderplaced"] = "true";
+
+                viewModel = new ShoppingCartViewModel
+                {
+                    Price = _context.Prices.Single(),
+                    Event = _context.Events.ToList(),
+                    User = user,
+                    OrderDetail = shoppingCart.OrderDetail
+
+                };
+            }
+            _context.SaveChanges();
             return View(viewModel);
         }
 

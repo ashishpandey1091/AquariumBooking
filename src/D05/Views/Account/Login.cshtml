@@ -67,7 +67,9 @@
                                     var count = 0;
                                     var number = "";
                                 }
-
+                                @{ 
+                                    if (Model.Event != null)
+                                    {
                                 @foreach (var item in Model.Event)
                                 {
                                     if (!item.IsSpecialEvent)
@@ -88,6 +90,8 @@
                                     }
 
                                 }
+                                        }
+                                    }
 
                             </ul>
                         </li>

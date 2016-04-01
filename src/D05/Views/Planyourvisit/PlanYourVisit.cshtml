@@ -220,15 +220,15 @@
                                             <tbody>
                                                 <tr>
                                                     <td>Adult</td>
-                                                    <td>$12.99</td>
+                                                    <td>$75.00</td>
                                                 </tr>
                                                 <tr>
                                                     <td>Child</td>
-                                                    <td>$5.9</td>
+                                                    <td>$15.00</td>
                                                 </tr>
                                                 <tr>
                                                     <td>Adult(60yrs and older)</td>
-                                                    <td>Entry Free</td>
+                                                    <td>$6.00</td>
                                                 </tr>
                                                 <tr>
                                                     <td>Child(3yrs and below)</td>
@@ -416,19 +416,19 @@
                                                 <div class="event-details event-details-1">
                                                     <h3>Dolphin Show</h3>
                                                     <p>We are launching our new Dolphin Show experience on March 31, 2016! The new presentation is a fun and exciting experience that showcases dolphin behavior and their relationship with their trainers while incorporating important education messages. Focusing on the beauty, grace, athleticism, and intelligence of bottlenose dolphins, this presentation uses a variety of new behaviors that focus on each characteristic. Dolphin Show is included in Aquarium general admission. Seating is first come first served, based on available seating.  Guests are advised to arrive at the theater at least 30 minutes prior to the showtime.</p>
-                                                    <p>For Adults: <strong>$55</strong>, For Children: <strong>$25</strong></p>
+                                                    <p>For Adults: <strong>$55</strong>, For Children: <strong>$25</strong> , For Above 60: <strong>$20</strong></p>
                                                 </div>
 
                                                 <div class="event-details event-details-2">
                                                     <h3>Music Fountain Show</h3>
                                                     <p>49 water jets and 48 water shooters spout up to 60 feet in the air, before coming back to a 37,500-gallon underground reservoir. Water is recycled into the fountain at a rate of 2,200 gallons per minute. Check out our dancing water shows, synchronized to music recorded for Crown Center by members of the Kansas City Symphony. (During the shows, high pressure jets shoot sprays of water in specially choreographed patterns. For your safety, playing or standing in the fountains during the water show is not permitted.)</p>
-                                                    <p>For Adults: <strong>$55</strong>, For Children: <strong>$25</strong></p>
+                                                    <p>For Adults: <strong>$55</strong>, For Children: <strong>$25</strong>, For Above 60: <strong>$20</strong></p>
                                                 </div>
 
                                                 <div class="event-details event-details-3">
                                                     <h3>Coral Show</h3>
                                                     <p>Coral Show can best be described as an indoor marketplace where sellers, exhibitors, and hobbyists of all types can buy, sell, trade, showcase their products to the marine hobbyist community. The main purpose of Coral Show is to provide an enjoyable, positive atmosphere that is conducive to education and trade of both product and knowledge. As such, participating exhibitors range from large manufacturers, to retailers, to small livestock sellers, and participating hobbyists range from the beginner to the elite, rare-species coral farmer.</p>
-                                                    <p>For Adults: <strong>$55</strong>, For Children: <strong>$25</strong></p>
+                                                    <p>For Adults: <strong>$55</strong>, For Children: <strong>$25</strong>, For Above 60: <strong>$20</strong></p>
                                                 </div>
                                             </div>
                                             <!-- third row ends -->
@@ -769,7 +769,7 @@
                                                         {
                                                             <tr>
                                                                 <td>@Html.DisplayFor(model => model.OrderDetail.SpecialShowName1)</td>
-                                                                <td>@Html.DisplayFor(model => model.OrderDetail.SpecialEventPrice)</td>
+                                                                <td>$ @Html.DisplayFor(model => model.OrderDetail.SpecialEventPrice)</td>
                                                             </tr>
                                                         }
                                                         @if (Model.OrderDetail != null && Model.OrderDetail.Lunch != null && Model.OrderDetail.Lunch.Equals("yes"))
