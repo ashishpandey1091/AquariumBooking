@@ -6,22 +6,22 @@ using D05.Models;
 
 namespace D05.Controllers
 {
-    public class EventsController : Controller
+    public class SleepOversController : Controller
     {
         private ApplicationDbContext _context;
 
-        public EventsController(ApplicationDbContext context)
+        public SleepOversController(ApplicationDbContext context)
         {
             _context = context;    
         }
 
-        // GET: Events
+        // GET: SleepOvers
         public IActionResult Index()
         {
-            return View(_context.Events.ToList());
+            return View(_context.SleepOvers.ToList());
         }
 
-        // GET: Events/Details/5
+        // GET: SleepOvers/Details/5
         public IActionResult Details(int? id)
         {
             if (id == null)
@@ -29,36 +29,36 @@ namespace D05.Controllers
                 return HttpNotFound();
             }
 
-            Event eventNew = _context.Events.Single(m => m.EventID == id);
-            if (eventNew == null)
+            SleepOver sleepOver = _context.SleepOvers.Single(m => m.SleepOverID == id);
+            if (sleepOver == null)
             {
                 return HttpNotFound();
             }
 
-            return View(eventNew);
+            return View(sleepOver);
         }
 
-        // GET: Events/Create
+        // GET: SleepOvers/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Events/Create
+        // POST: SleepOvers/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Event eventNew,string command)
+        public IActionResult Create(SleepOver sleepOver)
         {
             if (ModelState.IsValid)
             {
-                _context.Events.Add(eventNew);
+                _context.SleepOvers.Add(sleepOver);
                 _context.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(eventNew);
+            return View(sleepOver);
         }
 
-        // GET: Events/Edit/5
+        // GET: SleepOvers/Edit/5
         public IActionResult Edit(int? id)
         {
             if (id == null)
@@ -66,29 +66,29 @@ namespace D05.Controllers
                 return HttpNotFound();
             }
 
-            Event eventNew = _context.Events.Single(m => m.EventID == id);
-            if (eventNew == null)
+            SleepOver sleepOver = _context.SleepOvers.Single(m => m.SleepOverID == id);
+            if (sleepOver == null)
             {
                 return HttpNotFound();
             }
-            return View(eventNew);
+            return View(sleepOver);
         }
 
-        // POST: Events/Edit/5
+        // POST: SleepOvers/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(Event eventNew)
+        public IActionResult Edit(SleepOver sleepOver)
         {
             if (ModelState.IsValid)
             {
-                _context.Update(eventNew);
+                _context.Update(sleepOver);
                 _context.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(eventNew);
+            return View(sleepOver);
         }
 
-        // GET: Events/Delete/5
+        // GET: SleepOvers/Delete/5
         [ActionName("Delete")]
         public IActionResult Delete(int? id)
         {
@@ -97,26 +97,24 @@ namespace D05.Controllers
                 return HttpNotFound();
             }
 
-            Event eventNew = _context.Events.Single(m => m.EventID == id);
-            if (eventNew == null)
+            SleepOver sleepOver = _context.SleepOvers.Single(m => m.SleepOverID == id);
+            if (sleepOver == null)
             {
                 return HttpNotFound();
             }
 
-            return View(eventNew);
+            return View(sleepOver);
         }
 
-        // POST: Events/Delete/5
+        // POST: SleepOvers/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(int id)
         {
-            Event eventNew = _context.Events.Single(m => m.EventID == id);
-            _context.Events.Remove(eventNew);
+            SleepOver sleepOver = _context.SleepOvers.Single(m => m.SleepOverID == id);
+            _context.SleepOvers.Remove(sleepOver);
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
-
-       
     }
 }

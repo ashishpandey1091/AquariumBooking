@@ -11,193 +11,194 @@
       asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
       asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
 <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
-<div class="container">
-    <div class="navbar-wrapper">
-        <div class="container">
-            <!-- start  of navigation bar-->
+<body style="background-image:url(/img/admin.jpg)">
+    <div class="container">
+        <div class="navbar-wrapper">
+            <div class="container">
+                <!-- start  of navigation bar-->
 
-            <nav class="navbar navbar-inverse" id="navid">
-                <div class="container">
+                <nav class="navbar navbar-inverse" id="navid">
+                    <div class="container">
 
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-controls="navbar">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <a class="navbar-brand" href="#">Aquatix Aquarium</a>
-                    </div>
-                    <div id="navbar" class="navbar-collapse collapse">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-controls="navbar">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" href="#">Aquatix Aquarium</a>
+                        </div>
+                        <div id="navbar" class="navbar-collapse collapse">
 
 
 
-                        @if (User.IsSignedIn())
-                        {
-                            <div id="myaccount" style="padding-right:20px">
-                                <form asp-controller="Account" asp-action="LogOff" method="post" id="logoutForm" class="nav navbar-nav navbar-right">
+                            @if (User.IsSignedIn())
+                            {
+                                <div id="myaccount" style="padding-right:20px">
+                                    <form asp-controller="Account" asp-action="LogOff" method="post" id="logoutForm" class="nav navbar-nav navbar-right">
+                                        <ul class="nav navbar-nav navbar-right">
+
+                                            <li>
+                                                <button type="submit" class="btn btn-link navbar-btn navbar-link">Log off</button>
+                                            </li>
+                                        </ul>
+                                    </form>
+                                </div>
+                            }
+                            else {
+                                <div id="loginlinks" style="padding-right:20px">
                                     <ul class="nav navbar-nav navbar-right">
-
-                                        <li>
-                                            <button type="submit" class="btn btn-link navbar-btn navbar-link">Log off</button>
-                                        </li>
+                                        <li><a asp-controller="Account" asp-action="Register">Register</a></li>
+                                        <li><a asp-controller="Account" asp-action="Login">Log in</a></li>
                                     </ul>
-                                </form>
-                            </div>
-                        }
-                        else {
-                            <div id="loginlinks" style="padding-right:20px">
-                                <ul class="nav navbar-nav navbar-right">
-                                    <li><a asp-controller="Account" asp-action="Register">Register</a></li>
-                                    <li><a asp-controller="Account" asp-action="Login">Log in</a></li>
-                                </ul>
-                            </div>
-                        }
+                                </div>
+                            }
+                        </div>
                     </div>
-                </div>
-            </nav>
+                </nav>
 
-            <!-- end of navigation bar-->
-        </div>
-        <div class="container">
+                <!-- end of navigation bar-->
+            </div>
+            <div class="container">
 
-            <h2>Index</h2>
+                <h2>Index</h2>
 
-            <p>
-                <a asp-action="Create">Create New</a>
-            </p>
-            <table class="table">
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.AdultTicketQty)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.ChildTicketQty)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.ContactNumber)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.DateOfVisit)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.EntryTicketPrice)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Lunch)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.MealQty)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.OldAgeTicketQty)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.OrderTotalPrice)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.RidePlan)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.RideQty)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.ShowCount)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.SpecialEventPrice)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.SpecialShowName1)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.TicketGeneratedDate)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.VisitorEmail)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.VisitorFN)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.VisitorLN)
-                    </th>
-                    <th></th>
-                </tr>
-
-                @foreach (var item in Model)
-                {
+                <p>
+                    <a asp-action="Create">Create New</a>
+                </p>
+                <table class="table">
                     <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.AdultTicketQty)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.ChildTicketQty)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.ContactNumber)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.DateOfVisit)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.EntryTicketPrice)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Lunch)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.MealQty)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.OldAgeTicketQty)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.OrderTotalPrice)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.RidePlan)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.RideQty)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.ShowCount)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.SpecialEventPrice)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.SpecialShowName1)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.TicketGeneratedDate)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.VisitorEmail)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.VisitorFN)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.VisitorLN)
-                        </td>
-                        <td>
-                            <a asp-action="Edit" asp-route-id="@item.OrderDetailID">Edit</a> |
-                            <a asp-action="Details" asp-route-id="@item.OrderDetailID">Details</a> |
-                            <a asp-action="Delete" asp-route-id="@item.OrderDetailID">Delete</a>
-                        </td>
+                        <th>
+                            @Html.DisplayNameFor(model => model.AdultTicketQty)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ChildTicketQty)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ContactNumber)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.DateOfVisit)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.EntryTicketPrice)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Lunch)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.MealQty)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.OldAgeTicketQty)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.OrderTotalPrice)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.RidePlan)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.RideQty)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ShowCount)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.SpecialEventPrice)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.SpecialShowName1)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.TicketGeneratedDate)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.VisitorEmail)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.VisitorFN)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.VisitorLN)
+                        </th>
+                        <th></th>
                     </tr>
-                }
-            </table>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AdultTicketQty)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ChildTicketQty)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ContactNumber)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DateOfVisit)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.EntryTicketPrice)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Lunch)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MealQty)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.OldAgeTicketQty)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.OrderTotalPrice)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.RidePlan)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.RideQty)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ShowCount)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SpecialEventPrice)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SpecialShowName1)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TicketGeneratedDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.VisitorEmail)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.VisitorFN)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.VisitorLN)
+                            </td>
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@item.OrderDetailID">Edit</a> |
+                                <a asp-action="Details" asp-route-id="@item.OrderDetailID">Details</a> |
+                                <a asp-action="Delete" asp-route-id="@item.OrderDetailID">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
         </div>
+
     </div>
+    </body>
 
-</div>
-
-
-@section Scripts {
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
-    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
-}
+    @section Scripts {
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+        <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    }

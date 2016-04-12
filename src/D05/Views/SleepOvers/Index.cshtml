@@ -1,0 +1,153 @@
+@model IEnumerable<D05.Models.SleepOver>
+@using System.Security.Claims
+
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+<link rel="stylesheet" href="~/css/site.css" />
+<link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.5/css/bootstrap.min.css"
+      asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+      asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+<link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+<body style="background-image:url(/img/admin.jpg)">
+    <div class="container">
+        <div class="navbar-wrapper">
+            <div class="container">
+                <!-- start  of navigation bar-->
+
+                <nav class="navbar navbar-inverse" id="navid">
+                    <div class="container">
+
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-controls="navbar">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" href="#">Aquatix Aquarium</a>
+                        </div>
+                        <div id="navbar" class="navbar-collapse collapse">
+
+
+
+                            @if (User.IsSignedIn())
+                            {
+                                <div id="myaccount" style="padding-right:20px">
+                                    <form asp-controller="Account" asp-action="LogOff" method="post" id="logoutForm" class="nav navbar-nav navbar-right">
+                                        <ul class="nav navbar-nav navbar-right">
+
+                                            <li>
+                                                <button type="submit" class="btn btn-link navbar-btn navbar-link">Log off</button>
+                                            </li>
+                                        </ul>
+                                    </form>
+                                </div>
+                            }
+                            else {
+                                <div id="loginlinks" style="padding-right:20px">
+                                    <ul class="nav navbar-nav navbar-right">
+                                        <li><a asp-controller="Account" asp-action="Register">Register</a></li>
+                                        <li><a asp-controller="Account" asp-action="Login">Log in</a></li>
+                                    </ul>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </nav>
+
+                <!-- end of navigation bar-->
+            </div>
+
+            @{
+                ViewData["Title"] = "Index";
+            }
+
+            <h2>Index</h2>
+
+            <p>
+                <a asp-action="Create">Create New</a>
+            </p>
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.AttendeesNumber)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ContactNumber)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DateofRegistration)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DateofVisit)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FirstName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.IsAdminAccepted)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.IsNeedInFood)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.IsNeedInMattress)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.IsNeedInVR)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.LastName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.UserEmail)
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+            {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AttendeesNumber)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ContactNumber)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DateofRegistration)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DateofVisit)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FirstName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IsAdminAccepted)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IsNeedInFood)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IsNeedInMattress)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IsNeedInVR)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LastName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UserEmail)
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.SleepOverID">Edit</a> |
+                            <a asp-action="Details" asp-route-id="@item.SleepOverID">Details</a> |
+                            <a asp-action="Delete" asp-route-id="@item.SleepOverID">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+</body>

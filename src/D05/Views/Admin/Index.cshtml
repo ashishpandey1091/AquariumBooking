@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="/css/planyourvisit.css" />
 
 </head>
-<body>
+<body style="background-image:url(/img/admin.jpg)">
 
     @model D05.ViewModels.Admin.CustomViewModel
     <input type="hidden" value=hours id="tabInfo">
@@ -39,9 +39,19 @@
                             <div class="navbar-right">
 
                                 <div id="loginlinks">
-                                    <ul class="nav navbar-nav">
+                                    <div id="myaccount" style="padding-right:20px">
+                                        <form asp-controller="Account" asp-action="LogOff" method="post" id="logoutForm" class="nav navbar-nav">
+                                            <ul class="nav navbar-nav">
+
+                                                <li>
+                                                    <button type="submit" class="btn btn-link navbar-btn navbar-link"><span class="glyphicon glyphicon-log-out"></span>Log Off</button>
+                                                </li>
+                                            </ul>
+                                        </form>
+                                    </div>
+                                    @*<ul class="nav navbar-nav">
                                         <li id="registernav"><a href="login.html" data-toggle="modal" data-target="#login"><span class="glyphicon glyphicon-log-in"></span> Log Off</a></li>
-                                    </ul>
+                                    </ul>*@
                                 </div>
                             </div>
                         </div>
@@ -62,9 +72,9 @@
                     <div class="col-md-3" id='tabmenu'>
                         <ul class="nav nav-pills nav-stacked">
                             <li class="active"><a href="#CreateEvents" data-toggle="tab">Create Events</a></li>
-                            <li><a href="#createCoupons" data-toggle="tab">Create Coupons</a></li>
+                            @*<li><a href="#createCoupons" data-toggle="tab">Create Coupons</a></li>*@
                             <li><a href="#manageOrders" data-toggle="tab">Manage Transactions</a></li>
-                            <li><a href="#manageUsers" data-toggle="tab">Manage Profiles</a></li>
+                            @*<li><a href="#manageUsers" data-toggle="tab">Manage Profiles</a></li>*@
                             <li><a href="#monitorOccasions" data-toggle="tab">Monitor Special Occasions</a></li>
                         </ul>
                     </div>
@@ -75,69 +85,34 @@
                         <!-- start of div content for hours and prices-->
                         <div class="tab-pane fade in active" id="CreateEvents">
                             <!-- first row-->
-                            <div class="row">
-                                <div class="col-md-12">
-
-                                    <div class="panel panel-default panel-info">
-                                        <div class="panel-heading">
-                                            <h3 class="panel-title">Aquatix Events</h3>
-                                        </div>
-
-
-                                        <div class="panel-body form-group">
-                                            <div class="row">
-
-                                                <label @*asp-for="EventName" *@ class="col-sm-2">Event:</label>
-                                                <div class="col-sm-8 form-group">
-                                                    <input @*asp-for="EventName" *@ class="form-control" id="focusedInput" type="text" name="EventName" value="" />
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <button asp-action="Create" asp-controller="Events" type="button" class="btn btn-primary glyphicon-plus form-group"> Create </button>
-                                                </div>
-                                            </div>
-                                            <br />
-
-                                            <div class="row">
-                                                <label class="col-sm-2 "> Category:</label>
-
-                                                <div class="col-sm-4 btn-group form-group" data-toggle="buttons">
-                                                    <label @*asp-for="IsSpecialEvent" *@ class="btn btn-primary active">
-                                                        <input type="radio" class="form-control" name="options" id="specialEvents" autocomplete="off" checked> Special Event
-                                                    </label>
-                                                    <label class="btn btn-primary">
-                                                        <input type="radio" class="form-control" name="options" id="generalEvents" autocomplete="off"> General Event
-                                                    </label>
-                                                </div>
-                                                <label class="col-sm-1">Date:</label>
-                                                <div class="col-sm-3 form-group">
-                                                    <input type="text" class="form-control" name="date" />
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
+                            
                             <!-- first row ends-->
                             <!-- second row-->
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="panel panel-default panel-info">
                                         <div class="panel-heading">
-                                            <h3 class="panel-title">Event Details</h3>
+                                            <h3 class="panel-title">Event Details </h3> 
                                         </div>
+                                     
                                         <div class="row">
                                             <div class="col-md-11 center" id="eventDetails">
-                                                <br />
+                                           
+                                                <div class="col-md-12 form-group">
+                                                    <h4>
+                                                  
+                                                        @Html.ActionLink("Create Events", "Create", "Events", null, new { @class = "btn btn-primary btn-md pull-right glyphicon-plus" })
+                                                    </h4>
+                                                </div>
+
                                                 <table class="table text-center">
                                                     <thead class="events">
                                                         <tr>
                                                             <th class="text-center">Name</th>
 
-                                                            <th class="text-center">Category</th>
+                                                            <th class="text-center">Special Event</th>
                                                             <th class="text-center">Price</th>
-                                                            <th class="text-center">Details</th>
+                                                            <th class="text-center"></th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -156,9 +131,12 @@
                                                                     @Html.DisplayFor(modelItem => item.OldAgePrice)
                                                                 </td>
                                                                 <td>
-                                                                    <a asp-action="Edit" asp-route-id="@item.EventID">Edit</a> |
-                                                                    <a asp-action="Details" asp-route-id="@item.EventID">Details</a> |
-                                                                    <a asp-controller="Events" asp-action="Delete" asp-route-id="@item.EventID">Delete</a>
+                                                                    @Html.ActionLink("Edit", "Edit", "Admin", new { id = @item.EventID } , new { @class = "btn btn-primary btn-sm" })
+                                                                    @Html.ActionLink("Details", "Details", "Admin", new { id = @item.EventID }, new { @class = "btn btn-success btn-sm" })
+                                                                    @Html.ActionLink("Delete", "Delete", "Events", new { id = @item.EventID }, new { @class = "btn btn-danger btn-sm" })
+                                                                    @*<a  asp-action="Edit" asp-route-id="@item.EventID" >Edit</a> |
+                                                                        <a asp-action="Details" asp-route-id="@item.EventID">Details</a> |
+                                                                        <a asp-controller="Events" asp-action="Delete" asp-route-id="@item.EventID">Delete</a>*@
                                                                 </td>
                                                             </tr>
                                                             }
@@ -187,7 +165,7 @@
                                 </div>
                             </div>-->
                             <!-- third row ends-->
-                            <div class="tab-pane fade" id="createCoupons">
+                            @*<div class="tab-pane fade" id="createCoupons">
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="panel panel-default panel-info">
@@ -196,6 +174,12 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-11 center" id="couponDetails">
+                                                     <div class="col-md-12 form-group">
+                                                    <h4>
+                                                        Create an Event:
+                                                        @Html.ActionLink("Create Events", "Create", "Events", null, new { @class = "btn btn-primary pull-right glyphicon-plus" })
+                                                    </h4>
+                                                        </div>
                                                     <br />
                                                     <table class="table text-center">
                                                         <thead class="events">
@@ -242,18 +226,26 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div>*@
                                 <div id="manageOrders" class="tab-pane fade">
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="panel panel-default panel-info">
                                                 <div class="panel-heading">
-                                                    <h3 class="panel-title">Order Details <a class="pull-right" asp-controller="OrderDetails" asp-action="Create">Create</a></h3>
-
+                                                    <h3 class="panel-title">Order Details   </h3>
                                                 </div>
+<br />
+                                               
+                                                <div class="row col-md-12">
+                                                    @Html.ActionLink("Create Order", "Create", "OrderDetails", null, new { @class = "btn btn-primary pull-right btn-large glyphicon-plus " })
+                                                </div>
+                                          
+                                                <br />
+                                                
 
                                                 <div class="row">
                                                     <div class="col-md-11 center" id="orderDetails">
+                                                        <br />
                                                         <br />
                                                         <table class="table text-center">
                                                             <thead class="events">
@@ -264,6 +256,7 @@
                                                                     <th class="text-center">Ride Plan</th>
                                                                     <th class="text-center">Ride Quantity</th>
                                                                     <th class="text-center">Details </th>
+
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
@@ -292,9 +285,14 @@
 
 
                                                                         <td>
-                                                                            <a asp-controller="OrderDetails" asp-action="Edit" asp-route-id="@item.OrderDetailID">Edit</a> |
+                                                                            @Html.ActionLink("Edit", "Edit", "OrderDetails", new { id = @item.OrderDetailID }, new { @class = "btn btn-primary btn-sm" })
+                                                                            @Html.ActionLink("Details", "Details", "OrderDetails", new { id = @item.OrderDetailID }, new { @class = "btn btn-success btn-sm" })
+                                                                            @Html.ActionLink("Delete", "Delete", "OrderDetails", new { id = @item.OrderDetailID }, new { @class = "btn btn-delete btn-sm   " })
+
+
+                                                                            @*<a asp-controller="OrderDetails" asp-action="Edit" asp-route-id="@item.OrderDetailID">Edit</a> |
                                                                             <a asp-controller="OrderDetails" asp-action="Details" asp-route-id="@item.OrderDetailID">Details</a> |
-                                                                            <a asp-controller="OrderDetails" asp-action="Delete" asp-route-id="@item.OrderDetailID">Delete</a>
+                                                                            <a asp-controller="OrderDetails" asp-action="Delete" asp-route-id="@item.OrderDetailID">Delete</a>*@
                                                                         </td>
                                                                     </tr>
                                                                     }
@@ -309,12 +307,12 @@
                                     </div>
                                     <!-- End of Orders-->
 
-                                    <div id="manageUsers" class="tab-pane fade">
+                                    @*<div id="manageUsers" class="tab-pane fade">
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="panel panel-default panel-info">
                                                     <div class="panel-heading">
-                                                        <h3 class="panel-title">User Details<a class="pull-right" asp-controller="ApplicationUsers" asp-action="Create">Create</a></h3>
+                                                        <h3 class="panel-title">User Details<a class="pull-right"  asp-action="Create">Create</a></h3>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-md-11 center" id="userDetails">
@@ -325,7 +323,7 @@
                                                                         <th class="text-center">User Name</th>
                                                                         <th class="text-center">Age</th>
                                                                         <th class="text-center">Email</th>
-                                                                        <th class="text-center"> Details </th>
+                                                                        <th class="text-center">Details </th>
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody>
@@ -344,9 +342,9 @@
                                                                                 @Html.DisplayFor(modelItem => item.Email)
                                                                             </td>
                                                                             <td>
-                                                                                <a asp-controller="ApplicationUsers" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                                                                                <a asp-controller="ApplicationUsers" asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                                                                                <a asp-controller="ApplicationUsers" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                                                                                <a asp-controller="Users" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                                                                                <a asp-controller="Users" asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                                                                                <a asp-controller="Users" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
                                                                             </td>
                                                                         </tr>
                                                                         }
@@ -358,14 +356,184 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div>*@
 
                                         
                                         <!-- end of div content for faqs-->
                         <div id="monitorOccasions" class="tab-pane fade">
                             <div class="row">
-                                <h3> Hang over here..</h3>
-                                <p> Data is yet to retrieve </p>
+                                <div class="col-md-12">
+                                    <div class="panel panel-default panel-info">
+                                        <div class="panel-heading">
+                                          
+
+                                            <h3 class="panel-title">Birthday Party Details <a asp-controller="BirthdayParties" asp-action="Create"  class="pull-right glyphicon-plus" >Create</a></h3>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-11 center" id="partyDetails">
+                                                <br />
+                                                <table class="table text-center">
+                                                    <thead class="events">
+                                                        <tr>
+                                                            <th class="text-center">Email</th>
+                                                            <th class="text-center">Attendees</th>
+                                                            <th class="text-center">Contact</th>
+                                                            <th class="text-center">Visiting Date </th>
+                                                            <th class="text-center"> </th>
+                                                     
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+
+                                                            @foreach (var item in Model.birthdayparties)
+                                                            {
+                                                            <tr>
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.UserEmail)
+                                                                </td>
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.AttendeesNumber)
+                                                                </td>
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.ContactNumber)
+                                                                </td>
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.DateofVisit)
+                                                                </td>
+                                                               
+                                                                <td>
+                                                                    @Html.ActionLink("Edit", "Edit", "BirthdayParties", new { id = @item.BirthdayPartyID }, new { @class = "btn btn-primary btn-sm" })
+                                                                    @Html.ActionLink("Details", "Details", "BirthdayParties", new { id = @item.BirthdayPartyID }, new { @class = "btn btn-success btn-sm" })
+                                                                    @Html.ActionLink("Delete", "Delete", "BirthdayParties", new { id = @item.BirthdayPartyID }, new { @class = "btn btn-danger btn-sm" })
+                                                                    @*<a asp-controller="BirthdayParties" asp-action="Edit" asp-route-id="@item.BirthdayPartyID">Edit</a> |
+                                                                    <a asp-controller="BirthdayParties" asp-action="Details" asp-route-id="@item.BirthdayPartyID">Details</a> |
+                                                                    <a asp-controller="BirthdayParties" asp-action="Delete" asp-route-id="@item.BirthdayPartyID">Delete</a>*@
+                                                                </td>
+                                                            </tr>
+                                                            }
+
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <div class="panel panel-default panel-info">
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title">School Trip Details<a asp-controller="SchoolTrips" asp-action="Create" class="pull-right glyphicon-plus">Create</a></h3>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-11 center" id="partyDetails">
+                                                <br />
+                                                <table class="table text-center">
+                                                    <thead class="events">
+                                                        <tr>
+                                                            <th class="text-center">Email</th>
+                                                            <th class="text-center">Adults</th>
+                                                            <th class="text-center">Children</th>
+                                                            <th class="text-center">Contact</th>
+                                                            <th class="text-center">Visiting Date </th>
+                                                         
+                                                            <th class="text-center"> </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+
+                                                            @foreach (var item in Model.schooltrips)
+                                                            {
+                                                            <tr>
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.SchoolEmail)
+                                                                </td>
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.NoOfAdults)
+                                                                </td>
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.NoOfChildren)
+                                                                </td>
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.ContactNumber)
+                                                                </td>
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.DateofVisit)
+                                                                </td>
+                                                              
+                                                                <td>
+                                                                    @Html.ActionLink("Edit", "Edit", "SchoolTrips", new { id = @item.SchoolTripID }, new { @class = "btn btn-primary btn-sm" })
+                                                                    @Html.ActionLink("Details", "Details", "SchoolTrips", new { id = @item.SchoolTripID }, new { @class = "btn btn-success btn-sm" })
+                                                                    @Html.ActionLink("Delete", "Delete", "SchoolTrips", new { id = @item.SchoolTripID }, new { @class = "btn btn-danger btn-sm" })
+
+
+                                                                    @*<a asp-controller="SchoolTrips" asp-action="Edit" asp-route-id="@item.SchoolTripID">Edit</a> |
+                                                                    <a asp-controller="SchoolTrips" asp-action="Details" asp-route-id="@item.SchoolTripID">Details</a> |
+                                                                    <a asp-controller="SchoolTrips" asp-action="Delete" asp-route-id="@item.SchoolTripID">Delete</a>*@
+                                                                </td>
+                                                            </tr>
+                                                            }
+
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <div class="panel panel-default panel-info">
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title">Sleep Over Details<a asp-controller="SleepOvers" asp-action="Create" class="pull-right glyphicon-plus">Create</a></h3>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-11 center" id="partyDetails">
+                                                <br />
+                                                <table class="table text-center">
+                                                    <thead class="events">
+                                                        <tr>
+                                                            <th class="text-center">Email</th>
+                                                            <th class="text-center">Attendees</th>
+                                                            <th class="text-center">Contact</th>
+                                                            <th class="text-center">Visiting Date </th>
+                                                       
+                                                            <th class="text-center"> </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+
+                                                            @foreach (var item in Model.sleepovers)
+                                                            {
+                                                            <tr>
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.UserEmail)
+                                                                </td>
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.AttendeesNumber)
+                                                                </td>
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.ContactNumber)
+                                                                </td>
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.DateofVisit)
+                                                                </td>
+                                                             
+                                                                <td>
+                                                                    @Html.ActionLink("Edit", "Edit", "SleepOvers", new { id = @item.SleepOverID }, new { @class = "btn btn-primary btn-sm" })
+                                                                    @Html.ActionLink("Details", "Details", "SleepOvers", new { id = @item.SleepOverID }, new { @class = "btn btn-success btn-sm" })
+                                                                    @Html.ActionLink("Delete", "Delete", "SleepOvers", new { id = @item.SleepOverID }, new { @class = "btn btn-danger btn-sm" })
+
+
+                                                                    @*<a asp-controller="SleepOvers" asp-action="Edit" asp-route-id="@item.SleepOverID">Edit</a> |
+                                                                    <a asp-controller="SleepOvers" asp-action="Details" asp-route-id="@item.SleepOverID">Details</a> |
+                                                                    <a asp-controller="SleepOvers" asp-action="Delete" asp-route-id="@item.SleepOverID">Delete</a>*@
+                                                                </td>
+                                                            </tr>
+                                                            }
+
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
                 

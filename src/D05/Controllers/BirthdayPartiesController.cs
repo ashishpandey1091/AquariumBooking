@@ -6,22 +6,22 @@ using D05.Models;
 
 namespace D05.Controllers
 {
-    public class EventsController : Controller
+    public class BirthdayPartiesController : Controller
     {
         private ApplicationDbContext _context;
 
-        public EventsController(ApplicationDbContext context)
+        public BirthdayPartiesController(ApplicationDbContext context)
         {
             _context = context;    
         }
 
-        // GET: Events
+        // GET: BirthdayParties
         public IActionResult Index()
         {
-            return View(_context.Events.ToList());
+            return View(_context.BirthdayParties.ToList());
         }
 
-        // GET: Events/Details/5
+        // GET: BirthdayParties/Details/5
         public IActionResult Details(int? id)
         {
             if (id == null)
@@ -29,36 +29,36 @@ namespace D05.Controllers
                 return HttpNotFound();
             }
 
-            Event eventNew = _context.Events.Single(m => m.EventID == id);
-            if (eventNew == null)
+            BirthdayParty birthdayParty = _context.BirthdayParties.Single(m => m.BirthdayPartyID == id);
+            if (birthdayParty == null)
             {
                 return HttpNotFound();
             }
 
-            return View(eventNew);
+            return View(birthdayParty);
         }
 
-        // GET: Events/Create
+        // GET: BirthdayParties/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Events/Create
+        // POST: BirthdayParties/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Event eventNew,string command)
+        public IActionResult Create(BirthdayParty birthdayParty)
         {
             if (ModelState.IsValid)
             {
-                _context.Events.Add(eventNew);
+                _context.BirthdayParties.Add(birthdayParty);
                 _context.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(eventNew);
+            return View(birthdayParty);
         }
 
-        // GET: Events/Edit/5
+        // GET: BirthdayParties/Edit/5
         public IActionResult Edit(int? id)
         {
             if (id == null)
@@ -66,29 +66,29 @@ namespace D05.Controllers
                 return HttpNotFound();
             }
 
-            Event eventNew = _context.Events.Single(m => m.EventID == id);
-            if (eventNew == null)
+            BirthdayParty birthdayParty = _context.BirthdayParties.Single(m => m.BirthdayPartyID == id);
+            if (birthdayParty == null)
             {
                 return HttpNotFound();
             }
-            return View(eventNew);
+            return View(birthdayParty);
         }
 
-        // POST: Events/Edit/5
+        // POST: BirthdayParties/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(Event eventNew)
+        public IActionResult Edit(BirthdayParty birthdayParty)
         {
             if (ModelState.IsValid)
             {
-                _context.Update(eventNew);
+                _context.Update(birthdayParty);
                 _context.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(eventNew);
+            return View(birthdayParty);
         }
 
-        // GET: Events/Delete/5
+        // GET: BirthdayParties/Delete/5
         [ActionName("Delete")]
         public IActionResult Delete(int? id)
         {
@@ -97,26 +97,24 @@ namespace D05.Controllers
                 return HttpNotFound();
             }
 
-            Event eventNew = _context.Events.Single(m => m.EventID == id);
-            if (eventNew == null)
+            BirthdayParty birthdayParty = _context.BirthdayParties.Single(m => m.BirthdayPartyID == id);
+            if (birthdayParty == null)
             {
                 return HttpNotFound();
             }
 
-            return View(eventNew);
+            return View(birthdayParty);
         }
 
-        // POST: Events/Delete/5
+        // POST: BirthdayParties/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(int id)
         {
-            Event eventNew = _context.Events.Single(m => m.EventID == id);
-            _context.Events.Remove(eventNew);
+            BirthdayParty birthdayParty = _context.BirthdayParties.Single(m => m.BirthdayPartyID == id);
+            _context.BirthdayParties.Remove(birthdayParty);
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
-
-       
     }
 }

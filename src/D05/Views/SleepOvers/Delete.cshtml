@@ -1,7 +1,5 @@
-﻿@model D05.Models.Event
+@model D05.Models.SleepOver
 @using System.Security.Claims
-
-
 
 <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
 <link rel="stylesheet" href="~/css/site.css" />
@@ -58,76 +56,93 @@
 
                 <!-- end of navigation bar-->
             </div>
+
             @{
-                ViewData["Title"] = "Details";
+                ViewData["Title"] = "Delete";
             }
 
+            <h2>Delete</h2>
 
-            <div class="container">
-                <h4>Event Details</h4>
+            <h3>Are you sure you want to delete this?</h3>
+            <div>
+                <h4>SleepOver</h4>
                 <hr />
                 <dl class="dl-horizontal">
                     <dt>
-                        @Html.DisplayNameFor(model => model.AdultPrice)
+                        @Html.DisplayNameFor(model => model.AttendeesNumber)
                     </dt>
                     <dd>
-                        @Html.DisplayFor(model => model.AdultPrice)
+                        @Html.DisplayFor(model => model.AttendeesNumber)
                     </dd>
                     <dt>
-                        @Html.DisplayNameFor(model => model.ChildPrice)
+                        @Html.DisplayNameFor(model => model.ContactNumber)
                     </dt>
                     <dd>
-                        @Html.DisplayFor(model => model.ChildPrice)
+                        @Html.DisplayFor(model => model.ContactNumber)
                     </dd>
                     <dt>
-                        @Html.DisplayNameFor(model => model.Description)
+                        @Html.DisplayNameFor(model => model.DateofRegistration)
                     </dt>
                     <dd>
-                        @Html.DisplayFor(model => model.Description)
+                        @Html.DisplayFor(model => model.DateofRegistration)
                     </dd>
                     <dt>
-                        @Html.DisplayNameFor(model => model.EventDate)
+                        @Html.DisplayNameFor(model => model.DateofVisit)
                     </dt>
                     <dd>
-                        @Html.DisplayFor(model => model.EventDate)
+                        @Html.DisplayFor(model => model.DateofVisit)
                     </dd>
                     <dt>
-                        @Html.DisplayNameFor(model => model.EventEndTime)
+                        @Html.DisplayNameFor(model => model.FirstName)
                     </dt>
                     <dd>
-                        @Html.DisplayFor(model => model.EventEndTime)
+                        @Html.DisplayFor(model => model.FirstName)
                     </dd>
                     <dt>
-                        @Html.DisplayNameFor(model => model.EventName)
+                        @Html.DisplayNameFor(model => model.IsAdminAccepted)
                     </dt>
                     <dd>
-                        @Html.DisplayFor(model => model.EventName)
+                        @Html.DisplayFor(model => model.IsAdminAccepted)
                     </dd>
                     <dt>
-                        @Html.DisplayNameFor(model => model.EventStartTime)
+                        @Html.DisplayNameFor(model => model.IsNeedInFood)
                     </dt>
                     <dd>
-                        @Html.DisplayFor(model => model.EventStartTime)
+                        @Html.DisplayFor(model => model.IsNeedInFood)
                     </dd>
                     <dt>
-                        @Html.DisplayNameFor(model => model.IsSpecialEvent)
+                        @Html.DisplayNameFor(model => model.IsNeedInMattress)
                     </dt>
                     <dd>
-                        @Html.DisplayFor(model => model.IsSpecialEvent)
+                        @Html.DisplayFor(model => model.IsNeedInMattress)
                     </dd>
                     <dt>
-                        @Html.DisplayNameFor(model => model.OldAgePrice)
+                        @Html.DisplayNameFor(model => model.IsNeedInVR)
                     </dt>
                     <dd>
-                        @Html.DisplayFor(model => model.OldAgePrice)
+                        @Html.DisplayFor(model => model.IsNeedInVR)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.LastName)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.LastName)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.UserEmail)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.UserEmail)
                     </dd>
                 </dl>
-                <p>
-                    <a asp-action="Edit" asp-route-id="@Model.EventID">Edit</a> |
-                    <a asp-action="Index">Back to List</a>
-                </p>
+
+                <form asp-action="Delete">
+                    <div class="form-actions no-color">
+                        <input type="submit" value="Delete" class="btn btn-default" /> |
+                        <a asp-controller="Admin" asp-action="Index">Back to List</a>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 </body>
-

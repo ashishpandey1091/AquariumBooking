@@ -25,11 +25,16 @@ namespace D05.Controllers
 
             var viewModel = new CustomViewModel
             {
+                
                 Events = _context.Events.ToList(),
                 Price = _context.Prices.ToList(),
                 Order = _context.OrderDetails.ToList(),
                 Coupons = _context.Coupons.ToList(),
                 Users = _context.Users.ToList(),
+                birthdayparties = _context.BirthdayParties.ToList(),
+                sleepovers = _context.SleepOvers.ToList(),
+                schooltrips = _context.SchoolTrips.ToList(),
+
                 eventNew = new Event()
 
             };
@@ -85,6 +90,8 @@ namespace D05.Controllers
             return View(eventNew);
         }
 
+
+
         // POST: Events/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -99,6 +106,37 @@ namespace D05.Controllers
             return View(eventNew);
         }
 
+
+        //public IActionResult EditUsers(String id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+
+        //    ApplicationUser user = _context.Users.Single(m => m.Id == id);
+        //    if (user == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(user);
+        //}
+
+
+
+        //// POST: Events/Edit/5
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public IActionResult EditUsers(ApplicationUser user)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        _context.Update(user);
+        //        _context.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
+        //    return View(user);
+        //}
     }
 
 }

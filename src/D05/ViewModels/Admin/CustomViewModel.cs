@@ -19,5 +19,9 @@ namespace D05.ViewModels.Admin
         public Event eventNew { get; set; }
       
         public List<ApplicationUser> Users { get; set; }
+        
+        public List<SleepOver> sleepovers { get; set; }
+        public List<SchoolTrip> schooltrips { get; set; }
+        public List<BirthdayParty> birthdayparties { get; set; }
     }
 }

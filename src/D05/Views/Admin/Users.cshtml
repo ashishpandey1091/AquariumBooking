@@ -1,4 +1,4 @@
-@model D05.Models.Event
+﻿@model D05.Models.ApplicationUser
 
 @using System.Security.Claims
 @{
@@ -60,83 +60,53 @@
                 <!-- end of navigation bar-->
             </div>
             <div class="container">
-                <form asp-action="Edit">
+                <form asp-action="EditUsers">
                     <div class="form-horizontal">
                         <h4>Edit Event</h4>
                         <hr />
                         <div asp-validation-summary="ValidationSummary.ModelOnly" class="text-danger"></div>
-
                         <div class="form-group">
-                            <label asp-for="EventName" class="col-md-2 control-label"></label>
+                            <label asp-for="UserName" class="col-md-2 control-label"></label>
                             <div class="col-md-10">
-                                <input asp-for="EventName" class="form-control" />
-                                <span asp-validation-for="EventName" class="text-danger" />
+                                <input asp-for="UserName" class="form-control" />
+                                <span asp-validation-for="UserName" class="text-danger" />
                             </div>
                         </div>
-
                         <div class="form-group">
-                            <label asp-for="Description" class="col-md-2 control-label"></label>
+                            <label asp-for="FirstName" class="col-md-2 control-label"></label>
                             <div class="col-md-10">
-                                <textarea asp-for="Description" class="form-control"></textarea>
-                                <span asp-validation-for="Description" class="text-danger" />
+                                <input asp-for="FirstName" class="form-control" />
+                                <span asp-validation-for="FirstName" class="text-danger" />
                             </div>
                         </div>
-                        
-                        
                         <div class="form-group">
-                            <label asp-for="AdultPrice" class="col-md-2 control-label"></label>
+                            <label asp-for="LastName" class="col-md-2 control-label"></label>
                             <div class="col-md-10">
-                                <input asp-for="AdultPrice" class="form-control" />
-                                <span asp-validation-for="AdultPrice" class="text-danger" />
+                                <input asp-for="LastName" class="form-control" />
+                                <span asp-validation-for="LastName" class="text-danger" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label asp-for="ChildPrice" class="col-md-2 control-label"></label>
+                            <label asp-for="OrderDetails" class="col-md-2 control-label"></label>
                             <div class="col-md-10">
-                                <input asp-for="ChildPrice" class="form-control" />
-                                <span asp-validation-for="ChildPrice" class="text-danger" />
+                                <textarea asp-for="OrderDetails" class="form-control"></textarea>
+                                <span asp-validation-for="OrderDetails" class="text-danger" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label asp-for="OldAgePrice" class="col-md-2 control-label"></label>
+                            <label asp-for="PhoneNumber" class="col-md-2 control-label"></label>
                             <div class="col-md-10">
-                                <input asp-for="OldAgePrice" class="form-control" />
-                                <span asp-validation-for="OldAgePrice" class="text-danger" />
+                                <input asp-for="PhoneNumber" class="form-control" />
+                                <span asp-validation-for="PhoneNumber" class="text-danger" />
                             </div>
                         </div>
-                     
                         <div class="form-group">
-                            <label asp-for="EventDate" class="col-md-2 control-label"></label>
+                            <label asp-for="Email" class="col-md-2 control-label"></label>
                             <div class="col-md-10">
-                                <input asp-for="EventDate" class="form-control" />
-                                <span asp-validation-for="EventDate" class="text-danger" />
+                                <input asp-for="Email" class="form-control" />
+                                <span asp-validation-for="Email" class="text-danger" />
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label asp-for="EventStartTime" class="col-md-2 control-label"></label>
-                            <div class="col-md-10">
-                                <input asp-for="EventStartTime" class="form-control" />
-                                <span asp-validation-for="EventStartTime" class="text-danger" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label asp-for="EventEndTime" class="col-md-2 control-label"></label>
-                            <div class="col-md-10">
-                                <input asp-for="EventEndTime" class="form-control" />
-                                <span asp-validation-for="EventEndTime" class="text-danger" />
-                            </div>
-                        </div>
-                       
-                        <div class="form-group">
-                            <div class="col-md-offset-2 col-md-10">
-                                <div class="checkbox">
-                                    <input asp-for="IsSpecialEvent" />
-                                    <label asp-for="IsSpecialEvent"></label>
-                                </div>
-                            </div>
-                        </div>
-
-                      
                         <div class="form-group">
                             <div class="col-md-offset-2 col-md-10">
                                 <input type="submit" value="Save" class="btn btn-default" />
@@ -152,8 +122,9 @@
         </div>
 
     </div>
-
     </body>
+
+
 
     @section Scripts {
         <script src="~/lib/jquery/dist/jquery.min.js"></script>

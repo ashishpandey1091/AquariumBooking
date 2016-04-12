@@ -1,126 +1,188 @@
 @model D05.Models.OrderDetail
+@using System.Security.Claims
 
-@{
-    ViewData["Title"] = "Details";
-}
 
-<h2>Details</h2>
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+<link rel="stylesheet" href="~/css/site.css" />
+<link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.5/css/bootstrap.min.css"
+      asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+      asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+<link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+<body style="background-image:url(/img/admin.jpg)">
+    <div class="container">
+        <div class="navbar-wrapper">
+            <div class="container">
+                <!-- start  of navigation bar-->
 
-<div>
-    <h4>OrderDetail</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.AdultTicketQty)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.AdultTicketQty)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.ChildTicketQty)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.ChildTicketQty)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.ContactNumber)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.ContactNumber)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.DateOfVisit)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.DateOfVisit)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.EntryTicketPrice)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.EntryTicketPrice)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Lunch)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Lunch)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.MealQty)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.MealQty)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.OldAgeTicketQty)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.OldAgeTicketQty)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.OrderTotalPrice)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.OrderTotalPrice)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.RidePlan)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.RidePlan)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.RideQty)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.RideQty)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.ShowCount)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.ShowCount)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.SpecialEventPrice)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.SpecialEventPrice)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.SpecialShowName1)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.SpecialShowName1)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.TicketGeneratedDate)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.TicketGeneratedDate)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.VisitorEmail)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.VisitorEmail)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.VisitorFN)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.VisitorFN)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.VisitorLN)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.VisitorLN)
-        </dd>
-    </dl>
-</div>
-<p>
-    <a asp-action="Edit" asp-route-id="@Model.OrderDetailID">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</p>
+                <nav class="navbar navbar-inverse" id="navid">
+                    <div class="container">
+
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-controls="navbar">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" href="#">Aquatix Aquarium</a>
+                        </div>
+                        <div id="navbar" class="navbar-collapse collapse">
+
+
+
+                            @if (User.IsSignedIn())
+                            {
+                                <div id="myaccount" style="padding-right:20px">
+                                    <form asp-controller="Account" asp-action="LogOff" method="post" id="logoutForm" class="nav navbar-nav navbar-right">
+                                        <ul class="nav navbar-nav navbar-right">
+
+                                            <li>
+                                                <button type="submit" class="btn btn-link navbar-btn navbar-link">Log off</button>
+                                            </li>
+                                        </ul>
+                                    </form>
+                                </div>
+                            }
+                            else {
+                                <div id="loginlinks" style="padding-right:20px">
+                                    <ul class="nav navbar-nav navbar-right">
+                                        <li><a asp-controller="Account" asp-action="Register">Register</a></li>
+                                        <li><a asp-controller="Account" asp-action="Login">Log in</a></li>
+                                    </ul>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </nav>
+
+                <!-- end of navigation bar-->
+            </div>
+
+            @{
+                ViewData["Title"] = "Details";
+            }
+
+            <h2>Details</h2>
+
+            <div>
+                <h4>OrderDetail</h4>
+                <hr />
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.AdultTicketQty)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.AdultTicketQty)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.ChildTicketQty)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.ChildTicketQty)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.ContactNumber)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.ContactNumber)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.DateOfVisit)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.DateOfVisit)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.EntryTicketPrice)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.EntryTicketPrice)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Lunch)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Lunch)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.MealQty)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.MealQty)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.OldAgeTicketQty)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.OldAgeTicketQty)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.OrderTotalPrice)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.OrderTotalPrice)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.RidePlan)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.RidePlan)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.RideQty)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.RideQty)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.ShowCount)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.ShowCount)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.SpecialEventPrice)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.SpecialEventPrice)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.SpecialShowName1)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.SpecialShowName1)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.TicketGeneratedDate)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.TicketGeneratedDate)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.VisitorEmail)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.VisitorEmail)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.VisitorFN)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.VisitorFN)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.VisitorLN)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.VisitorLN)
+                    </dd>
+                </dl>
+            </div>
+            <p>
+                <a asp-action="Edit" asp-route-id="@Model.OrderDetailID">Edit</a> |
+                <a asp-controller="Admin" asp-action="Index">Back to List</a>
+            </p>
+        </div>
+    </div>
+    </div>
+    </body>

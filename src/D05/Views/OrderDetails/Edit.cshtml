@@ -1,156 +1,216 @@
 @model D05.Models.OrderDetail
+@using System.Security.Claims
 
-@{
-    ViewData["Title"] = "Edit";
-}
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+<link rel="stylesheet" href="~/css/site.css" />
+<link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.5/css/bootstrap.min.css"
+      asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+      asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+<link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+<body style="background-image:url(/img/admin.jpg)">
+    <div class="container">
+        <div class="navbar-wrapper">
+            <div class="container">
+                <!-- start  of navigation bar-->
 
-<h2>Edit</h2>
+                <nav class="navbar navbar-inverse" id="navid">
+                    <div class="container">
 
-<form asp-action="Edit">
-    <div class="form-horizontal">
-        <h4>OrderDetail</h4>
-        <hr />
-        <div asp-validation-summary="ValidationSummary.ModelOnly" class="text-danger"></div>
-        <div class="form-group">
-            <label asp-for="AdultTicketQty" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="AdultTicketQty" class="form-control" />
-                <span asp-validation-for="AdultTicketQty" class="text-danger" />
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-controls="navbar">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" href="#">Aquatix Aquarium</a>
+                        </div>
+                        <div id="navbar" class="navbar-collapse collapse">
+
+
+
+                            @if (User.IsSignedIn())
+                            {
+                                <div id="myaccount" style="padding-right:20px">
+                                    <form asp-controller="Account" asp-action="LogOff" method="post" id="logoutForm" class="nav navbar-nav navbar-right">
+                                        <ul class="nav navbar-nav navbar-right">
+
+                                            <li>
+                                                <button type="submit" class="btn btn-link navbar-btn navbar-link">Log off</button>
+                                            </li>
+                                        </ul>
+                                    </form>
+                                </div>
+                            }
+                            else {
+                                <div id="loginlinks" style="padding-right:20px">
+                                    <ul class="nav navbar-nav navbar-right">
+                                        <li><a asp-controller="Account" asp-action="Register">Register</a></li>
+                                        <li><a asp-controller="Account" asp-action="Login">Log in</a></li>
+                                    </ul>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </nav>
+
+                <!-- end of navigation bar-->
             </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="ChildTicketQty" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="ChildTicketQty" class="form-control" />
-                <span asp-validation-for="ChildTicketQty" class="text-danger" />
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="ContactNumber" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="ContactNumber" class="form-control" />
-                <span asp-validation-for="ContactNumber" class="text-danger" />
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="DateOfVisit" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="DateOfVisit" class="form-control" />
-                <span asp-validation-for="DateOfVisit" class="text-danger" />
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="EntryTicketPrice" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="EntryTicketPrice" class="form-control" />
-                <span asp-validation-for="EntryTicketPrice" class="text-danger" />
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Lunch" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Lunch" class="form-control" />
-                <span asp-validation-for="Lunch" class="text-danger" />
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="MealQty" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="MealQty" class="form-control" />
-                <span asp-validation-for="MealQty" class="text-danger" />
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="OldAgeTicketQty" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="OldAgeTicketQty" class="form-control" />
-                <span asp-validation-for="OldAgeTicketQty" class="text-danger" />
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="OrderTotalPrice" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="OrderTotalPrice" class="form-control" />
-                <span asp-validation-for="OrderTotalPrice" class="text-danger" />
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="RidePlan" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="RidePlan" class="form-control" />
-                <span asp-validation-for="RidePlan" class="text-danger" />
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="RideQty" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="RideQty" class="form-control" />
-                <span asp-validation-for="RideQty" class="text-danger" />
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="ShowCount" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="ShowCount" class="form-control" />
-                <span asp-validation-for="ShowCount" class="text-danger" />
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="SpecialEventPrice" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="SpecialEventPrice" class="form-control" />
-                <span asp-validation-for="SpecialEventPrice" class="text-danger" />
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="SpecialShowName1" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="SpecialShowName1" class="form-control" />
-                <span asp-validation-for="SpecialShowName1" class="text-danger" />
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="TicketGeneratedDate" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="TicketGeneratedDate" class="form-control" />
-                <span asp-validation-for="TicketGeneratedDate" class="text-danger" />
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="VisitorEmail" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="VisitorEmail" class="form-control" />
-                <span asp-validation-for="VisitorEmail" class="text-danger" />
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="VisitorFN" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="VisitorFN" class="form-control" />
-                <span asp-validation-for="VisitorFN" class="text-danger" />
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="VisitorLN" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="VisitorLN" class="form-control" />
-                <span asp-validation-for="VisitorLN" class="text-danger" />
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+
+            @{
+                ViewData["Title"] = "Edit";
+            }
+
+            <h2>Edit</h2>
+
+            <form asp-action="Edit">
+                <div class="form-horizontal">
+                    <h4>OrderDetail</h4>
+                    <hr />
+                    <div asp-validation-summary="ValidationSummary.ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="AdultTicketQty" class="col-md-2 control-label"></label>
+                        <div class="col-md-10">
+                            <input asp-for="AdultTicketQty" class="form-control" />
+                            <span asp-validation-for="AdultTicketQty" class="text-danger" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ChildTicketQty" class="col-md-2 control-label"></label>
+                        <div class="col-md-10">
+                            <input asp-for="ChildTicketQty" class="form-control" />
+                            <span asp-validation-for="ChildTicketQty" class="text-danger" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ContactNumber" class="col-md-2 control-label"></label>
+                        <div class="col-md-10">
+                            <input asp-for="ContactNumber" class="form-control" />
+                            <span asp-validation-for="ContactNumber" class="text-danger" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="DateOfVisit" class="col-md-2 control-label"></label>
+                        <div class="col-md-10">
+                            <input asp-for="DateOfVisit" class="form-control" />
+                            <span asp-validation-for="DateOfVisit" class="text-danger" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="EntryTicketPrice" class="col-md-2 control-label"></label>
+                        <div class="col-md-10">
+                            <input asp-for="EntryTicketPrice" class="form-control" />
+                            <span asp-validation-for="EntryTicketPrice" class="text-danger" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Lunch" class="col-md-2 control-label"></label>
+                        <div class="col-md-10">
+                            <input asp-for="Lunch" class="form-control" />
+                            <span asp-validation-for="Lunch" class="text-danger" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="MealQty" class="col-md-2 control-label"></label>
+                        <div class="col-md-10">
+                            <input asp-for="MealQty" class="form-control" />
+                            <span asp-validation-for="MealQty" class="text-danger" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="OldAgeTicketQty" class="col-md-2 control-label"></label>
+                        <div class="col-md-10">
+                            <input asp-for="OldAgeTicketQty" class="form-control" />
+                            <span asp-validation-for="OldAgeTicketQty" class="text-danger" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="OrderTotalPrice" class="col-md-2 control-label"></label>
+                        <div class="col-md-10">
+                            <input asp-for="OrderTotalPrice" class="form-control" />
+                            <span asp-validation-for="OrderTotalPrice" class="text-danger" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="RidePlan" class="col-md-2 control-label"></label>
+                        <div class="col-md-10">
+                            <input asp-for="RidePlan" class="form-control" />
+                            <span asp-validation-for="RidePlan" class="text-danger" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="RideQty" class="col-md-2 control-label"></label>
+                        <div class="col-md-10">
+                            <input asp-for="RideQty" class="form-control" />
+                            <span asp-validation-for="RideQty" class="text-danger" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ShowCount" class="col-md-2 control-label"></label>
+                        <div class="col-md-10">
+                            <input asp-for="ShowCount" class="form-control" />
+                            <span asp-validation-for="ShowCount" class="text-danger" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="SpecialEventPrice" class="col-md-2 control-label"></label>
+                        <div class="col-md-10">
+                            <input asp-for="SpecialEventPrice" class="form-control" />
+                            <span asp-validation-for="SpecialEventPrice" class="text-danger" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="SpecialShowName1" class="col-md-2 control-label"></label>
+                        <div class="col-md-10">
+                            <input asp-for="SpecialShowName1" class="form-control" />
+                            <span asp-validation-for="SpecialShowName1" class="text-danger" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="TicketGeneratedDate" class="col-md-2 control-label"></label>
+                        <div class="col-md-10">
+                            <input asp-for="TicketGeneratedDate" class="form-control" />
+                            <span asp-validation-for="TicketGeneratedDate" class="text-danger" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="VisitorEmail" class="col-md-2 control-label"></label>
+                        <div class="col-md-10">
+                            <input asp-for="VisitorEmail" class="form-control" />
+                            <span asp-validation-for="VisitorEmail" class="text-danger" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="VisitorFN" class="col-md-2 control-label"></label>
+                        <div class="col-md-10">
+                            <input asp-for="VisitorFN" class="form-control" />
+                            <span asp-validation-for="VisitorFN" class="text-danger" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="VisitorLN" class="col-md-2 control-label"></label>
+                        <div class="col-md-10">
+                            <input asp-for="VisitorLN" class="form-control" />
+                            <span asp-validation-for="VisitorLN" class="text-danger" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Save" class="btn btn-default" />
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <div>
+                <a asp-controller="Admin"  asp-action="Index">Back to List</a>
             </div>
         </div>
     </div>
-</form>
+    </body>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
-@section Scripts {
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
-    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
-}
+    @section Scripts {
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+        <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    }
