@@ -196,5 +196,77 @@ options => options.UseInMemoryDatabase());
             Assert.NotNull(viewResult.ViewData);
             Assert.NotSame("Your Milestones page", viewResult.ViewData["Message"]);
         }
+
+
+        [Fact]
+        public void RemainingWorkPlan()
+        {
+            //Arrange
+            var dbContext = _serviceProvider.GetRequiredService<ApplicationDbContext>();
+            var controller = new HomeController(dbContext);
+
+            //Act
+            var result = controller.RemainingWorkPlan();
+
+            //Assert
+            var viewResult = Assert.IsType<ViewResult>(result);
+            Assert.Null(viewResult.ViewName); 
+            Assert.NotSame("your remaining work plan ",viewResult.ViewData);
+            
+        }
+
+
+
+        [Fact]
+        public void RemainingWorkPlan_ViewWithMessage()
+        {
+            var dbContext = _serviceProvider.GetRequiredService<ApplicationDbContext>();
+            var controller = new HomeController(dbContext);  // home controller doesn't use dbcontext
+
+            // Act
+            var result = controller.RemainingWorkPlan();
+
+            // Assert
+            var viewResult = Assert.IsType<ViewResult>(result);
+            Assert.NotNull(viewResult);
+            Assert.NotNull(viewResult.ViewData);
+            Assert.NotSame("Your remaining work plan", viewResult.ViewData["Message"]);
+        }
+
+        [Fact]
+        public void Index()
+        {
+            //Arrange
+            var dbContext = _serviceProvider.GetRequiredService<ApplicationDbContext>();
+            var controller = new HomeController(dbContext);
+
+            //Act
+            var result = controller.Index();
+
+            //Assert
+            var viewResult = Assert.IsType<ViewResult>(result);
+            Assert.Null(viewResult.ViewName);
+            Assert.NotSame("your index page ", viewResult.ViewData);
+
+        }
+
+        [Fact]
+        public void Index_ViewWithMessage()
+        {
+            var dbContext = _serviceProvider.GetRequiredService<ApplicationDbContext>();
+            var controller = new HomeController(dbContext);  // home controller doesn't use dbcontext
+
+            // Act
+            var result = controller.Index();
+
+            // Assert
+            var viewResult = Assert.IsType<ViewResult>(result);
+            Assert.NotNull(viewResult);
+            Assert.NotNull(viewResult.ViewData);
+            Assert.NotSame("Your Index page", viewResult.ViewData["Message"]);
+        }
+
+
+
     }
 }
