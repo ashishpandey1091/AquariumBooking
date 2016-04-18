@@ -145,5 +145,21 @@ namespace D05.Test_Folder
             Assert.True(result == numDummyObjects);
 
         }
+
+        [Theory]
+        [InlineData(8,2,2)]
+        [InlineData(0,0,0)]
+        [InlineData(10,2,3)]
+        public void Return_TwoTwice(int a,int b,int c)
+        {
+            Assert.Equal(a,TwoTwice(b,c));
+
+        }
+
+
+        public int TwoTwice(int x,int y)
+        {
+            return 2 * x + 2 * y;
+        }
     }
 }
