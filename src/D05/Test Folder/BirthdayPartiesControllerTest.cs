@@ -59,7 +59,6 @@ namespace D05.Test_Folder
         [Fact]
         public void Events_Return_IndexView_NotNullWithTrueAssert()
         {
-
             // Arrange
             var numDummyObjects = 3;
             var dbContext = _serviceProvider.GetRequiredService<ApplicationDbContext>();
@@ -71,9 +70,6 @@ namespace D05.Test_Folder
 
             // Assert with checking Type of data.
             Assert.IsAssignableFrom<ViewResult>(result);
-
-
-
         }
 
         [Fact]
@@ -149,6 +145,25 @@ namespace D05.Test_Folder
             Assert.False(result < numDummyObjects);
             Assert.True(result == numDummyObjects);
 
+        }
+
+        [Fact]
+        public void Events_Data()
+        {
+
+            // Arrange
+            var numDummyObjects = 3;
+            var dbContext = _serviceProvider.GetRequiredService<ApplicationDbContext>();
+            CreateTestBirthdayParties(numberOfLocations: numDummyObjects, dbContext: dbContext);
+            var controller = new BirthdayPartiesController(dbContext);
+
+            // Act
+            var result = dbContext.BirthdayParties.ToList();
+
+            
+                Assert.Equal(result[2].FirstName, "Naruto" + 1);
+                Assert.InRange(result[2].AttendeesNumber,  0, 100);
+            
         }
 
     }
