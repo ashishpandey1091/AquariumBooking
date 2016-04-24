@@ -96,39 +96,44 @@ h2{
     padding-top: 20px;
 }
 
-.carousal_placeholder_1{
-    background-image: url('../img/Tunnel_carousal_2.jpg');
-    background-repeat: no-repeat;
-    background-position: center; 
-    background-size:100% auto;
-}
-
-.carousal_placeholder_2{
-    background-image: url('../img/close-encounter_carousal_4.jpg');
-    background-repeat: no-repeat;
-    background-position: center; 
-    background-size:100% auto;
-}
-
-.carousal_placeholder_3{
-    background-image: url('../img/birthday_carousal_3.jpeg');
-    background-repeat: no-repeat;
-    background-position: center; 
-    background-size:100% auto;
-}
-
-.carousal_placeholder_4{
-    background-image: url('../img/Family Fun_carousal.jpg');
+.carousal_placeholder_1 {
+    background-image: url('../img/carousel tunnel.jpg');
+   
     background-repeat: no-repeat;
     background-position: center;
-    background-size:100% auto;
+    background-size: 100% auto;
 }
 
-.carousal_placeholder_5{
-     background-image: url('../img/carousal_1.jpg');
+.carousal_placeholder_2 {
+    background-image: url('../img/carousel upclose.jpg');
+  
     background-repeat: no-repeat;
     background-position: center;
-    background-size:100% auto;
+    background-size: 100% auto;
+}
+
+.carousal_placeholder_3 {
+   
+    background-image: url('../img/carousel 2.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% auto;
+}
+
+.carousal_placeholder_4 {
+    
+    background-image: url('../img/carousel 6.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% auto;
+}
+
+.carousal_placeholder_5 {
+    
+    background-image: url('../img/carousel 8.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% auto;
 }
 
 .show-placeholder_1{

@@ -8,6 +8,17 @@ namespace D05.Models
 {
     public class SchoolTrip
     {
+        private ApplicationDbContext dbContext;
+
+        public SchoolTrip(ApplicationDbContext dbContext)
+        {
+            this.dbContext = dbContext;
+        }
+
+        public SchoolTrip()
+        {
+        }
+
         [ScaffoldColumn(false)]
         public int SchoolTripID { get; set; }
 
@@ -35,6 +46,16 @@ namespace D05.Models
         [Required]
         [Display(Name = "Number of Adults")]
         public int NoOfAdults { get; set; }
+
+        internal object Create()
+        {
+            throw new NotImplementedException();
+        }
+
+        internal object Index()
+        {
+            throw new NotImplementedException();
+        }
 
         [Required]
         [Display(Name = "Date of visit")]

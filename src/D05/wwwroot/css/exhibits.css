@@ -8,56 +8,61 @@ and open the template in the editor.
     Author     : S522573
 */
 
-.exhibit-placeholder_1{
-    width : 100%;
+.exhibit-placeholder_1 {
+    width: 100%;
     height: 250px;
-    background-color:#ddd;
-    background-image: url('../img/carousal_1.jpg');
+    background-color: #ddd;
+   
+    background-image: url('../img/exhibits - journey to atlantis.jpg');
     background-repeat: no-repeat;
     background-position: center;
 }
 
-.exhibit-placeholder_2{
-    width : 100%;
+.exhibit-placeholder_2 {
+    width: 100%;
     height: 250px;
-    background-color:#ddd;
-    background-image: url('../img/exhibit_2.jpg');
+    background-color: #ddd;
+    background-image: url('../img/exhibits - dolphin notch.jpg');
+    
     background-repeat: no-repeat;
     background-position: center;
 }
 
-.exhibit-placeholder_3{
-    width : 100%;
+.exhibit-placeholder_3 {
+    width: 100%;
     height: 250px;
-    background-color:#ddd;
-    background-image: url('../img/exhibit_3.jpg');
-    background-repeat: no-repeat;
-    background-position: center; 
-}
-
-.exhibit-placeholder_4{
-    width : 100%;
-    height: 250px;
-    background-color:#ddd;
-    background-image: url('../img/exhibit_4.jpg');
+    background-color: #ddd;
+    background-image: url('../img/coral show home page.jpg');
     background-repeat: no-repeat;
     background-position: center;
 }
 
-.exhibit-placeholder_5{
-    width : 100%;
+.exhibit-placeholder_4 {
+    width: 100%;
     height: 250px;
-    background-color:#ddd;
-    background-image: url('../img/exhibit_5.jpg');
+    background-color: #ddd;
+    background-image: url('../img/exhibits - walrus skerry.jpg');
+    
     background-repeat: no-repeat;
     background-position: center;
 }
 
-.exhibit-placeholder_6{
-    width : 100%;
+.exhibit-placeholder_5 {
+    width: 100%;
     height: 250px;
-    background-color:#ddd;
-    background-image: url('../img/exhibit_6.jpg');
+    background-color: #ddd;
+    
+    background-image: url('../img/exhibits - killer whales.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.exhibit-placeholder_6 {
+    width: 100%;
+    height: 250px;
+    background-color: #ddd;
+    background-image: url('../img/coral reef.jpg');
+    
     background-repeat: no-repeat;
     background-position: center;
 }
@@ -66,7 +71,7 @@ and open the template in the editor.
     width : 100%;
     height: 250px;
     background-color:#ddd;
-    background-image: url('../img/exhibit_7.jpg');
+    background-image: url('../img/exhibits - danty sealions.jpg');
     background-repeat: no-repeat;
     background-position: center;
 }

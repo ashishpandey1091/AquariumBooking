@@ -16,7 +16,7 @@
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.5/css/bootstrap.min.css"
               asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
-
+        <link rel="stylesheet" href="~/css/home.css" />
     </environment>
 </head>
 <body>
@@ -279,7 +279,7 @@
                         <div class="exhibit-placeholder-small">&nbsp;</div>
                         <h4>Exhibits Aquatix</h4>
                         <p>Explore exciting exhibits Aquatix.Family Fun and more!</p>
-                        <a asp-controller="" asp-action=""><strong>More Details</strong></a>
+                        <a href="/Planyourvisit/PlanYourVisit?tab=tickets"><strong>More Details</strong></a>
 
 
                     </div>
@@ -287,14 +287,14 @@
                         <div class="bday-placeholder-small">&nbsp;</div>
                         <h4>Exciting Birthday Parties</h4>
                         <p>Parties! Celebrate your Kids Birthday Aquatix</p>
-                        <a asp-controller="" asp-action=""><strong>More Details</strong></a>
+                        <a href="/Planyourvisit/PlanYourVisit?tab=tickets"><strong>More Details</strong></a>
 
                     </div>
                     <div class="col-md-4">
                         <div class="trip-placeholder-small">&nbsp;</div>
                         <h4>Ideal Field Trips</h4>
                         <p>Better Way to Learn.Visit Aquatix for Organized and Ideal School trips</p>
-                        <a asp-controller="" asp-action=""><strong>More Details</strong></a>
+                        <a href="/Planyourvisit/PlanYourVisit?tab=tickets"><strong>More Details</strong></a>
                     </div>
                 </div>
 
@@ -302,16 +302,12 @@
             </div>
             <div class="col-md-3" style="padding-top:15px;">
 
-                <div id="regiseroffer">
-                    <h4><strong>New User?</strong></h4>
-                    <p>Register Now and get a Gift Voucher worth 50$ which can be redeemed ebay.com </p>
-                    <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#register">Register Now!</button>
-                </div>
-
+                
                 <div id="offer" style="padding-top: 10px;">
                     <h3><span class="label label-info">Save upto 30%</span></h3>
                     <p>Add two Shows to your Entry Ticket and save upto 30%</p>
-                    <button class="btn btn-sm btn-primary">Buy Tickets</button>
+                    <a href="/Planyourvisit/PlanYourVisit?tab=tickets" class="btn btn-primary" role="button">Buy Tickets</a>
+                    
                 </div>
 
                 <div id="newsletter" class="well">
@@ -329,7 +325,7 @@
                 <div id="quote">
                     <blockquote>
                         <h4>OPENING HOURS</h4>
-                        <h5><strong>Check <a asp-controller="" asp-action="">Hours and Prices</a> for Details</strong></h5>
+                        <h5><strong>Check <a href="/Planyourvisit/PlanYourVisit?tab=hours">Hours and Prices</a> for Details</strong></h5>
                     </blockquote>
                 </div>
 
@@ -389,6 +385,7 @@
                 asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
                 asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal">
         </script>
+        <script src="~/js/home.js"></script>
 
     </environment>
 </body>

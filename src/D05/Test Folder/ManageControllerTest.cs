@@ -152,5 +152,37 @@ options => options.UseInMemoryDatabase());
 
         }
 
+        int Add(int x, int y)
+        {
+
+            return x + y;
+
+        }
+
+       
+        [Fact]
+        public void EqualTest()
+        {
+            Assert.Equal(4, Add(2, 2));
+        }
+
+        [Fact]
+        public void NotEqualTest()
+        {
+            Assert.NotEqual(5, Add(2, 2));
+        }
+
+        [Theory]
+        [InlineData(0, 0, 0)]
+        [InlineData(1, 1, 2)]
+        [InlineData(1, 2, 3)]
+        [InlineData(-1, -1, -2)]
+        [InlineData(-1, 1, 0)]
+        public void TheoryAddExample(int a, int b, int c)
+        {
+            Assert.Equal(c, Add(a, b));
+        }
+
+
     }
 }

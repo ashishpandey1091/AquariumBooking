@@ -13,13 +13,13 @@
 
 $(document).ready(function(){
    
-    console.log("in home"+$.cookie("username"));
+    // console.log("in home"+$.cookie("username"));
     
     
      
      /* start of on click of links in homepage for exhibits tab**/
      var targetTab = document.getElementById("tabInfo").value; //ViewData["Key"]; //getParameterByName('tab');
-    console.log("tabname"+targetTab);
+    // console.log("tabname"+targetTab);
         if(targetTab === 'exone'){
                 $("#exonetab").addClass('active');
                 $("#extwotab").removeClass('active');

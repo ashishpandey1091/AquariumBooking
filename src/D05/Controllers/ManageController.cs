@@ -21,6 +21,7 @@ namespace D05.Controllers
         private readonly IEmailSender _emailSender;
         private readonly ISmsSender _smsSender;
         private readonly ILogger _logger;
+        private ApplicationDbContext dbContext;
 
         public ManageController(
         UserManager<ApplicationUser> userManager,
@@ -34,6 +35,11 @@ namespace D05.Controllers
             _emailSender = emailSender;
             _smsSender = smsSender;
             _logger = loggerFactory.CreateLogger<ManageController>();
+        }
+
+        public ManageController(ApplicationDbContext dbContext)
+        {
+            this.dbContext = dbContext;
         }
 
         //
