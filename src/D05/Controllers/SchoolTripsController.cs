@@ -53,7 +53,7 @@ namespace D05.Controllers
             {
                 _context.SchoolTrips.Add(schoolTrip);
                 _context.SaveChanges();
-                return RedirectToAction("Index");
+                return Redirect("/Admin/Index");
             }
             return View(schoolTrip);
         }
@@ -83,7 +83,7 @@ namespace D05.Controllers
             {
                 _context.Update(schoolTrip);
                 _context.SaveChanges();
-                return RedirectToAction("Index");
+                return Redirect("/Admin/Index");
             }
             return View(schoolTrip);
         }
@@ -114,7 +114,7 @@ namespace D05.Controllers
             SchoolTrip schoolTrip = _context.SchoolTrips.Single(m => m.SchoolTripID == id);
             _context.SchoolTrips.Remove(schoolTrip);
             _context.SaveChanges();
-            return RedirectToAction("Index");
+            return Redirect("/Admin/Index");
         }
     }
 }

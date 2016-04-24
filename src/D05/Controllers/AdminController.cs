@@ -101,8 +101,8 @@ namespace D05.Controllers
             {
                 _context.Update(eventNew);
         _context.SaveChanges();
-                return RedirectToAction("Index");
-        }
+                return Redirect("/Admin/Index");
+            }
             return View(eventNew);
         }
 
