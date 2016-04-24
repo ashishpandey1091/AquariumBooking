@@ -15,6 +15,6 @@ The main idea of this website is to be a commercial website for aquarium. to acc
 
 **Images source addressed**
 * 
-The images which we are taken for our project is from flickr website. The source of images are from flickr with the licensed of "All creative commons" which are publicly available for commercial and business use.
+The images which we are taken for our project is from flickr website. The source of images are from flickr with the licensed of "All creative commons" which are publicly available for Educational.
 * 
 * https://www.flickr.com/search/?text=aquarium&license=2%2C3%2C4%2C5%2C6%2C9
