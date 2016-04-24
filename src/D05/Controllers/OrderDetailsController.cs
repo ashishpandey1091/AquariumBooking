@@ -53,7 +53,7 @@ namespace D05.Controllers
             {
                 _context.OrderDetails.Add(orderDetail);
                 _context.SaveChanges();
-                return RedirectToAction("Index");
+                return Redirect("/Admin/Index");
             }
             return View(orderDetail);
         }
@@ -83,7 +83,7 @@ namespace D05.Controllers
             {
                 _context.Update(orderDetail);
                 _context.SaveChanges();
-                return RedirectToAction("Index");
+                return Redirect("/Admin/Index");
             }
             return View(orderDetail);
         }
@@ -114,7 +114,7 @@ namespace D05.Controllers
             OrderDetail orderDetail = _context.OrderDetails.Single(m => m.OrderDetailID == id);
             _context.OrderDetails.Remove(orderDetail);
             _context.SaveChanges();
-            return RedirectToAction("Index");
+            return Redirect("/Admin/Index");
         }
     }
 }

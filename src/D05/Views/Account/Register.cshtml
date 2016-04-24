@@ -17,7 +17,7 @@
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     </environment>
 </head>
-<body>
+<body style="background-image:url(/img/admin.jpg)">
     @using System.Security.Claims
     <div class="container">
         <div class="navbar-wrapper">
@@ -45,9 +45,9 @@
                                     <ul class="dropdown-menu" role="menu">
                                         <li><a href="/Planyourvisit/PlanYourVisit?tab=hours">Hours and Prices</a></li>
                                         <li><a href="/Planyourvisit/PlanYourVisit?tab=tickets">Buy Tickets</a></li>
-                                        
+
                                         <li><a href="/Planyourvisit/PlanYourVisit?tab=occasions">Special Occasions</a></li>
-                                       
+
                                     </ul>
                                 </li>
 
@@ -85,29 +85,29 @@
                             </ul>
 
 
-                           @if (User.IsSignedIn())
-                           {
-                            <div id="myaccount" style="padding-right:20px">
-                                <form asp-controller="Account" asp-action="LogOff" method="post" id="logoutForm" class="nav navbar-nav navbar-right">
+                            @if (User.IsSignedIn())
+                            {
+                                <div id="myaccount" style="padding-right:20px">
+                                    <form asp-controller="Account" asp-action="LogOff" method="post" id="logoutForm" class="nav navbar-nav navbar-right">
+                                        <ul class="nav navbar-nav navbar-right">
+                                            <li>
+                                                <a asp-controller="Manage" asp-action="Index">Hello @User.GetUserName()</a>
+                                            </li>
+                                            <li>
+                                                <button type="submit" class="btn btn-link navbar-btn navbar-link">Log off</button>
+                                            </li>
+                                        </ul>
+                                    </form>
+                                </div>
+                            }
+                            else {
+                                <div id="loginlinks" style="padding-right:20px">
                                     <ul class="nav navbar-nav navbar-right">
-                                        <li>
-                                            <a asp-controller="Manage" asp-action="Index">Hello @User.GetUserName()</a>
-                                        </li>
-                                        <li>
-                                            <button type="submit" class="btn btn-link navbar-btn navbar-link">Log off</button>
-                                        </li>
+                                        <li><a asp-controller="Account" asp-action="Register">Register</a></li>
+                                        <li><a asp-controller="Account" asp-action="Login">Log in</a></li>
                                     </ul>
-                                </form>
-                            </div>
-                           }
-                           else {
-                            <div id="loginlinks" style="padding-right:20px">
-                                <ul class="nav navbar-nav navbar-right">
-                                    <li><a asp-controller="Account" asp-action="Register">Register</a></li>
-                                    <li><a asp-controller="Account" asp-action="Login">Log in</a></li>
-                                </ul>
-                            </div>
-                           }
+                                </div>
+                            }
                         </div>
                     </div>
                 </nav>
@@ -119,93 +119,100 @@
         @{
             ViewData["Title"] = "Register";
         }
+        <div class="container">
+            <div class="well" style="background-image:url(/img/wall321.jpg);">
+                <div class="col-md-offset-2">
 
-        <h2>@ViewData["Title"].</h2>
+                    <h2>@ViewData["Title"]</h2>
 
-        <form asp-controller="Account" asp-action="Register" method="post" class="form-horizontal" role="form">
-            <h4>Create a new account.</h4>
-            <hr />
-            <div asp-validation-summary="ValidationSummary.All" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Email" class="col-md-2 control-label" ></label>
-                <div class="col-md-10">
-                    <input asp-for="Email" class="form-control" />
-                    <span asp-validation-for="Email" class="text-danger"></span>
-                </div>
-            </div>
-            <div class="form-group">
-                <label asp-for="Password" class="col-md-2 control-label"></label>
-                <div class="col-md-10">
-                    <input asp-for="Password" class="form-control" />
-                    <span asp-validation-for="Password" class="text-danger"></span>
-                </div>
-            </div>
-            <div class="form-group">
-                <label asp-for="ConfirmPassword" class="col-md-2 control-label"></label>
-                <div class="col-md-10">
-                    <input asp-for="ConfirmPassword" class="form-control" />
-                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
-                </div>
-            </div>
+                    <form asp-controller="Account" asp-action="Register" method="post" class="form-horizontal" role="form">
+                        <h4>Create a new account.</h4>
+                        <hr />
+                        <div asp-validation-summary="ValidationSummary.All" class="text-danger"></div>
+                        <div class="form-group">
+                            <label asp-for="Email" class="col-md-2 control-label"></label>
+                            <div class="col-md-10">
+                                <input asp-for="Email" class="form-control" />
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Password" class="col-md-2 control-label"></label>
+                            <div class="col-md-10">
+                                <input asp-for="Password" class="form-control" />
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="ConfirmPassword" class="col-md-2 control-label"></label>
+                            <div class="col-md-10">
+                                <input asp-for="ConfirmPassword" class="form-control" />
+                                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                            </div>
+                        </div>
 
-            <div class="form-group">
-                <label asp-for="FirstName" class="col-md-2 control-label"></label>
-                <div class="col-md-10">
-                    <input asp-for="FirstName" class="form-control" />
-                    <span asp-validation-for="FirstName" class="text-danger"></span>
-                </div>
-            </div>
+                        <div class="form-group">
+                            <label asp-for="FirstName" class="col-md-2 control-label"></label>
+                            <div class="col-md-10">
+                                <input asp-for="FirstName" class="form-control" />
+                                <span asp-validation-for="FirstName" class="text-danger"></span>
+                            </div>
+                        </div>
 
-            <div class="form-group">
-                <label asp-for="LastName" class="col-md-2 control-label"></label>
-                <div class="col-md-10">
-                    <input asp-for="LastName" class="form-control" />
-                    <span asp-validation-for="LastName" class="text-danger"></span>
-                </div>
-            </div>
+                        <div class="form-group">
+                            <label asp-for="LastName" class="col-md-2 control-label"></label>
+                            <div class="col-md-10">
+                                <input asp-for="LastName" class="form-control" />
+                                <span asp-validation-for="LastName" class="text-danger"></span>
+                            </div>
+                        </div>
 
-            <div class="form-group">
-                <label asp-for="Age" class="col-md-2 control-label"></label>
-                <div class="col-md-10">
-                    <input asp-for="Age" class="form-control" />
-                    <span asp-validation-for="Age" class="text-danger"></span>
-                </div>
-            </div>
+                        <div class="form-group">
+                            <label asp-for="Age" class="col-md-2 control-label"></label>
+                            <div class="col-md-10">
+                                <input asp-for="Age" class="form-control" />
+                                <span asp-validation-for="Age" class="text-danger"></span>
+                            </div>
+                        </div>
 
-            <div class="form-group">
-                <label asp-for="Question" class="col-md-2 control-label"></label>
-                <div class="col-md-10">
-                    <input asp-for="Question" class="form-control" />
-                    <span asp-validation-for="Question" class="text-danger"></span>
-                </div>
-            </div>
+                        <div class="form-group">
+                            <label asp-for="Question" class="col-md-2 control-label"></label>
+                            <div class="col-md-10">
+                                <input asp-for="Question" class="form-control" />
+                                <span asp-validation-for="Question" class="text-danger"></span>
+                            </div>
+                        </div>
 
-            <div class="form-group">
-                <label asp-for="Answer" class="col-md-2 control-label"></label>
-                <div class="col-md-10">
-                    <input asp-for="Answer" class="form-control" />
-                    <span asp-validation-for="Answer" class="text-danger"></span>
-                </div>
-            </div>
+                        <div class="form-group">
+                            <label asp-for="Answer" class="col-md-2 control-label"></label>
+                            <div class="col-md-10">
+                                <input asp-for="Answer" class="form-control" />
+                                <span asp-validation-for="Answer" class="text-danger"></span>
+                            </div>
+                        </div>
 
-            <div class="form-group">
-                <label asp-for="ContactNumber" class="col-md-2 control-label"></label>
-                <div class="col-md-10">
-                    <input asp-for="ContactNumber" class="form-control" />
-                    <span asp-validation-for="ContactNumber" class="text-danger"></span>
-                </div>
-            </div>
+                        <div class="form-group">
+                            <label asp-for="ContactNumber" class="col-md-2 control-label"></label>
+                            <div class="col-md-10">
+                                <input asp-for="ContactNumber" class="form-control" />
+                                <span asp-validation-for="ContactNumber" class="text-danger"></span>
+                            </div>
+                        </div>
 
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <button type="submit" class="btn btn-default">Register</button>
+                        <div class="form-group">
+                            <div class="col-md-offset-6 col-md-10">
+                                <button type="submit" class="btn btn-success">Register</button>
+                            </div>
+                        </div>
+
+                    </form>
+                    @section Scripts {
+                        @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+                    }
                 </div>
             </div>
-        </form>
-        @section Scripts {
-            @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
-        }
-    </div>
+        </div>
+        </div>
     <environment names="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
         <script src="~/js/jquery.cookie.js"></script>
@@ -224,6 +231,6 @@
         </script>
         <script src="~/js/site.min.js" asp-append-version="true"></script>
     </environment>
-    
+
 </body>
 </html>

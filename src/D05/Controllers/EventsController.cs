@@ -53,7 +53,7 @@ namespace D05.Controllers
             {
                 _context.Events.Add(eventNew);
                 _context.SaveChanges();
-                return RedirectToAction("Index");
+                return Redirect("/Admin/Index");
             }
             return View(eventNew);
         }
@@ -83,7 +83,7 @@ namespace D05.Controllers
             {
                 _context.Update(eventNew);
                 _context.SaveChanges();
-                return RedirectToAction("Index");
+                return Redirect("/Admin/Index");
             }
             return View(eventNew);
         }
@@ -114,7 +114,7 @@ namespace D05.Controllers
             Event eventNew = _context.Events.Single(m => m.EventID == id);
             _context.Events.Remove(eventNew);
             _context.SaveChanges();
-            return RedirectToAction("Index");
+            return Redirect("/Admin/Index");
         }
 
        

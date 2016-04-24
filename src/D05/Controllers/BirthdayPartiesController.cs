@@ -53,7 +53,7 @@ namespace D05.Controllers
             {
                 _context.BirthdayParties.Add(birthdayParty);
                 _context.SaveChanges();
-                return RedirectToAction("Index");
+                return Redirect("/Admin/Index");
             }
             return View(birthdayParty);
         }
@@ -83,7 +83,7 @@ namespace D05.Controllers
             {
                 _context.Update(birthdayParty);
                 _context.SaveChanges();
-                return RedirectToAction("Index");
+                return Redirect("/Admin/Index");
             }
             return View(birthdayParty);
         }
@@ -114,7 +114,7 @@ namespace D05.Controllers
             BirthdayParty birthdayParty = _context.BirthdayParties.Single(m => m.BirthdayPartyID == id);
             _context.BirthdayParties.Remove(birthdayParty);
             _context.SaveChanges();
-            return RedirectToAction("Index");
+            return Redirect("/Admin/Index");
         }
     }
 }

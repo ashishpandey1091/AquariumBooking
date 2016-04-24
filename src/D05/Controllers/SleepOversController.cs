@@ -53,7 +53,7 @@ namespace D05.Controllers
             {
                 _context.SleepOvers.Add(sleepOver);
                 _context.SaveChanges();
-                return RedirectToAction("Index");
+                return Redirect("/Admin/Index");
             }
             return View(sleepOver);
         }
@@ -83,7 +83,7 @@ namespace D05.Controllers
             {
                 _context.Update(sleepOver);
                 _context.SaveChanges();
-                return RedirectToAction("Index");
+                return Redirect("/Admin/Index");
             }
             return View(sleepOver);
         }
@@ -114,7 +114,7 @@ namespace D05.Controllers
             SleepOver sleepOver = _context.SleepOvers.Single(m => m.SleepOverID == id);
             _context.SleepOvers.Remove(sleepOver);
             _context.SaveChanges();
-            return RedirectToAction("Index");
+            return Redirect("/Admin/Index");
         }
     }
 }
