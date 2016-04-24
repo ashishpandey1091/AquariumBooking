@@ -1,6 +1,6 @@
 # README #
 
-# Copy Right issues Addressed #
+# Copy Rights Addressed #
 
 **User Interface**
 The main idea of this website is to be a commercial website for aquarium. to accomplish our goals we have refereed all of the below websites. By seeing the below websites we came up with better understanding of where our project should develop in better way. We haven't used any User Interface and any functionalities from any of the website. The total work of User Interface and Functionalities are completely our team's choice of development in Version 1.0.
