@@ -21,5 +21,5 @@ The images which we are taken for our project is from flickr website. The source
 The FAQs of our website is partially taken from the Georgia Aquarium website. We have gone through all the websites and we found this websites FAQs are best match for our website. We thank and Credit for the Data we utilized for FAQs. Below is the link we used as reference.
 * https://www.georgiaaquarium.org/experience/visit/frequently-asked-questions
 
-**Repo Image** 
+**Repo Image and Team Name** 
 The Image of Our Hidden Leaf Repo and the Title of our Repo and team is Derived from our team's favorite Anime series "Naruto". The Hidden Leaf is the Key village where Naruto is born and Naruto motivates the hidden leaf to "Never Give up". This is the reason we came up with Hidden leaf meaning we never give up our work. We thank and credit this for Team Naruto.
