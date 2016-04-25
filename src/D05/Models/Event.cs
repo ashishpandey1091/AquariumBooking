@@ -38,7 +38,7 @@ namespace D05.Models
 
 
         [Required]
-        [Display(Name = "SpecialEvent")]
+        [Display(Name = "Special Event")]
         public bool IsSpecialEvent { get; set; }
 
         

@@ -272,7 +272,11 @@
                                                                             @Html.DisplayFor(modelItem => item.ContactNumber)
                                                                         </td>
                                                                         <td>
-                                                                            @Html.DisplayFor(modelItem => item.DateOfVisit)
+                                                                            @{
+                                                                                DateTime thisDate = @item.DateOfVisit;
+                                                                            }
+                                                                            @thisDate.ToString("MMMM dd, yyyy")
+                                                                            @*@Html.DisplayFor(modelItem => item.DateofVisit)*@
                                                                         </td>
 
                                                                         <td>
@@ -459,7 +463,11 @@
                                                                     @Html.DisplayFor(modelItem => item.ContactNumber)
                                                                 </td>
                                                                 <td>
-                                                                    @Html.DisplayFor(modelItem => item.DateofVisit)
+                                                                    @{
+                                                                        DateTime thisDate = @item.DateofVisit;
+                                                                    }
+                                                                    @thisDate.ToString("MMMM dd, yyyy")
+                                                                    @*@Html.DisplayFor(modelItem => item.DateofVisit)*@
                                                                 </td>
                                                               
                                                                 <td>
@@ -514,7 +522,11 @@
                                                                     @Html.DisplayFor(modelItem => item.ContactNumber)
                                                                 </td>
                                                                 <td>
-                                                                    @Html.DisplayFor(modelItem => item.DateofVisit)
+                                                                    @{
+                                                                        DateTime thisDate = @item.DateofVisit;
+                                                                    }
+                                                                    @thisDate.ToString("MMMM dd, yyyy")
+                                                                    @*@Html.DisplayFor(modelItem => item.DateofVisit)*@
                                                                 </td>
                                                              
                                                                 <td>
