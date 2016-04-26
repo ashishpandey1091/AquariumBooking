@@ -34,27 +34,31 @@
                                 <span class="icon-bar"></span>
                             </button>
                             <a class="navbar-brand" href="#">Aquatix Aquarium</a>
+                            
                         </div>
                         <div id="navbar" class="navbar-collapse collapse">
-                            <div class="navbar-right">
+                            <ul class="nav navbar-nav">
+                                <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                                </ul>
+                                <div class="navbar-right">
 
-                                <div id="loginlinks">
-                                    <div id="myaccount" style="padding-right:20px">
-                                        <form asp-controller="Account" asp-action="LogOff" method="post" id="logoutForm" class="nav navbar-nav">
-                                            <ul class="nav navbar-nav">
+                                    <div id="loginlinks">
+                                        <div id="myaccount" style="padding-right:20px">
+                                            <form asp-controller="Account" asp-action="LogOff" method="post" id="logoutForm" class="nav navbar-nav">
+                                                <ul class="nav navbar-nav">
 
-                                                <li>
-                                                    <button type="submit" class="btn btn-link navbar-btn navbar-link"><span class="glyphicon glyphicon-log-out"></span>Log Off</button>
-                                                </li>
-                                            </ul>
-                                        </form>
+                                                    <li>
+                                                        <button type="submit" class="btn btn-link navbar-btn navbar-link"><span class="glyphicon glyphicon-log-out"></span>Log Off</button>
+                                                    </li>
+                                                </ul>
+                                            </form>
+                                        </div>
+                                        @*<ul class="nav navbar-nav">
+                        <li id="registernav"><a href="login.html" data-toggle="modal" data-target="#login"><span class="glyphicon glyphicon-log-in"></span> Log Off</a></li>
+                    </ul>*@
                                     </div>
-                                    @*<ul class="nav navbar-nav">
-                                        <li id="registernav"><a href="login.html" data-toggle="modal" data-target="#login"><span class="glyphicon glyphicon-log-in"></span> Log Off</a></li>
-                                    </ul>*@
                                 </div>
-                            </div>
-                        </div>
+</div>
                     </div>
                 </nav>
 
